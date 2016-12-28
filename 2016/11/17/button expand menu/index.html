@@ -1,0 +1,825 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="展开菜单," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="ExpandableButtonMenu项目描述项目里有时会遇到这样一种设计的菜单样式，当点击一个按钮时，把菜单选项展开，其中根据需要在加上相应的动画。 Github 也有很多的开源动画，本次为了完成项目需求，学习了两个开源动画库：
+
+GooeyMenu
+AllAngleExpandableButton
+
+两个都是自定义 View ，相对来说第一个更加简单点，难度在于怎么利用贝塞尔曲线实现主 bu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="展开菜单">
+<meta property="og:url" content="http://nvgtor.github.io/2016/11/17/button expand menu/index.html">
+<meta property="og:site_name" content="EastYoung's blog">
+<meta property="og:description" content="ExpandableButtonMenu项目描述项目里有时会遇到这样一种设计的菜单样式，当点击一个按钮时，把菜单选项展开，其中根据需要在加上相应的动画。 Github 也有很多的开源动画，本次为了完成项目需求，学习了两个开源动画库：
+
+GooeyMenu
+AllAngleExpandableButton
+
+两个都是自定义 View ，相对来说第一个更加简单点，难度在于怎么利用贝塞尔曲线实现主 bu">
+<meta property="og:image" content="https://raw.githubusercontent.com/nvgtor/res/master/ViewPosition.png">
+<meta property="og:updated_time" content="2016-12-28T15:42:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="展开菜单">
+<meta name="twitter:description" content="ExpandableButtonMenu项目描述项目里有时会遇到这样一种设计的菜单样式，当点击一个按钮时，把菜单选项展开，其中根据需要在加上相应的动画。 Github 也有很多的开源动画，本次为了完成项目需求，学习了两个开源动画库：
+
+GooeyMenu
+AllAngleExpandableButton
+
+两个都是自定义 View ，相对来说第一个更加简单点，难度在于怎么利用贝塞尔曲线实现主 bu">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/nvgtor/res/master/ViewPosition.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 展开菜单 | EastYoung's blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EastYoung's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">其实很简单其实很自然</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                展开菜单
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-17T20:14:22+08:00" content="2016-11-17">
+              2016-11-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">Android笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/17/button expand menu/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/17/button expand menu/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+            <span>&nbsp; | &nbsp;
+            <span id="busuanzi_value_page_pv" ></span>次阅读
+            </span>    
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="ExpandableButtonMenu"><a href="#ExpandableButtonMenu" class="headerlink" title="ExpandableButtonMenu"></a>ExpandableButtonMenu</h1><h2 id="项目描述"><a href="#项目描述" class="headerlink" title="项目描述"></a>项目描述</h2><p>项目里有时会遇到这样一种设计的菜单样式，当点击一个按钮时，把菜单选项展开，其中根据需要在加上相应的动画。 Github 也有很多的开源动画，本次为了完成项目需求，学习了两个开源动画库：</p>
+<ul>
+<li><a href="https://github.com/anshulagarwal2k/GooeyMenu" title="GooeyMenu" target="_blank" rel="external">GooeyMenu</a></li>
+<li><a href="https://github.com/uin3566/AllAngleExpandableButton" title="AllAngleExpandableButton" target="_blank" rel="external">AllAngleExpandableButton</a></li>
+</ul>
+<p>两个都是自定义 View ，相对来说第一个更加简单点，难度在于怎么利用贝塞尔曲线实现主 button 的动画，最大的缺点估计就是 GooeyMenu 的大小是包括了展开后的布局，这就限制了它的适用性，而该库的主要目的也是为了实现主按钮的吸附动画。第二个库相对复杂一些，这个库 View 的大小就是主 button 的大小，展开的菜单绘制在原本 View 的上层，并添加了背景的模糊效果，也通过代码添加了 button 的状态变化和点击时的涟漪效果。</p>
+<a id="more"></a>
+<h2 id="GooeyMenu"><a href="#GooeyMenu" class="headerlink" title="GooeyMenu"></a>GooeyMenu</h2><p>这里包含了展开/收起 、主按钮旋转、主按钮大小变化（贝塞尔动画）几个动画组成，利用属性动画不断改变对应的值，重新绘制界面来形成整个界面的动画效果，通过 CirclePoint 类封装每个菜单子项的角度，位置，半径属性，在 onTouchEvent() 判断点击区域以及展开收起状态等做相应的处理，并通过接口 GooeyMenuInterface 来回调相应事件。其中菜单展开的位置是根据每个菜单项的角度来确定的，角度区间在 [0, 180] 具体由 n + 1 项来平分。展开收起动画通过属性动画对 CirclePoint 中的 radius 对象的变化来不断重绘，</p>
+<p>记录一些小知识点：</p>
+<h3 id="如何利用贝塞尔曲线画圆"><a href="#如何利用贝塞尔曲线画圆" class="headerlink" title="如何利用贝塞尔曲线画圆"></a>如何利用贝塞尔曲线画圆</h3><p>将圆分为4段绘制：</p>
+<pre><code>P_0 = (0,1), P_1 = (c,1), P_2 = (1,c), P_3 = (1,0)
+P_0 = (1,0), P_1 = (1,-c), P_2 = (c,-1), P_3 = (0,-1)
+P_0 = (0,-1), P_1 = (-c,-1), P_3 = (-1,-c), P_4 = (-1,0)
+P_0 = (-1,0), P_1 = (-1,c), P_2 = (-c,1), P_3 = (0,1)
+with c = 0.551915024494.
+</code></pre><p>方法原文：<a href="http://spencermortensen.com/articles/bezier-circle/" title="贝塞尔曲线画圆" target="_blank" rel="external">贝塞尔曲线画圆</a></p>
+<p>通过不断改变上面的 c 值，并不断的刷新界面，就会有圆形不断变化的动画。</p>
+<p>如何通过贝塞尔曲线画心形: <a href="https://github.com/GcsSloop/AndroidNote/blob/master/CustomView/Advance/%5B06%5DPath_Bezier.md" title="贝塞尔曲线画心形" target="_blank" rel="external">贝塞尔曲线画心形</a></p>
+<h3 id="自定义属性是一个数组的处理"><a href="#自定义属性是一个数组的处理" class="headerlink" title="自定义属性是一个数组的处理"></a>自定义属性是一个数组的处理</h3><p>在自定义中，有时需要传入一个数组，比如一个图片数组，一个文字数组等，在初始化的时候可以这样处理,比如初始化一个图片List《Drawable》:在 attrs 我们将这个自定义的属性类型设置为引用类型：</p>
+<pre><code>&lt;attr name=&quot;menu_drawable&quot; format=&quot;reference&quot;/&gt;
+</code></pre><p>在初始化中，先得到 typedArray, 之后在利用下面的方式初始化数组：</p>
+<pre><code>TypedValue outValue = new TypedValue();
+if (typedArray.getValue(R.styleable.ExpandableMenu_menu_drawable, outValue)) {
+   Resources res = getContext().getResources();
+   TypedArray array = res.obtainTypedArray(outValue.resourceId);
+   mDrawableArray = new ArrayList&lt;&gt;(array.length());
+   for (int i = 0; i &lt; array.length(); i++) {
+       TypedValue value = array.peekValue(i);
+       mDrawableArray.add(ContextCompat.getDrawable(mContext, value != null ? value.resourceId : 0));
+   }
+   array.recycle();
+}
+</code></pre><h3 id="onAttachedToWindow-onDetachedFromWindow"><a href="#onAttachedToWindow-onDetachedFromWindow" class="headerlink" title="onAttachedToWindow() / onDetachedFromWindow()"></a>onAttachedToWindow() / onDetachedFromWindow()</h3><p>onAttachedToWindow() 方法在 onDraw() 之前调用，可以用于一些初始化操作，onDetachedFromWindow() 在 view detached from a window 的时候调用，可以在这里释放一些资源。</p>
+<h2 id="AllAngleExpandableButton"><a href="#AllAngleExpandableButton" class="headerlink" title="AllAngleExpandableButton"></a>AllAngleExpandableButton</h2><p>思路： 界面上就定义一个按钮，当点击按钮的时候在此按钮上面覆盖一层 View 用来绘制新的按钮和展开的其他菜单子项，背景利用 View 的  cache 来做为模糊的背景，在 onTouchEvent() 中，根据按钮状态的变化动态改变背景色，还有涟漪的绘制。</p>
+<h3 id="获取视图在屏幕中的位置"><a href="#获取视图在屏幕中的位置" class="headerlink" title="获取视图在屏幕中的位置"></a>获取视图在屏幕中的位置</h3><p>正常在自定义 View 的时候，我们会在 onMeasure() 中测量 View 的大小，在 setMeasuredDimension() 之后我们便可以得到 View 的大小，当然我们也可以在 onSizeChanged() 方法中得到 View 的大小，一般也是在 onMeasure() 方法之后会回调 onSizeChanged() 方法，注意 onMeasure() 可能会回调多次，此时我们只能得到 View 的宽和高，还不能确定 View 在视图中的位置，一般的自定义 View 要么在 onDraw() 中制定绘制的位置，要么就是在 xml 中指定 View 的位置，我们可以通过监听视图树的变化，来确定 View 最终在屏幕中的位置，比如可以在自定义 View 初始化中注册视图监听，当 View 树状态改变或者 View 树里面的 view 的可见性发生变化时就会回调 onGlobalLayout()，在这里我们可以取到 View 的宽高，也可以取到 View 在屏幕中的位置：</p>
+<pre><code>private void initViewTreeObserver() {
+    ViewTreeObserver observer = getViewTreeObserver();
+    observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+        @Override
+        public void onGlobalLayout() {
+            // View 在屏幕中可视区域
+            getGlobalVisibleRect(rawButtonRect);
+            rawButtonRectF.set(rawButtonRect.left, rawButtonRect.top, rawButtonRect.right, rawButtonRect.bottom);
+        }
+    });
+}
+</code></pre><h3 id="View-中一些方法的区别"><a href="#View-中一些方法的区别" class="headerlink" title="View 中一些方法的区别"></a>View 中一些方法的区别</h3><ol>
+<li>getGlobalVisibleRect(Rect r) / getGlobalVisibleRect(Rect r, Point globalOffset)</li>
+<li>getLocalVisibleRect(Rect r) </li>
+<li>getLocationOnScreen(int[] outLocation)</li>
+<li>getLocationInWindow(int[] outLocation)</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/nvgtor/res/master/ViewPosition.png" alt="ViewPosition"></p>
+<p>getGlobalVisibleRect() 方法实际上调用的是两个参数的方法，该方法目的是获取视图 View 在屏幕上的可视区域，如上图中两个 View 中的可视部分也就是绿色矩形部分， Rect r 是 View 的可视区域，globalOffset 是 View 对于屏幕坐标原点的偏移量。</p>
+<p>getLocalVisibleRect() 方法取得也是 View 的可视区域，只不过返回的左边是以 View 本身为参考系的，该方法实际上也是先调用，getGlobalVisibleRect(r, offset) 方法，通过：</p>
+<pre><code>r.offset(-offset.x, -offset.y); // make r local
+</code></pre><p>来将坐标转换为本地坐标。</p>
+<p>getLocationOnScreen() / getLocationInWindow() 方法取 View 在 屏幕（Screen）/ 窗口（Window）中的坐标，普通的 Activity 窗口是占满这个屏幕的，包括状态栏，所以两个方法返回的值是一样的，当前的窗口是 dialog 的时候，返回值就会有差别，getLocationInWindow() 取得就是 dialog window 中的坐标，getLocationOnScreen() 返回的就是屏幕中的坐标。</p>
+<p>除了 View 中的这些方法，Activity 中还有一个方法可以取到我们能够展示内容的区域，包括标题栏和内容区，不包括状态栏：</p>
+<pre><code>getWindow().getDecorView().getWindowVisibleDisplayFrame(r)
+</code></pre><p>取到的值我们能够用来计算状态栏的高度（r.top）还可以在自定义键盘中动态计算键盘的高度（不弹出键盘时 H =  r.bottom, 弹出键盘时 H1 = r.bottom, 两者相减便是键盘的高度）等。</p>
+<p>自定义 Veiw 的时候，如果在 xml 中制定了位置，那么在 onDraw()时，绘制的位置的坐标是相对于父 View 的原点来计算的。 </p>
+<h3 id="绘制shadow"><a href="#绘制shadow" class="headerlink" title="绘制shadow"></a>绘制shadow</h3><p>在 Material design 我们可以给 View 添加一个 Elevation 值，可以让 View 有一个阴影效果，之前看到过有人用 layer-list 也能做出阴影效果，现在又 get 到了该库作者是怎么实现阴影的一个思路，实质也是绘制一个背景，但是并没有真正的 Elevation 属性（Elevation为1的 cardView 可以遮挡住 cardView 上面 Elevation 为 0 的 floatingButton），主要代码如下：</p>
+<pre><code>// 例子中是给一个 button 实现添加 Elevation 的效果
+// 先创建一个 buttonRadius + Elevation 的 bitmap
+Bitmap bitmap = Bitmap.createBitmap(bitmapSize, bitmapSize, Bitmap.Config.ARGB_8888);
+bitmap.eraseColor(0x0);
+int colors[] = {ColorUtils.setAlphaComponent(BUTTON_SHADOW_COLOR, BUTTON_SHADOW_ALPHA),
+        ColorUtils.setAlphaComponent(BUTTON_SHADOW_COLOR, 0)};
+float stops[] = {(float) (buttonRadius - buttonElevationPx) / (float) bitmapRadius, 1};
+Paint paint = new Paint();
+paint.setAntiAlias(true);
+// 给 Paint 添加着色器 采用 径向渐变 设置渐变的颜色 位置 和 CLAMP 填充模式
+paint.setShader(new RadialGradient(bitmapRadius, bitmapRadius, bitmapRadius, colors, stops, Shader.TileMode.CLAMP));
+// 利用画布将 bitmap 绘制出来
+Canvas canvas = new Canvas(bitmap);
+canvas.drawRect(0, 0, bitmapSize, bitmapSize, paint);
+// return bitmap, 此时 bitmap 就可以作为 button 的背景
+</code></pre><p>这里也给了一个方法就是我们在自定义 View 中如何给我们的 View 利用代码绘制出一个比较复杂的背景 bitmap ，然后作为 View 的背景。</p>
+<h3 id="绘制点击涟漪"><a href="#绘制点击涟漪" class="headerlink" title="绘制点击涟漪"></a>绘制点击涟漪</h3><p>在 Material design theme 中按钮点击会有涟漪扩散的效果，这种动画也是可以通过 onDraw() 给绘制出来，主要是绘制一个圆，一触摸点为圆心不断改变圆的半径，以形成动画。</p>
+<h3 id="取已知颜色的浅色或深色"><a href="#取已知颜色的浅色或深色" class="headerlink" title="取已知颜色的浅色或深色"></a>取已知颜色的浅色或深色</h3><p>通过将颜色转换为 HSV,通过改变其中的的值，来取得深色或浅色. <a href="https://zh.wikipedia.org/wiki/HSL%E5%92%8CHSV%E8%89%B2%E5%BD%A9%E7%A9%BA%E9%97%B4" title="HSV维基百科" target="_blank" rel="external">HSV维基百科</a></p>
+<pre><code>private int getLighterColor(int color) {
+    float[] hsv = new float[3];
+    Color.colorToHSV(color, hsv);
+    hsv[2] *= 1.1f;
+    return Color.HSVToColor(hsv);
+}
+
+private int getDarkerColor(int color) {
+    float[] hsv = new float[3];
+    Color.colorToHSV(color, hsv);
+    hsv[2] *= 0.9f;
+    return Color.HSVToColor(hsv);
+}
+</code></pre><h3 id="背景模糊（高斯模糊）"><a href="#背景模糊（高斯模糊）" class="headerlink" title="背景模糊（高斯模糊）"></a>背景模糊（高斯模糊）</h3><p>这里通过RenderScript调用底层接口实现高斯模糊计算，这个使用 v8.renderscript 能兼容 2.2 以上的版本，但是模糊半径有限制 0 &lt; r &lt; 25，具体模糊如下，在子线程进行模糊将结果回调到主线程，在模糊中先缩小图片再进行模糊可以达到优化性能的效果：</p>
+<pre><code>public class Blur {
+private static final float SCALE = 0.4F;
+
+private float radius;
+
+private Thread blurThread;
+private Context context;
+private Bitmap inBitmap;
+private Callback callback;
+
+public Blur() {
+    initThread();
+}
+
+private void initThread() {
+    blurThread = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            final Bitmap blurred = getBlurBitmap(context, inBitmap, radius);
+            Handler handler = new Handler(Looper.getMainLooper());
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    if (callback != null) {
+                        callback.onBlurred(blurred);
+                    }
+                }
+            });
+        }
+    });
+}
+
+public void setParams(Callback callback, Context context, Bitmap inBitmap, float radius) {
+    this.callback = callback;
+    this.context = context;
+    this.inBitmap = inBitmap;
+    this.radius = radius;
+}
+
+public void execute() {
+    blurThread.run();
+}
+
+@WorkerThread
+private Bitmap getBlurBitmap(Context context, Bitmap inBitmap, float radius) {
+    if (context == null || inBitmap == null) {
+        throw new IllegalArgumentException(&quot;have not called setParams() before call execute()&quot;);
+    }
+
+    int width = Math.round(inBitmap.getWidth() * SCALE);
+    int height = Math.round(inBitmap.getHeight() * SCALE);
+
+    // 先将原图缩小再进行模糊操作 优化
+    Bitmap in = Bitmap.createScaledBitmap(inBitmap, width, height, false);
+    Bitmap out = Bitmap.createBitmap(in);
+
+    RenderScript rs = RenderScript.create(context);
+    ScriptIntrinsicBlur blurScript = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs));
+
+    Allocation allocationIn = Allocation.createFromBitmap(rs, in);
+    Allocation allocationOut = Allocation.createFromBitmap(rs, out);
+
+    blurScript.setRadius(radius);
+    blurScript.setInput(allocationIn);
+    blurScript.forEach(allocationOut);
+    allocationOut.copyTo(out);
+
+    allocationIn.destroy();
+    allocationOut.destroy();
+    blurScript.destroy();
+    rs.destroy();
+
+    return out;
+}
+
+public interface Callback {
+    void onBlurred(Bitmap blurredBitmap);
+}
+}
+</code></pre><p>高斯模糊参考：<a href="https://www.zhihu.com/question/27017363" title="模糊效果" target="_blank" rel="external">模糊效果</a></p>
+<h3 id="弹出布局"><a href="#弹出布局" class="headerlink" title="弹出布局"></a>弹出布局</h3><p>在这种弹出控件中，我们当然希望控件的大小只有未弹出的时候一样大，这样方便自定义的 View 加入到其父容器中，不然的画，我们自定义的 View 的大小至少应该包括弹出后控件的大小，这样很影响我们的自定义 View 融入到其他布局中，文中的实现方法给我们提供了一种新的思路，未弹出时只绘制未弹出时应该有的大小，当弹出时我们将当前屏幕截屏然后加以模糊效果以作为弹出 View 的整体背景。</p>
+<p>也学到了一些 matrix 的东西，可以发现，我们在弹出菜单时同事进行了位移动画，和旋转动画，上述作者在实现中利用了 canvas.concat(matrix) 的方法，其中利用矩阵保存了要进行的变换，在应用到整个画布上。</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/展开菜单/" rel="tag">#展开菜单</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/04/md animations/" rel="next" title="Material design Animations">
+                <i class="fa fa-chevron-left"></i> Material design Animations
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/30/greenDao/" rel="prev" title="GreenDao3 学习">
+                GreenDao3 学习 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/17/button expand menu/"
+           data-title="展开菜单" data-url="http://nvgtor.github.io/2016/11/17/button expand menu/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/myIcon.jpg"
+               alt="EastYoung" />
+          <p class="site-author-name" itemprop="name">EastYoung</p>
+          <p class="site-description motion-element" itemprop="description">其实并不难是你太悲观</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ExpandableButtonMenu"><span class="nav-number">1.</span> <span class="nav-text">ExpandableButtonMenu</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#项目描述"><span class="nav-number">1.1.</span> <span class="nav-text">项目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GooeyMenu"><span class="nav-number">1.2.</span> <span class="nav-text">GooeyMenu</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何利用贝塞尔曲线画圆"><span class="nav-number">1.2.1.</span> <span class="nav-text">如何利用贝塞尔曲线画圆</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义属性是一个数组的处理"><span class="nav-number">1.2.2.</span> <span class="nav-text">自定义属性是一个数组的处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#onAttachedToWindow-onDetachedFromWindow"><span class="nav-number">1.2.3.</span> <span class="nav-text">onAttachedToWindow() / onDetachedFromWindow()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AllAngleExpandableButton"><span class="nav-number">1.3.</span> <span class="nav-text">AllAngleExpandableButton</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取视图在屏幕中的位置"><span class="nav-number">1.3.1.</span> <span class="nav-text">获取视图在屏幕中的位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#View-中一些方法的区别"><span class="nav-number">1.3.2.</span> <span class="nav-text">View 中一些方法的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绘制shadow"><span class="nav-number">1.3.3.</span> <span class="nav-text">绘制shadow</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绘制点击涟漪"><span class="nav-number">1.3.4.</span> <span class="nav-text">绘制点击涟漪</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#取已知颜色的浅色或深色"><span class="nav-number">1.3.5.</span> <span class="nav-text">取已知颜色的浅色或深色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#背景模糊（高斯模糊）"><span class="nav-number">1.3.6.</span> <span class="nav-text">背景模糊（高斯模糊）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#弹出布局"><span class="nav-number">1.3.7.</span> <span class="nav-text">弹出布局</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EastYoung</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+本站总访问量 <span id="busuanzi_value_site_pv"></span> &nbsp&nbsp&nbsp
+您是第<span id="busuanzi_value_site_uv"></span>个来到的小伙伴
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nvgtor"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

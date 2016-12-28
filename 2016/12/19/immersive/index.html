@@ -1,0 +1,685 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="沉浸式," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Managing the System UI沉浸式体验，系统UI：状态栏（status bar）、导航栏（navigation bar）
+system bars 包括 status bar 和 navigation bar，在播放电影或者预览一张照片时，为了能够使用户能够身临其境、沉浸式的体验，可以暂时的弱化系统 bar 的影响，避免分散我们的注意力。
+为了使用沉浸式的体验效果，需要注意版本兼容">
+<meta property="og:type" content="article">
+<meta property="og:title" content="沉浸式体验">
+<meta property="og:url" content="http://nvgtor.github.io/2016/12/19/immersive/index.html">
+<meta property="og:site_name" content="EastYoung's blog">
+<meta property="og:description" content="Managing the System UI沉浸式体验，系统UI：状态栏（status bar）、导航栏（navigation bar）
+system bars 包括 status bar 和 navigation bar，在播放电影或者预览一张照片时，为了能够使用户能够身临其境、沉浸式的体验，可以暂时的弱化系统 bar 的影响，避免分散我们的注意力。
+为了使用沉浸式的体验效果，需要注意版本兼容">
+<meta property="og:updated_time" content="2016-12-28T15:45:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="沉浸式体验">
+<meta name="twitter:description" content="Managing the System UI沉浸式体验，系统UI：状态栏（status bar）、导航栏（navigation bar）
+system bars 包括 status bar 和 navigation bar，在播放电影或者预览一张照片时，为了能够使用户能够身临其境、沉浸式的体验，可以暂时的弱化系统 bar 的影响，避免分散我们的注意力。
+为了使用沉浸式的体验效果，需要注意版本兼容">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 沉浸式体验 | EastYoung's blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EastYoung's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">其实很简单其实很自然</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                沉浸式体验
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-19T17:14:22+08:00" content="2016-12-19">
+              2016-12-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">Android笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/19/immersive/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/19/immersive/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+            <span>&nbsp; | &nbsp;
+            <span id="busuanzi_value_page_pv" ></span>次阅读
+            </span>    
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Managing-the-System-UI"><a href="#Managing-the-System-UI" class="headerlink" title="Managing the System UI"></a>Managing the System UI</h1><p>沉浸式体验，系统UI：状态栏（status bar）、导航栏（navigation bar）</p>
+<p>system bars 包括 status bar 和 navigation bar，在播放电影或者预览一张照片时，为了能够使用户能够身临其境、沉浸式的体验，可以暂时的弱化系统 bar 的影响，避免分散我们的注意力。</p>
+<p>为了使用沉浸式的体验效果，需要注意版本兼容</p>
+<a id="more"></a>
+<p>[TOC]</p>
+<h2 id="Dimming-theSystem-Bars"><a href="#Dimming-theSystem-Bars" class="headerlink" title="Dimming theSystem Bars"></a>Dimming theSystem Bars</h2><p>减弱 system bar 的显示效果，这种方法不会改变内容区（content view）的大小，但是 system bar 上的图标会减弱，当我们触碰到 status bar 或者是 navigation bar 的区域时，他们<br>都会完全显示出来，这种方法的优点是保留了 status bar 和 navigation bar 但是减弱了他们的细节。</p>
+<p>注意此方法支持的版本是 Android 4.0(API 14以上</p>
+<p>使用的 FLAG 是：View.SYSTEM_UI_FLAG_LOW_PROFILE，具体的减弱效果是减少 status bar 上的图标（navigation bar 应该也会有变化，但是没有这种设备没测出来），并且使剩下的图标变暗，当点击 home 键再切回来时，已经没有效果了。</p>
+<p>使用方法如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// This example uses decor view, but you can use any visible view.</span></div><div class="line">View decorView = getActivity().getWindow().getDecorView();</div><div class="line"><span class="keyword">int</span> uiOptions = View.SYSTEM_UI_FLAG_LOW_PROFILE;</div><div class="line">decorView.setSystemUiVisibility(uiOptions);</div></pre></td></tr></table></figure>
+<p>一旦用户触摸到 status bar 或 navigation bar 时，FLAG 就会清除，bar 上的减弱效果就会消失，一旦标志位被清除，需要重新启动 app 才能看到效果。</p>
+<p>手动清除标志位：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">View decorView = getActivity().getWindow().getDecorView();</div><div class="line"><span class="comment">// Calling setSystemUiVisibility() with a value of 0 clears</span></div><div class="line"><span class="comment">// all flags.</span></div><div class="line">decorView.setSystemUiVisibility(<span class="number">0</span>);</div></pre></td></tr></table></figure>
+<h2 id="Hiding-the-Status-Bar"><a href="#Hiding-the-Status-Bar" class="headerlink" title="Hiding the Status Bar"></a>Hiding the Status Bar</h2><p>隐藏状态栏、导航栏，让内容区使用更多的空间，时沉浸式的体验更深，隐藏状态栏的时候往往也需要把 action bar 也给隐藏。</p>
+<h2 id="Android-4-0-API-14-以下隐藏状态栏或导航栏"><a href="#Android-4-0-API-14-以下隐藏状态栏或导航栏" class="headerlink" title="Android 4.0 (API 14) 以下隐藏状态栏或导航栏"></a>Android 4.0 (API 14) 以下隐藏状态栏或导航栏</h2><p>可以使用 WindowManager flags 或者设置 activity theme 来隐藏，如果状态栏需要总是保持隐藏状态的话，推荐在 manifest 中设置 theme 来实现。例如：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">application</span></span></div><div class="line">    <span class="attr">...</span></div><div class="line">    <span class="attr">android:theme</span>=<span class="string">"@android:style/Theme.Holo.NoActionBar.Fullscreen"</span> &gt;</div><div class="line">    ...</div><div class="line"><span class="tag">&lt;/<span class="name">application</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>使用主题优势是：</p>
+<ul>
+<li>比起使用代码手动设置更简单也更不易出现错误</li>
+<li>界面转化更加平滑，因为系统更早知道渲染 UI 的信息</li>
+</ul>
+<p>使用 WindowManager flag 来实现，这种方法在于和用户交互来显示或者隐藏 status bar 的时候更加的灵活和简单。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        <span class="comment">// If the Android version is lower than Jellybean, use this call to hide</span></div><div class="line">        <span class="comment">// the status bar.</span></div><div class="line">        <span class="keyword">if</span> (Build.VERSION.SDK_INT &lt; <span class="number">16</span>) &#123;</div><div class="line">            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,</div><div class="line">                    WindowManager.LayoutParams.FLAG_FULLSCREEN);</div><div class="line">        &#125;</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line">    &#125;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当我们使用 WindowManager 标志位的时候（包括使用 theme），flag 的效果会一直保持除非我们清楚标志位，在 FLAG_FULLSCREEN enabled 情况下我们也可以使用 FLAG_LAYOUT_IN_SCREEN 来设置 activity layout 使用同样的屏幕区域，这样还能防止内容区因为 status bar 的显示和隐藏进行缩放。</p>
+<h2 id="4-1及其以上隐藏状态栏"><a href="#4-1及其以上隐藏状态栏" class="headerlink" title="4.1及其以上隐藏状态栏"></a>4.1及其以上隐藏状态栏</h2><p>在 Android 4.1(API 16) 及其以上可以通过 setSystemUiVisibility() 通过设置对应的标志来实现显示和隐藏状态栏，并且 setSystemUiVisibility() 这个方法可以通过一些单独的 view 来调用，最终聚合到 window 级别上，下面的代码是隐藏 status bar:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">View decorView = getWindow().getDecorView();</div><div class="line"><span class="comment">// Hide the status bar.</span></div><div class="line"><span class="keyword">int</span> uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;</div><div class="line">decorView.setSystemUiVisibility(uiOptions);</div><div class="line"><span class="comment">// Remember that you should never show the action bar if the</span></div><div class="line"><span class="comment">// status bar is hidden, so hide that too if necessary.</span></div><div class="line">ActionBar actionBar = getActionBar();</div><div class="line">actionBar.hide();</div></pre></td></tr></table></figure>
+<p>需要注意的点：</p>
+<ol>
+<li>一旦 UI flags 被清除，如果我们需要继续隐藏状态栏需要重新设置，后面会提到怎么监听 UI visibility 的变化。</li>
+<li>在不同的地方调用是有差别的，如果我们在 onCreate() 设置隐藏状态栏，用户按下 home 键后，system bar 的标志位会重置，用户再次打开 app, 不再执行 onCreate() 方法的时候，隐藏 status bar 就会失效，如果我们想让 system UI 的变化能够持久，在 app 切出去再回来的时候仍然有效的时候，我们应该在 onResume() 里面设置或者是在 onWindowFocusChanged()里。</li>
+<li>调用 setSystemUiVisibility() 的 View 必须是可见的才有效果。</li>
+<li>从当前 view 切出去会导致 setSystemUiVisibility() 标记位重置。</li>
+</ol>
+<h2 id="Make-Content-Appear-Behind-the-Status-Bar"><a href="#Make-Content-Appear-Behind-the-Status-Bar" class="headerlink" title="Make Content Appear Behind the Status Bar"></a>Make Content Appear Behind the Status Bar</h2><p>在 Android 4.1 之后，我们可以设置让 app 的内容区在status bar 显示后再显示，这样内容区的大小不会因为 status bar 的显示或者隐藏而导致大小发生变化，要做到这一点，需要使用 SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN，同时也需要设置 SYSTEM_UI_FLAG_LAYOUT_STABLE 来让 app 保持一个稳定的布局。</p>
+<p>当我们使用这个方法的时候，我们需要自己去确定系统 UI 的临界部分，大部分情况下可以在 XML 中增加 android:fitSystemWindows 属性设置为 true，也可以在代码中设置，来调整 parent ViewGroup 距离 system widows 的 padding。</p>
+<h2 id="Hiding-the-Navigation-Bar"><a href="#Hiding-the-Navigation-Bar" class="headerlink" title="Hiding the Navigation Bar"></a>Hiding the Navigation Bar</h2><p>隐藏导航栏的方法在 Android 4.0（API 14）中引进，隐藏导航栏应该与隐藏状态栏一起使用，这样可以让内容区使用更完全的屏幕空间，使用方法与隐藏状态栏差不多：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">View decorView = getWindow().getDecorView();</div><div class="line"><span class="comment">// Hide both the navigation bar and the status bar.</span></div><div class="line"><span class="comment">// SYSTEM_UI_FLAG_FULLSCREEN is only available on Android 4.1 and higher, but as</span></div><div class="line"><span class="comment">// a general rule, you should design your app to hide the status bar whenever you</span></div><div class="line"><span class="comment">// hide the navigation bar.</span></div><div class="line"><span class="keyword">int</span> uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION</div><div class="line">              | View.SYSTEM_UI_FLAG_FULLSCREEN;</div><div class="line">decorView.setSystemUiVisibility(uiOptions);</div></pre></td></tr></table></figure>
+<p>注意的点：</p>
+<ol>
+<li>这样使用，点击屏幕的任何地方，status bar 和 navigation bar 就会出现并且保持显示状态，标志位会被清除。</li>
+<li>一旦标志位被清除，需要重新设置</li>
+<li>onCreate()、onResume() 中使用情况不一样。</li>
+<li>调用的 View 是可见的才有效。</li>
+</ol>
+<p>让内容区在 navigation bar 后显示和内容区不改变大小，可以配合 SYSTEM_UI_FLAG_HIDE_NAVIGATION 和 SYSTEM_UI_FLAG_STABLE 标志使用。</p>
+<h2 id="Using-Immersive-Full-Screen-Mode"><a href="#Using-Immersive-Full-Screen-Mode" class="headerlink" title="Using Immersive Full-Screen Mode"></a>Using Immersive Full-Screen Mode</h2><p>全屏沉浸式模式，在 Android 4.4(API 19)中引进了一个新的 flag: SYSTEM_UI_FLAG_IMMERSIVE，可以让我们的 app 实现真正的全屏体验，结合 SYSTEM_UI_FLAG_HIDE_NAVIGATION 和 SYSTEM_UI_FLAG_FULLSCREEN 标志位的时候，可以隐藏状态栏和导航栏，并且响应整个屏幕的触摸事件。</p>
+<p><a href="http://blog.csdn.net/zhangqinghuazhangzhe/article/details/52935290" target="_blank" rel="external">看一下别人的翻译</a></p>
+<h2 id="Responding-to-UI-Visibility-Changes"><a href="#Responding-to-UI-Visibility-Changes" class="headerlink" title="Responding to UI Visibility Changes"></a>Responding to UI Visibility Changes</h2><p>监听 System UI visibility 的变化：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">View decorView = getWindow().getDecorView();</div><div class="line">decorView.setOnSystemUiVisibilityChangeListener</div><div class="line">        (<span class="keyword">new</span> View.OnSystemUiVisibilityChangeListener() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSystemUiVisibilityChange</span><span class="params">(<span class="keyword">int</span> visibility)</span> </span>&#123;</div><div class="line">        <span class="comment">// Note that system bars will only be "visible" if none of the</span></div><div class="line">        <span class="comment">// LOW_PROFILE, HIDE_NAVIGATION, or FULLSCREEN flags are set.</span></div><div class="line">        <span class="keyword">if</span> ((visibility &amp; View.SYSTEM_UI_FLAG_FULLSCREEN) == <span class="number">0</span>) &#123;</div><div class="line">            <span class="comment">// <span class="doctag">TODO:</span> The system bars are visible. Make any desired</span></div><div class="line">            <span class="comment">// adjustments to your UI, such as showing the action bar or</span></div><div class="line">            <span class="comment">// other navigational controls.</span></div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="comment">// <span class="doctag">TODO:</span> The system bars are NOT visible. Make any desired</span></div><div class="line">            <span class="comment">// adjustments to your UI, such as hiding the action bar or</span></div><div class="line">            <span class="comment">// other navigational controls.</span></div><div class="line">        &#125;</div><div class="line">    &#125;’’’’’’’”””</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>相关的标记位：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SYSTEM_UI_FLAG_FULLSCREEN = <span class="number">4</span>;</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SYSTEM_UI_FLAG_HIDE_NAVIGATION = <span class="number">2</span>;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SYSTEM_UI_FLAG_IMMERSIVE = <span class="number">2048</span>;</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SYSTEM_UI_FLAG_IMMERSIVE_STICKY = <span class="number">4096</span>;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN = <span class="number">1024</span>;</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION = <span class="number">512</span>;</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SYSTEM_UI_FLAG_LAYOUT_STABLE = <span class="number">256</span>;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SYSTEM_UI_FLAG_LIGHT_STATUS_BAR = <span class="number">8192</span>;</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SYSTEM_UI_FLAG_LOW_PROFILE = <span class="number">1</span>;</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SYSTEM_UI_FLAG_VISIBLE = <span class="number">0</span>;</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SYSTEM_UI_LAYOUT_FLAGS = <span class="number">1536</span>;</div></pre></td></tr></table></figure>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://developer.android.com/training/system-ui/index.html" target="_blank" rel="external">官方文档</a><br><a href="http://blog.csdn.net/zhangqinghuazhangzhe/article/details/52935290" target="_blank" rel="external">Activity 全屏，沉浸式模式这一篇就够了</a></p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/沉浸式/" rel="tag">#沉浸式</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/30/greenDao/" rel="next" title="GreenDao3 学习">
+                <i class="fa fa-chevron-left"></i> GreenDao3 学习
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/19/immersive/"
+           data-title="沉浸式体验" data-url="http://nvgtor.github.io/2016/12/19/immersive/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/myIcon.jpg"
+               alt="EastYoung" />
+          <p class="site-author-name" itemprop="name">EastYoung</p>
+          <p class="site-description motion-element" itemprop="description">其实并不难是你太悲观</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Managing-the-System-UI"><span class="nav-number">1.</span> <span class="nav-text">Managing the System UI</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Dimming-theSystem-Bars"><span class="nav-number">1.1.</span> <span class="nav-text">Dimming theSystem Bars</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hiding-the-Status-Bar"><span class="nav-number">1.2.</span> <span class="nav-text">Hiding the Status Bar</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-4-0-API-14-以下隐藏状态栏或导航栏"><span class="nav-number">1.3.</span> <span class="nav-text">Android 4.0 (API 14) 以下隐藏状态栏或导航栏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1及其以上隐藏状态栏"><span class="nav-number">1.4.</span> <span class="nav-text">4.1及其以上隐藏状态栏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Make-Content-Appear-Behind-the-Status-Bar"><span class="nav-number">1.5.</span> <span class="nav-text">Make Content Appear Behind the Status Bar</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hiding-the-Navigation-Bar"><span class="nav-number">1.6.</span> <span class="nav-text">Hiding the Navigation Bar</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Using-Immersive-Full-Screen-Mode"><span class="nav-number">1.7.</span> <span class="nav-text">Using Immersive Full-Screen Mode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Responding-to-UI-Visibility-Changes"><span class="nav-number">1.8.</span> <span class="nav-text">Responding to UI Visibility Changes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接"><span class="nav-number">1.9.</span> <span class="nav-text">参考链接</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EastYoung</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+本站总访问量 <span id="busuanzi_value_site_pv"></span> &nbsp&nbsp&nbsp
+您是第<span id="busuanzi_value_site_uv"></span>个来到的小伙伴
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nvgtor"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

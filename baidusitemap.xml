@@ -4,14 +4,74 @@
 
     
   <url>
-    <loc>http://nvgtor.github.io/2016/11/04/md%20animations/</loc>
-    <lastmod>2016-12-28T15:33:22.000Z</lastmod>
+    <loc>http://nvgtor.github.io/2016/12/19/immersive/</loc>
+    <lastmod>2016-12-28T15:45:41.000Z</lastmod>
     <data>
         <display>
-        <title>Service</title>
+        <title>沉浸式体验</title>
+        <pubTime>2016-12-19T09:14:22.000Z</pubTime>
+        
+        <tag>沉浸式</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android笔记" url="http://nvgtor.github.io/categories/Android%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://nvgtor.github.io/2016/11/17/button%20expand%20menu/</loc>
+    <lastmod>2016-12-28T15:42:51.000Z</lastmod>
+    <data>
+        <display>
+        <title>展开菜单</title>
+        <pubTime>2016-11-17T12:14:22.000Z</pubTime>
+        
+        <tag>展开菜单</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android笔记" url="http://nvgtor.github.io/categories/Android%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://nvgtor.github.io/2016/11/04/md%20animations/</loc>
+    <lastmod>2016-12-28T15:39:19.000Z</lastmod>
+    <data>
+        <display>
+        <title>Material design Animations</title>
         <pubTime>2016-11-04T06:14:22.000Z</pubTime>
         
         <tag>Material Animations</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android笔记" url="http://nvgtor.github.io/categories/Android%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://nvgtor.github.io/2016/11/30/greenDao/</loc>
+    <lastmod>2016-12-28T15:38:41.000Z</lastmod>
+    <data>
+        <display>
+        <title>GreenDao3 学习</title>
+        <pubTime>2016-11-30T11:14:22.000Z</pubTime>
+        
+        <tag>GreenDao3</tag>
          
          
            

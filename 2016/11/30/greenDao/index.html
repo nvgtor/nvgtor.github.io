@@ -1,0 +1,1099 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="GreenDao3," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="GreenDao3以下内容均来自官网 documentation
+[TOC]">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GreenDao3 学习">
+<meta property="og:url" content="http://nvgtor.github.io/2016/11/30/greenDao/index.html">
+<meta property="og:site_name" content="EastYoung's blog">
+<meta property="og:description" content="GreenDao3以下内容均来自官网 documentation
+[TOC]">
+<meta property="og:image" content="http://greenrobot.org/wordpress/wp-content/uploads/greenDAO-orm-640.png">
+<meta property="og:image" content="http://greenrobot.org/wordpress/wp-content/uploads/Core-Classes-150.png">
+<meta property="og:image" content="http://greenrobot.org/wordpress/wp-content/uploads/Meta-Model-180.png">
+<meta property="og:updated_time" content="2016-12-28T15:38:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GreenDao3 学习">
+<meta name="twitter:description" content="GreenDao3以下内容均来自官网 documentation
+[TOC]">
+<meta name="twitter:image" content="http://greenrobot.org/wordpress/wp-content/uploads/greenDAO-orm-640.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> GreenDao3 学习 | EastYoung's blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EastYoung's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">其实很简单其实很自然</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                GreenDao3 学习
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-30T19:14:22+08:00" content="2016-11-30">
+              2016-11-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">Android笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/30/greenDao/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/30/greenDao/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+            <span>&nbsp; | &nbsp;
+            <span id="busuanzi_value_page_pv" ></span>次阅读
+            </span>    
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="GreenDao3"><a href="#GreenDao3" class="headerlink" title="GreenDao3"></a>GreenDao3</h1><p>以下内容均来自官网 <a href="http://greenrobot.org/greendao/documentation/" title="官网文档" target="_blank" rel="external">documentation</a></p>
+<p>[TOC]</p>
+<a id="more"></a>
+<h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><p>如何快速开始使用:</p>
+<ul>
+<li><p>gradle 配置</p>
+<pre><code>//project
+buildscript {
+        repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath &apos;org.greenrobot:greendao-gradle-plugin:3.2.1&apos;
+    }
+}
+
+//app module        
+apply plugin: &apos;org.greenrobot.greendao&apos;
+
+dependencies {
+    compile &apos;org.greenrobot:greendao:3.2.0&apos;
+}
+</code></pre></li>
+<li><p>在全局 Application 中初始化 DaoSession</p>
+<pre><code>DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this,&quot;notes-db&quot;);
+Database db = helper.getWritableDb();
+mDaoSession = new DaoMaster(db).newSession();
+</code></pre></li>
+<li><p>创建实体类</p>
+<p>  通过注解自动生成对应的 Dao 文件</p>
+<pre><code>@Entity(indexes = {@Index(value = &quot;text, date DESC&quot;,unique = true)})
+public class Note {
+    @Id
+    private Long id;
+    @NotNull
+    private String text;
+    private String comment;
+    private Date date;
+
+    @Convert(converter = NoteTypeConverter.class, columnType = String.class)
+    private NoteType type;
+
+    @Generated(hash = 1272611929)
+    public Note() {
+    }
+
+    ...
+}
+</code></pre></li>
+<li><p>增删该查</p>
+<pre><code>DaoSession daoSession = ((App) getApplication()).getDaoSession();
+noteDao = daoSession.getNoteDao();
+
+noteDao.insert(note);
+
+noteDao.deleteByKey(id);
+
+Query&lt;Note&gt; notesQuery = noteDao.queryBuilder().orderAsc(NoteDao.Properties.Text).build();
+List&lt;Note&gt; notes = notesQuery.list();
+</code></pre></li>
+</ul>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>greenDAO 是一个对象关系映射（ORM）的框架，能够提供一个接口通过操作对象的方式去操作关系型数据库，它能够让你操作数据库时更简单、更方便。</p>
+<p><img src="http://greenrobot.org/wordpress/wp-content/uploads/greenDAO-orm-640.png" alt="Introduction"></p>
+<h3 id="核心类"><a href="#核心类" class="headerlink" title="核心类"></a>核心类</h3><p><img src="http://greenrobot.org/wordpress/wp-content/uploads/Core-Classes-150.png" alt="CoreClass"></p>
+<ul>
+<li><p>DaoMaster</p>
+<p>  DaoMaster 中根据特定的 schema 管理着数据库对象（SQLiteDatabase）和 Dao 类【DAO classes (not objects)】, 类中有静态的方法可以创建或者删除表，内部类 OpenHelper 和 DevOpenHelper 是 SQLiteOpenHelper 的实现类，可以创建不同模式（schema）的数据库</p>
+</li>
+<li><p>DaoSession</p>
+<p>  管理所有 Dao 对象【DAO objects】，可以通过 getXXXDao() 方法取得相应的 Dao 对象，并且也提供了一些通用的方法比如insert, load, update, refresh and delete for entities</p>
+</li>
+<li><p>DAOs</p>
+<p>  GreenDao 根据实体类自动生成，相比 DaoSession，具有更多的方法，比如： count, loadAll, and insertInTx</p>
+</li>
+<li><p>Entities</p>
+<p>  持久化对象</p>
+</li>
+</ul>
+<h2 id="实体类创建"><a href="#实体类创建" class="headerlink" title="实体类创建"></a>实体类创建</h2><p><img src="http://greenrobot.org/wordpress/wp-content/uploads/Meta-Model-180.png" alt="entities"></p>
+<h3 id="schema"><a href="#schema" class="headerlink" title="schema"></a>schema</h3><p>schema就是数据库对象的集合，这个集合包含了各种对象如：表、视图、存储过程、索引等。为了区分不同的集合，就需要给不同的集合起不同的名字，默认情况下一个用户对应一个集合，用户的schema名等于用户名，并作为该用户缺省schema。所以schema集合看上去像用户名。<br>如果把database看作是一个仓库，仓库很多房间（schema），一个schema代表一个房间，table可以看作是每个房间中的储物柜，user是每个schema的主人，有操作数据库中每个房间的权利，就是说每个数据库映射的user有每个schema（房间）的钥匙。</p>
+<h3 id="greenDao-配置"><a href="#greenDao-配置" class="headerlink" title="greenDao 配置"></a>greenDao 配置</h3><p>我们至少应该配置 schema 的版本：</p>
+<p>在 app 的 build.gradle 中：</p>
+<pre><code>greendao{
+    schemaVersion 2              // 当前数据库版本，升级
+    // 还支持其他属性，如下
+    daoPackage &quot;xxx&quot;             // DAOs, DaoMaster, and DaoSession 目录，默认和 entity 一个目录
+    targetGenDir &quot;xxx&quot;            // 自动生成的文件本地目录，默认（build/generated/source/greendao）
+    generateTests true/false     // true 自动生成单元测试
+    targetGenDirTests &quot;xxx&quot;      // 单元测试目录
+}
+</code></pre><h3 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h3><pre><code>@Entity
+public class User {
+    @Id
+    private Long id;
+
+    private String name;
+
+    @Transient
+    private int tempUsageCount; // not persisted
+
+       // getters and setters for id and user ...
+}
+</code></pre><h4 id="Entity"><a href="#Entity" class="headerlink" title="@Entity"></a>@Entity</h4><p>@Entity 注解让 Java 实体类成为 GreenDao 的持久化对象,这是一个 Retention 为 Source 和 Target 为 TYPE 类型的注解，注解里面的方法有：</p>
+<pre><code>String nameInDb() default &quot;&quot;;
+Index[] indexes() default {};
+boolean createInDb() default true;
+String schema() default &quot;default&quot;;
+boolean active() default false;
+boolean generateConstructors() default true;
+boolean generateGettersSetters() default true;
+Class protobuf() default void.class;
+</code></pre><p>对应的我们在使用注解 @Entity 的时候就可以加上相应的配置，如：</p>
+<pre><code>@Entity(
+    // 每个 entity 对应的 schema
+    schema = &quot;myschema&quot;,
+
+    // 这个实体类是否为 &quot;active&quot; 的标志，true: Active 的 entities 有 update,
+    // delete, and refresh 这些方法.
+    active = true,
+
+    // 数据库中对应表名，默认和根据该 entity 生成
+    nameInDb = &quot;AWESOME_USERS&quot;,
+
+    // 索引，可以创建多列索引
+    indexes = {
+            @Index(value = &quot;name DESC&quot;, unique = true)
+    },
+
+    // 这个实体类是否应该建表，默认 true, 如果你有多个 entity 映射到一张表或者之前已经在 GreenDao 外建立了对应的表时设为 false 
+    createInDb = false,
+
+    // Whether an all properties constructor should be generated.
+    // A no-args constructor is always required.
+    generateConstructors = true,
+
+    // Whether getters and setters for properties should be generated if missing.
+    generateGettersSetters = true
+)
+public class User {
+      ...
+}
+</code></pre><h4 id="基本注解"><a href="#基本注解" class="headerlink" title="基本注解"></a>基本注解</h4><pre><code>@Entity
+public class User {
+@Id(autoincrement = true)
+private Long id;
+
+@Property(nameInDb = &quot;USERNAME&quot;)
+private String name;
+
+@NotNull
+private int repos;
+
+@Transient
+private int tempUsageCount;
+
+...
+}
+</code></pre><ul>
+<li>@Id 主键，可以设置是否 autoincrement </li>
+<li>@Property 重新设置对应数据库表的列名</li>
+<li>@NotNull 非空</li>
+<li>@Transient 建表时排除此字段</li>
+</ul>
+<h4 id="主键约束"><a href="#主键约束" class="headerlink" title="主键约束"></a>主键约束</h4><p>GreenDao 要求必须有一个 long（Long） 形的 id 作为主键,如果我们需要定义自己的 key property，表明该键值唯一 ,只需要加上下面注解：</p>
+<pre><code>@Id
+private Long id;
+
+@Index(unique = true)
+private String key;
+</code></pre><p>注意这里的 @Index 和 @Entity 里面的 @Index, 注解的定义是一样的，区别在于注解方法里面的 value 方法只对 entity 有效。</p>
+<h3 id="修改-generated-的-code"><a href="#修改-generated-的-code" class="headerlink" title="修改 generated 的 code"></a>修改 generated 的 code</h3><p>在 greenDAO 3 中开发者可以创建和修改 Entity 类，这样随着代码自动生成可能会增加 Entity 的代码量，greenDao 会给方法和变量生成的时候加上一个 @Generated 注解，给开发者提示这是通过 greenDAO 自动生成的，和防止代码缺失，大多数情况下，不应该修改带有 @Generated 注解的代码。</p>
+<p>@Generated 注解告诉开发者被该注解标注的变量，构造函数和方法，因为 Entity 的变化在下一次的 run generation 中这些被标记的元素会被改变或者删除</p>
+<p>如果 generated 的 code 被我们手动修改时，greenDAO 的处理方式比较谨慎，他不会覆盖之前的代码，并且会报一个错误：</p>
+<pre><code>Error:Execution failed for task &apos;:app:greendao&apos;.
+</code></pre><p>会提示 generation 后 XX 方法会被改变，我们要么保持被 @Generated 标注的代码，要么删掉让它重新生成。</p>
+<p>或者使用 @Keep 注解，现已不推荐使用。</p>
+<h2 id="Sessions"><a href="#Sessions" class="headerlink" title="Sessions"></a>Sessions</h2><p>DaoSession 是 greenDAO 的核心接口之一，DaoSession 为开发者提供了 Entity 基本操作和一系列 DAOs 的操作，另外，sessions 也为 entities 管理着 identity scope（不懂这个，文档里有介绍<a href="http://docs.jboss.org/hibernate/core/3.6/reference/en-US/html/transactions.html#transactions-basics-uow" title="Hibernate’s session to grasp the full concept of sessions and identity scopes." target="_blank" rel="external">Hibernate’s session to grasp the full concept of sessions and identity scopes.</a>）</p>
+<h3 id="DaoMaster-and-DaoSession"><a href="#DaoMaster-and-DaoSession" class="headerlink" title="DaoMaster and DaoSession"></a>DaoMaster and DaoSession</h3><p>之前也提到我们需要先创建一个 DaoMaster 然后通过它得到 DaoSession：</p>
+<pre><code>daoMaster = new DaoMaster(db);
+daoSession = daoMaster.newSession();
+</code></pre><p>注意数据库连接属于 DaoMaster ，所以我们创建多个 daoSession 使用的是同一个数据库连接，因此，我们能够快速创建新的 sessions ，然而每一个 session 都需要分配内存，通常每个 entity 实体都会有一个 session “缓存”。</p>
+<h3 id="Identity-scope-and-session-“cache”"><a href="#Identity-scope-and-session-“cache”" class="headerlink" title="Identity scope and session “cache”"></a>Identity scope and session “cache”</h3><p>Identity scope 是什么呢？，如果我们有两个 query 返回了相同的数据库记录，到底需要一个还是两个 java 对象，这取决与 Identity scope。</p>
+<p>在 greenDAO 中，多次查询返回的是同一个 java objects 的引用，例如我们查询 USER 表 ID 为 42 的记录对于两次查询返回的同一个 User 对象。</p>
+<p>这样相当于有一种 entity “cache”,如果 Entity object 仍然在内存中（greenDAO 使用软引用），这样的话 entity 就不会被再次创建，会从 session cache 中马上返回，这样查询速度会快一个或两个数量级。</p>
+<h3 id="Clear-the-identity-scope"><a href="#Clear-the-identity-scope" class="headerlink" title="Clear the identity scope"></a>Clear the identity scope</h3><p>清除整个 daoSession 的 Identity scope, 此后不会有 缓存 的对象会被返回</p>
+<pre><code>daoSession.clear();
+</code></pre><p>清除某一个 DAO 的 Identity scope：</p>
+<pre><code>noteDao = daoSession.getNoteDao();
+noteDao.detachAll();
+</code></pre><h2 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h2><p>查询返回精确条件下的匹配结果，在 greenDAO 中，可以使用 SQL 中的 raw 查询，也可以使用更简单的 QueryBuilder API。查询也支持懒加载，在数据集较大的时候能够节约内存的提高性能。</p>
+<h3 id="QueryBuilder"><a href="#QueryBuilder" class="headerlink" title="QueryBuilder"></a>QueryBuilder</h3><p>直接写数据库的查询语句比较复杂而且容易出错，出错也只能在运行时能够检测到，使用 QueryBuilder 更加简便也能是错误能够在编译时检测出来。</p>
+<ul>
+<li><p>简单查询</p>
+<p>  查询 first name = joe , 根据 last name 排序：</p>
+<pre><code>List joes = userDao.queryBuilder()
+  .where(Properties.FirstName.eq(&quot;Joe&quot;))
+  .orderAsc(Properties.LastName)
+  .list();
+</code></pre></li>
+<li><p>嵌套查询</p>
+<p>  查询 first name = joe, 出生在 1970.10 以后</p>
+<pre><code>QueryBuilder qb = userDao.queryBuilder();
+qb.where(Properties.FirstName.eq(&quot;Joe&quot;),
+qb.or(Properties.YearOfBirth.gt(1970),
+qb.and(Properties.YearOfBirth.eq(1970), Properties.MonthOfBirth.ge(10))));
+List youngJoes = qb.list();
+</code></pre></li>
+<li><p>Limit, Offset, and Pagination</p>
+<p>  有事我们只需要查询结果的一部分，但数据集很大的时候我们也不能通过查询条件来筛选的时候，QueryBuilder 也提供了相应的分页查询方法：</p>
+<p>  limit(int):取查询结果的部分数据</p>
+<p>  offset(int): 与 limit 结合使用，先跳过 offset 个数据，再取 limit 个条目，不能单独使用。</p>
+</li>
+<li><p>基本类型作为参数</p>
+<p>  通常，能明显察觉到 greenDAO 在查询时候的类型映射，比如 boolean 类型被转换为 INTEGER 的 0 和 1， Date 被映射为 (long)INTEGER ，我们 build 一个 query 的时候必须使用数据库类型值，例如我们定义了枚举变量映射为 int 的值，查询的时候就要用 int 值，greenDAO 提供了 PropertyConverter 类，我们通过继承复写其中的方法能够完成转换。</p>
+</li>
+</ul>
+<h3 id="Query-and-LazyList"><a href="#Query-and-LazyList" class="headerlink" title="Query and LazyList"></a>Query and LazyList</h3><p>每一次查询都是通过 Query 类来执行，并且可能执行多次，我们使用 QueryBuilder 来查询的时候内部也是调用了 Query 类，如果我们想对某个查询执行多次，我们应该调用 QueryBuilder 的 build 方法保存这个 QueryBuilder，以便下次使用,而不是执行他。</p>
+<p>greenDAO 支持 unique results(0 or 1 result) 和 result lists, 如果我们希望查询结果是 unique 的，那么在 Query 或 QueryBuilder 的时候调用 unique(), 这样将会得到一个单独的结果或者是 null, 如果不希望有 null 结果，调用 uniqueOrThrow() ,将会确保结果非空或者抛出异常。如果我们希望查询的结果是列表，调用一下的方法：</p>
+<ul>
+<li>list()————————-所有记录都被加载进内存，返回结果一般是 ArrayList </li>
+<li>listLazy()——————-实体延时加载到内存中，一旦列表的第一个元素加载到内存中，开始缓存，必须手动关闭</li>
+<li>listLazyUncached()——-一个“虚拟”的实体列表:任何访问列表元素的结果从数据库加载数据。必须关闭。</li>
+<li>listIterator()—————-遍历延时加载的结果列表，数据没有缓存，必须关闭</li>
+</ul>
+<p>listLazy(), listLazyUncached(), listIterator() 方法使用了 greenDAO 的 LazyList 类，为了延时加载，它持有一个数据库 cursor 的引用，所以我们必须在使用后关闭，通常用 try/finally 中关闭。在方法 listLazy() 和 listIterator() 中，一旦所有元素存取完成或者遍历完成时，游标会自动关闭，但是出现异常时我们必须调用 close() 方法手动关闭。</p>
+<h3 id="执行多次-queries"><a href="#执行多次-queries" class="headerlink" title="执行多次 queries"></a>执行多次 queries</h3><p>一旦我们使用 QueryBuilder 来 build 一个 query, 这个 query 能够复用，而不用每次都创建一个新的 Query 。如果查询条件不变可以直接使用，如果发生了变化，也支持修改，例如：</p>
+<pre><code>// fetch users with Joe as a first name born in 1970
+Query query = userDao.queryBuilder().where(
+    Properties.FirstName.eq(&quot;Joe&quot;), Properties.YearOfBirth.eq(1970)
+).build();
+List joesOf1970 = query.list();
+
+// using the same Query object, we can change the parameters
+// to search for Marias born in 1977 later:
+query.setParameter(0, &quot;Maria&quot;);
+query.setParameter(1, 1977);
+List mariasOf1977 = query.list();
+</code></pre><ul>
+<li><p>多线程执行查询</p>
+<p>  如果我们在多线程中执行查询，我们必须调用 forCurrentThread() 得到一个当前线程的 Query 实例，每一个 Query 都会绑定与创建它的那个线程。这样我们在不同线程里面给 query 设置查询参数时，就会报错，这样我们就不需要同步锁。</p>
+</li>
+</ul>
+<h3 id="Raw-queries"><a href="#Raw-queries" class="headerlink" title="Raw queries"></a>Raw queries</h3><p>为了防止 QueryBuilder 不支持一些查询，仍然有两种方法来支持原始 SQL 查询：</p>
+<ul>
+<li><p>首选使用 QueryBuilder 的 WhereCondition.StringCondition.  这样将查询条件写成 String 来构建 QueryBuilder，例如（使用 join 连接会更好）：</p>
+<pre><code>Query query = userDao.queryBuilder().where(
+      new StringCondition(&quot;_ID IN &quot; +
+        &quot;(SELECT USER_ID FROM USER_MESSAGE WHERE READ_FLAG = 0)&quot;)
+).build();
+</code></pre></li>
+<li><p>第二种方法是不用 QueryBuilder 而是用 queryRaw 或 queryRawCreate 方法，它们允许输入原始 Sql 查询字符串，这样我们可以写任意查询条件也可以使用  ORDER BY ，例如：</p>
+<pre><code>Query query = userDao.queryRawCreate(
+      &quot;, GROUP G WHERE G.NAME=? AND T.GROUP_ID=G._ID&quot;, &quot;admin&quot;
+);
+</code></pre></li>
+</ul>
+<p>只是为了举例，graeenDAO 本身支持 joins 操作。</p>
+<p>注意：查询时候的表名和列名强烈建议使用自动生成的名字。</p>
+<h3 id="Delete-queries"><a href="#Delete-queries" class="headerlink" title="Delete queries"></a>Delete queries</h3><p>批量删除不删除单个实体，是删除达到条件的所有实体，为了批量删除创建一个 QueryBuilder 调用 buildDelete() 方法，执行结果返回删除掉的 DeleteQuery。</p>
+<p>这一部分的 API 未来会改动。</p>
+<p>记住一点批量删除不影响在 identity scope 中的 entities。</p>
+<h3 id="查询调试"><a href="#查询调试" class="headerlink" title="查询调试"></a>查询调试</h3><p>有两个静态的 flag 我们可以知道 QueryBuilder 过程中的日志：</p>
+<pre><code>QueryBuilder.LOG_SQL = true;
+QueryBuilder.LOG_VALUES = true;    
+</code></pre><h2 id="query-builder-中的-Join"><a href="#query-builder-中的-Join" class="headerlink" title="query builder 中的 Join"></a>query builder 中的 Join</h2><h3 id="join"><a href="#join" class="headerlink" title="join"></a>join</h3><p>比较复杂的查询需要从好几个表中找出数据，在数据库中我们可以用连接操作 join 将变连接起来。示例： User 表对 Address 表时一对多的关系，查询地址是 “Sesame Street” 的 user, 我们将把 Address 连接的 User 表通过 user id 和 一个 Address 表的 where 条件：</p>
+<pre><code>QueryBuilder&lt;User&gt; queryBuilder = userDao.queryBuilder();
+queryBuilder.join(Address.class, AddressDao.Properties.userId)
+  .where(AddressDao.Properties.Street.eq(&quot;Sesame Street&quot;));
+List&lt;User&gt; users = queryBuilder.list();﻿
+</code></pre><p>Join 操作需要目标 entity 作为参数并且每一个表（entity） 的一个属性作为连接条件，示例中，只有 Address 中的属性参与了连接，因为主键使用的是默认的，换句话说，查询结果中的用户里面有一个 address entity 的 user id 等于 User entity 中的 id ，并且地址是查询条件中的那个地址。</p>
+<h3 id="QueryBuilder-Join-API"><a href="#QueryBuilder-Join-API" class="headerlink" title="QueryBuilder Join API"></a>QueryBuilder Join API</h3><p>当主键也被用于连接的条件时我们能够省略一个连接属性条件，QueryBuilder 中有 3 个重载方法：</p>
+<pre><code>/**
+  * Expands the query to another entity type by using a JOIN.
+  * The primary key property of the primary entity for
+  * this QueryBuilder is used to match the given destinationProperty.
+  */
+public &lt;J&gt; Join&lt;T, J&gt; join(Class&lt;J&gt; destinationEntityClass, Property destinationProperty)
+
+/**
+ * Expands the query to another entity type by using a JOIN.
+ * The given sourceProperty is used to match the primary
+ * key property of the given destinationEntity.
+ */
+public &lt;J&gt; Join&lt;T, J&gt; join(Property sourceProperty, Class&lt;J&gt; destinationEntityClass)
+
+/**
+ * Expands the query to another entity type by using a JOIN.
+ * The given sourceProperty is used to match the given
+ * destinationProperty of the given destinationEntity.
+ */
+public &lt;J&gt; Join&lt;T, J&gt; join(Property sourceProperty, Class&lt;J&gt; destinationEntityClass,
+    Property destinationProperty)
+</code></pre><h3 id="Chained-Joins"><a href="#Chained-Joins" class="headerlink" title="Chained Joins"></a>Chained Joins</h3><p>greenDAO 也支持 chain joins：</p>
+<pre><code>/**
+ * Expands the query to another entity type by using a JOIN.
+ * The given sourceJoin&apos;s property is used to match the
+ * given destinationProperty of the given destinationEntity.
+ * Note that destination entity of the given join is used
+ * as the source for the new join to add. In this way,
+ * it is possible to compose complex &quot;join of joins&quot; across
+ * several entities if required.
+ */
+public &lt;J&gt; Join&lt;T, J&gt; join(Join&lt;?, T&gt; sourceJoin, Property sourceProperty,
+    Class&lt;J&gt; destinationEntityClass, Property destinationProperty)
+</code></pre><p>示例：洲、国家、城市三个表，查找欧洲人口在 100 万以上的城市：</p>
+<pre><code>QueryBuilder qb = cityDao.queryBuilder().where(Properties.Population.ge(1000000));
+Join country = qb.join(Properties.CountryId, Country.class);
+Join continent = qb.join(country, CountryDao.Properties.ContinentId,
+      Continent.class, ContinentDao.Properties.Id);
+continent.where(ContinentDao.Properties.Name.eq(&quot;Europe&quot;));    
+List&lt;City&gt; bigEuropeanCities = qb.list();
+</code></pre><h3 id="Self-Join"><a href="#Self-Join" class="headerlink" title="Self Join"></a>Self Join</h3><p>自连接：</p>
+<pre><code>QueryBuilder qb = personDao.queryBuilder();
+Join father = qb.join(Person.class, Properties.FatherId);
+Join grandfather = qb.join(father, Properties.FatherId, Person.class, Properties.Id);
+grandfather.where(Properties.Name.eq(&quot;Lincoln&quot;));
+List&lt;Person&gt; lincolnDescendants = qb.list();    
+</code></pre><h2 id="Relations-to-one-and-to-many"><a href="#Relations-to-one-and-to-many" class="headerlink" title="Relations(to-one and to-many)"></a>Relations(to-one and to-many)</h2><p>在 greenDAO 中，entities 有两种关系，1-1 或 1-n , 如果我们想要用 greenDAO 创建一个 1-n 关系的 entity, 同事要有一个 1-1 和 1-n,并且这两个没有关联，升级的时候要同时升级。</p>
+<h3 id="To-One-Relations"><a href="#To-One-Relations" class="headerlink" title="To-One Relations"></a>To-One Relations</h3><p>使用注解 @ToOne 来定义：</p>
+<pre><code>@Entity
+public class Order {
+    @Id private Long id;
+
+    private long customerId;
+
+    @ToOne(joinProperty = &quot;customerId&quot;)
+    private Customer customer;
+}
+
+@Entity
+public class Customer {
+    @Id private Long id;
+}
+</code></pre><h3 id="To-Many-Relations"><a href="#To-Many-Relations" class="headerlink" title="To-Many Relations"></a>To-Many Relations</h3><p>使用注解  @ToMany 定义，有三种方法，使用的时候用一种就可以：</p>
+<ul>
+<li><p>referencedJoinProperty</p>
+<pre><code>@Entity
+public class Customer {
+    @Id private Long id;
+
+    @ToMany(referencedJoinProperty = &quot;customerId&quot;)
+    @OrderBy(&quot;date ASC&quot;)
+    private List&lt;Order&gt; orders;
+}
+
+@Entity
+public class Order {
+    @Id private Long id;
+    private Date date;
+    private long customerId;
+}
+</code></pre></li>
+<li><p>joinProperties</p>
+<pre><code>@Entity
+public class Customer {
+    @Id private Long id;
+    @Unique private String tag;
+
+    @ToMany(joinProperties = {
+    @JoinProperty(name = &quot;tag&quot;, referencedName = &quot;customerTag&quot;)
+})
+@OrderBy(&quot;date ASC&quot;)
+private List&lt;Site&gt; orders;
+}
+
+@Entity
+public class Order {
+        @Id private Long id;
+    private Date date;
+    @NotNull private String customerTag;
+}
+</code></pre></li>
+<li><p>JoinEntity </p>
+<pre><code>@Entity
+public class Product {
+    @Id private Long id;
+
+    @ToMany
+    @JoinEntity(
+        entity = JoinProductsWithOrders.class,
+        sourceProperty = &quot;productId&quot;,
+        targetProperty = &quot;orderId&quot;
+    )
+private List&lt;Order&gt; ordersWithThisProduct;    
+}    
+
+@Entity
+public class JoinProductsWithOrders {
+    @Id private Long id;
+    private Long productId;
+    private Long orderId;
+}
+
+@Entity
+public class Order {
+    @Id private Long id;
+}
+</code></pre></li>
+</ul>
+<h3 id="更新-toMany-关系…"><a href="#更新-toMany-关系…" class="headerlink" title="更新 toMany 关系…"></a>更新 toMany 关系…</h3><h2 id="greenDAO-支持的基本类型"><a href="#greenDAO-支持的基本类型" class="headerlink" title="greenDAO 支持的基本类型"></a>greenDAO 支持的基本类型</h2><pre><code>boolean, Boolean
+int, Integer
+short, Short
+long, Long
+float, Float
+double, Double
+byte, Byte
+byte[]
+String
+Date
+</code></pre><p>利用 Convert 注解实现其他类型转换为基本类型，如枚举转换为 int:</p>
+<pre><code>@Entity
+public class User {
+@Id
+private Long id;
+
+@Convert(converter = RoleConverter.class, columnType = Integer.class)
+private Role role;
+
+public enum Role {
+    DEFAULT(0), AUTHOR(1), ADMIN(2);
+
+    final int id;
+
+    Role(int id) {
+        this.id = id;
+    }
+}
+
+public static class RoleConverter implements PropertyConverter&lt;Role, Integer&gt; {
+    @Override
+    public Role convertToEntityProperty(Integer databaseValue) {
+        if (databaseValue == null) {
+            return null;
+        }
+        for (Role role : Role.values()) {
+            if (role.id == databaseValue) {
+                return role;
+            }
+        }
+        return Role.DEFAULT;
+    }
+
+    @Override
+    public Integer convertToDatabaseValue(Role entityProperty) {
+        return entityProperty == null ? null : entityProperty.id;
+    }
+}
+}
+</code></pre><h2 id="数据库加密"><a href="#数据库加密" class="headerlink" title="数据库加密"></a>数据库加密</h2><p>greenDAO 支持数据库加密，以保护敏感数据。</p>
+<p>greenDAO支持SQLCipher直接绑定。SQLCipher 是SQLite使用256位AES加密自定义构建的。</p>
+<p>如何使用：</p>
+<ol>
+<li>添加 SQLCipher 依赖  <a href="https://www.zetetic.net/sqlcipher/sqlcipher-for-android/" title="SQLCipher for Android" target="_blank" rel="external">SQLCipher for Android</a></li>
+<li><p>数据库初始化</p>
+<pre><code>DevOpenHelper helper = new DevOpenHelper(this, &quot;notes-db-encrypted.db&quot;);
+Database db = helper.getEncryptedWritableDb(&quot;&lt;your-secret-password&gt;&quot;);
+daoSession = new DaoMaster(db).newSession();
+</code></pre></li>
+</ol>
+<p>###　支持　Robolectric　单元测试</p>
+<h1 id="官网java文档更新"><a href="#官网java文档更新" class="headerlink" title="官网java文档更新"></a>官网java文档更新</h1><p><a href="http://greenrobot.org/greendao/documentation/javadoc/" title="greenDAO JavaDoc" target="_blank" rel="external">greenDAO JavaDoc</a></p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/GreenDao3/" rel="tag">#GreenDao3</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/17/button expand menu/" rel="next" title="展开菜单">
+                <i class="fa fa-chevron-left"></i> 展开菜单
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/19/immersive/" rel="prev" title="沉浸式体验">
+                沉浸式体验 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/30/greenDao/"
+           data-title="GreenDao3 学习" data-url="http://nvgtor.github.io/2016/11/30/greenDao/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/myIcon.jpg"
+               alt="EastYoung" />
+          <p class="site-author-name" itemprop="name">EastYoung</p>
+          <p class="site-description motion-element" itemprop="description">其实并不难是你太悲观</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#GreenDao3"><span class="nav-number">1.</span> <span class="nav-text">GreenDao3</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#快速开始"><span class="nav-number">1.1.</span> <span class="nav-text">快速开始</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.2.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#核心类"><span class="nav-number">1.2.1.</span> <span class="nav-text">核心类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实体类创建"><span class="nav-number">1.3.</span> <span class="nav-text">实体类创建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#schema"><span class="nav-number">1.3.1.</span> <span class="nav-text">schema</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#greenDao-配置"><span class="nav-number">1.3.2.</span> <span class="nav-text">greenDao 配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注解"><span class="nav-number">1.3.3.</span> <span class="nav-text">注解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Entity"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">@Entity</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基本注解"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">基本注解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#主键约束"><span class="nav-number">1.3.3.3.</span> <span class="nav-text">主键约束</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改-generated-的-code"><span class="nav-number">1.3.4.</span> <span class="nav-text">修改 generated 的 code</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sessions"><span class="nav-number">1.4.</span> <span class="nav-text">Sessions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DaoMaster-and-DaoSession"><span class="nav-number">1.4.1.</span> <span class="nav-text">DaoMaster and DaoSession</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Identity-scope-and-session-“cache”"><span class="nav-number">1.4.2.</span> <span class="nav-text">Identity scope and session “cache”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Clear-the-identity-scope"><span class="nav-number">1.4.3.</span> <span class="nav-text">Clear the identity scope</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询"><span class="nav-number">1.5.</span> <span class="nav-text">查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#QueryBuilder"><span class="nav-number">1.5.1.</span> <span class="nav-text">QueryBuilder</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Query-and-LazyList"><span class="nav-number">1.5.2.</span> <span class="nav-text">Query and LazyList</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行多次-queries"><span class="nav-number">1.5.3.</span> <span class="nav-text">执行多次 queries</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Raw-queries"><span class="nav-number">1.5.4.</span> <span class="nav-text">Raw queries</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Delete-queries"><span class="nav-number">1.5.5.</span> <span class="nav-text">Delete queries</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询调试"><span class="nav-number">1.5.6.</span> <span class="nav-text">查询调试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#query-builder-中的-Join"><span class="nav-number">1.6.</span> <span class="nav-text">query builder 中的 Join</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#join"><span class="nav-number">1.6.1.</span> <span class="nav-text">join</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#QueryBuilder-Join-API"><span class="nav-number">1.6.2.</span> <span class="nav-text">QueryBuilder Join API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Chained-Joins"><span class="nav-number">1.6.3.</span> <span class="nav-text">Chained Joins</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Self-Join"><span class="nav-number">1.6.4.</span> <span class="nav-text">Self Join</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Relations-to-one-and-to-many"><span class="nav-number">1.7.</span> <span class="nav-text">Relations(to-one and to-many)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#To-One-Relations"><span class="nav-number">1.7.1.</span> <span class="nav-text">To-One Relations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#To-Many-Relations"><span class="nav-number">1.7.2.</span> <span class="nav-text">To-Many Relations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新-toMany-关系…"><span class="nav-number">1.7.3.</span> <span class="nav-text">更新 toMany 关系…</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#greenDAO-支持的基本类型"><span class="nav-number">1.8.</span> <span class="nav-text">greenDAO 支持的基本类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库加密"><span class="nav-number">1.9.</span> <span class="nav-text">数据库加密</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#官网java文档更新"><span class="nav-number">2.</span> <span class="nav-text">官网java文档更新</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EastYoung</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+本站总访问量 <span id="busuanzi_value_site_pv"></span> &nbsp&nbsp&nbsp
+您是第<span id="busuanzi_value_site_uv"></span>个来到的小伙伴
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nvgtor"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

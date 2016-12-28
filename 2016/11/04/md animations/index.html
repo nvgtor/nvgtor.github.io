@@ -1,0 +1,682 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Material Animations," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Material design Animations[TOC]
+定制窗口转换动画首先，在定义您从材料主题继承的风格时，使用 android:windowContentTransitions 属性启用窗口内容转换。您也可在您的风格定义中指定进入、退出以及共享元素转换，可以在 application theme 中或 activity theme 中设置，如：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Service">
+<meta property="og:url" content="http://nvgtor.github.io/2016/11/04/md animations/index.html">
+<meta property="og:site_name" content="EastYoung's blog">
+<meta property="og:description" content="Material design Animations[TOC]
+定制窗口转换动画首先，在定义您从材料主题继承的风格时，使用 android:windowContentTransitions 属性启用窗口内容转换。您也可在您的风格定义中指定进入、退出以及共享元素转换，可以在 application theme 中或 activity theme 中设置，如：">
+<meta property="og:updated_time" content="2016-12-28T15:33:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Service">
+<meta name="twitter:description" content="Material design Animations[TOC]
+定制窗口转换动画首先，在定义您从材料主题继承的风格时，使用 android:windowContentTransitions 属性启用窗口内容转换。您也可在您的风格定义中指定进入、退出以及共享元素转换，可以在 application theme 中或 activity theme 中设置，如：">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Service | EastYoung's blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EastYoung's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">其实很简单其实很自然</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Service
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-04T14:14:22+08:00" content="2016-11-04">
+              2016-11-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">Android笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/04/md animations/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/04/md animations/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+            <span>&nbsp; | &nbsp;
+            <span id="busuanzi_value_page_pv" ></span>次阅读
+            </span>    
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Material-design-Animations"><a href="#Material-design-Animations" class="headerlink" title="Material design Animations"></a>Material design Animations</h1><p>[TOC]</p>
+<h2 id="定制窗口转换动画"><a href="#定制窗口转换动画" class="headerlink" title="定制窗口转换动画"></a>定制窗口转换动画</h2><p>首先，在定义您从材料主题继承的风格时，使用 android:windowContentTransitions 属性启用窗口内容转换。您也可在您的风格定义中指定进入、退出以及共享元素转换，可以在 application theme 中或 activity theme 中设置，如：</p>
+<a id="more"></a>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">"MaterialAnimations"</span> <span class="attr">parent</span>=<span class="string">"@style/Theme.AppCompat.Light.NoActionBar"</span>&gt;</span><span class="xml"></span></div><div class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:statusBarColor"</span>&gt;</span>@color/material_animations_primary_dark<span class="tag">&lt;/<span class="name">item</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:windowContentTransitions"</span>&gt;</span>true<span class="tag">&lt;/<span class="name">item</span>&gt;</span>			  //启用窗口内容转换</div><div class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:windowAllowEnterTransitionOverlap"</span>&gt;</span>false<span class="tag">&lt;/<span class="name">item</span>&gt;</span>   //新窗口B入场动画是否要与当前窗口A的退出动画同时发生</div><div class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:windowAllowReturnTransitionOverlap"</span>&gt;</span>false<span class="tag">&lt;/<span class="name">item</span>&gt;</span>  //与上面类似，重新进入A的入场与B的退出动画是否要一起发生</div><div class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:titleTextAppearance"</span>&gt;</span>@style/MaterialAnimations.TextAppearance.Title</div><div class="line">        <span class="tag">&lt;/<span class="name">item</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:windowBackground"</span>&gt;</span>@color/light_grey<span class="tag">&lt;/<span class="name">item</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>如果要尽快开始进入转换，请针对被调用的操作行为使用 Window.setAllowEnterTransitionOverlap() 方法。这可以让您实现更生动的进入转换。</p>
+<p>具体的窗口转场动画可以在 代码中定义也可以在 XML 中定义。</p>
+<h2 id="过渡（Transition）动画类型"><a href="#过渡（Transition）动画类型" class="headerlink" title="过渡（Transition）动画类型"></a>过渡（Transition）动画类型</h2><h3 id="进入退出动画效果"><a href="#进入退出动画效果" class="headerlink" title="进入退出动画效果"></a>进入退出动画效果</h3><p>默认提供了三种过渡动画类型：</p>
+<ol>
+<li>Slide—–滑   动：从场景边缘移入或移出视图</li>
+<li>Fade—–淡入淡出：通过调整透明度在场景中增添或移除视图</li>
+<li>Explode—–分   解：从场景中心移入或移出视图</li>
+</ol>
+<h3 id="共享元素"><a href="#共享元素" class="headerlink" title="共享元素"></a>共享元素</h3><ol>
+<li>changeBounds - 为目标视图的布局边界的变化添加动画。</li>
+<li>changeClipBounds - 为目标视图的裁剪边界的变化添加动画。</li>
+<li>changeTransform - 为目标视图的缩放与旋转变化添加动画。</li>
+<li>changeImageTransform - 为目标图像的大小与缩放变化添加动画。</li>
+</ol>
+<h3 id="Circlr-Reveal"><a href="#Circlr-Reveal" class="headerlink" title="Circlr Reveal"></a>Circlr Reveal</h3><h3 id="由代码指定转场动画"><a href="#由代码指定转场动画" class="headerlink" title="由代码指定转场动画"></a>由代码指定转场动画</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">setupWindowAnimations</span><span class="params">()</span> </span>&#123;</div><div class="line">        Slide slideTransition = <span class="keyword">new</span> Slide();</div><div class="line">        slideTransition.setSlideEdge(Gravity.LEFT);  <span class="comment">// left top right bottom start end</span></div><div class="line">        slideTransition.setDuration(<span class="number">500</span>);</div><div class="line">        getWindow().setReenterTransition(slideTransition); <span class="comment">// 回到这个窗口时执行动画 内容区的 View 从左侧滑入</span></div><div class="line">        getWindow().setExitTransition(slideTransition);  <span class="comment">//退出动画 内容区的 View 从左侧滑出</span></div><div class="line">		<span class="comment">//还可以设置</span></div><div class="line">		<span class="comment">//getWindow().setEnterTransition(enterTransition); </span></div><div class="line">		<span class="comment">//enterTransition.excludeTarget(int targetId, boolean exclude);  // 排除一些不参加动画的View</span></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>Fade、Explode 动画设置方式与上面类似。当我们设置了转场动画后，Activity的启动方式需要使用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">startActivity(Intent intent, <span class="meta">@Nullable</span> Bundle options)</div></pre></td></tr></table></figure>
+<p>这个方法，第二个参数 options（一些额外的选项关于怎样启动新 Activity） 我们需要传入一个 ActivityOptionsCompat 对象然后用 toBundle() 转换成 Bundle 对象。ActivityOptionsCompat 对象可以通过下面的方法创建：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// pairs 中可以添加系统 UI ，如 statusBarBackground、navigationBarBackground, 添加后这些组件将会参与过渡动画中</span></div><div class="line">	<span class="function"><span class="keyword">static</span> <span class="title">ActivityOptionsmakeSceneTransitionAnimation</span><span class="params">(Activity activity, Pair...&lt;View, String&gt; sharedElements)</span></span></div><div class="line"></div><div class="line">	<span class="comment">// 共享元素</span></div><div class="line">	<span class="keyword">static</span> ActivityOptions <span class="title">makeSceneTransitionAnimation</span><span class="params">(Activity activity, View sharedElement, String sharedElementName)</span></div></pre></td></tr></table></figure>
+<p>可以新建一个辅助类提供一下方法来创建 pairs:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> Pair&lt;View, String&gt;[] createSafeTransitionParticipants(<span class="meta">@NonNull</span> Activity activity,</div><div class="line">                                                          <span class="keyword">boolean</span> includeStatusBar, <span class="meta">@Nullable</span> Pair... otherParticipants) &#123;</div><div class="line">        <span class="comment">// Avoid system UI glitches as described here:</span></div><div class="line">        <span class="comment">// https://plus.google.com/+AlexLockwood/posts/RPtwZ5nNebb</span></div><div class="line">        View decor = activity.getWindow().getDecorView();</div><div class="line">        View statusBar = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">if</span> (includeStatusBar) &#123;</div><div class="line">            statusBar = decor.findViewById(android.R.id.statusBarBackground);</div><div class="line">        &#125;</div><div class="line">        View navBar = decor.findViewById(android.R.id.navigationBarBackground);</div><div class="line"></div><div class="line">        <span class="comment">// Create pair of transition participants.</span></div><div class="line">        List&lt;Pair&gt; participants = <span class="keyword">new</span> ArrayList&lt;&gt;(<span class="number">3</span>);</div><div class="line">        addNonNullViewToTransitionParticipants(statusBar, participants);</div><div class="line">        addNonNullViewToTransitionParticipants(navBar, participants);</div><div class="line">        <span class="comment">// only add transition participants if there's at least one none-null element</span></div><div class="line">        <span class="keyword">if</span> (otherParticipants != <span class="keyword">null</span> &amp;&amp; !(otherParticipants.length == <span class="number">1</span></div><div class="line">                &amp;&amp; otherParticipants[<span class="number">0</span>] == <span class="keyword">null</span>)) &#123;</div><div class="line">            participants.addAll(Arrays.asList(otherParticipants));</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> participants.toArray(<span class="keyword">new</span> Pair[participants.size()]);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">addNonNullViewToTransitionParticipants</span><span class="params">(View view, List&lt;Pair&gt; participants)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (view == <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">        participants.add(<span class="keyword">new</span> Pair&lt;&gt;(view, view.getTransitionName()));</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h3 id="由-XML-指定转场动画"><a href="#由-XML-指定转场动画" class="headerlink" title="由 XML 指定转场动画"></a>由 XML 指定转场动画</h3><p>代码中加载动画：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Transition transition = TransitionInflater.from(<span class="keyword">this</span>).inflateTransition(R.transition.explode);</div><div class="line">	getWindow().setEnterTransition(transition);</div></pre></td></tr></table></figure>
+<p>XML文件：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line">	<span class="tag">&lt;<span class="name">transitionSet</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span></div><div class="line">    	<span class="tag">&lt;<span class="name">explode</span></span></div><div class="line">        	<span class="attr">android:duration</span>=<span class="string">"@integer/anim_duration_long"</span></div><div class="line">        	<span class="attr">android:interpolator</span>=<span class="string">"@android:interpolator/bounce"</span> /&gt;</div><div class="line">	<span class="tag">&lt;/<span class="name">transitionSet</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="默认退出动画"><a href="#默认退出动画" class="headerlink" title="默认退出动画"></a>默认退出动画</h3><p>如果我们没有设置 setReturnTransition ，finishAfterTransition(),这个方法会在 Activity 退出时反转入场动画 EnterTransition，并在动画结束后 finish() 这个Activity。如果设置了 setReturnTransition ，finishAfterTransition() 的退出动画就会反转 ReturnTransition。 没有设置入场动画的画，会直接调用 finish()。</p>
+<h3 id="共享元素动画"><a href="#共享元素动画" class="headerlink" title="共享元素动画"></a>共享元素动画</h3><ol>
+<li><p>ChangeBounds -捕获共享元素的layout bound，然后播放layout bound变化动画。ChangeBounds 是共享元素变换中用的最多的，因为前后两个activity中共享元素的大小和位置一般都是不同的。</p>
+</li>
+<li><p>ChangeTransform -  捕获共享元素的缩放（scale）与旋转（rotation）属性 ，然后播放缩放（scale）与旋转（rotation）属性变化动画。</p>
+</li>
+<li><p>ChangeClipBounds -  捕获共享元素clip bounds，然后播放clip bounds变化动画。</p>
+</li>
+<li><p>ChangeImageTransform -  捕获共享元素（ImageView）的transform matrices 属性，然后播放ImageViewtransform matrices 属性变化动画。与ChangeBounds相结合，这个变换可以让ImageView在动画中高效实现大小，形状或者ImageView.ScaleType 属性平滑过度。</p>
+</li>
+</ol>
+<p>@android:transition/move -  将上述所有变换同时进行的一个TransitionSet 。就如在第一章中所讲的一样，如果共享元素的进入和返回变换没有特别声明，框架将使用它作为默认的变换。</p>
+<p>共享的元素需要在 XML 里面制定 android:transitionName 值一样，Fragment 和 Activity 中的调用方法也不一样。Activity 里面可以将共享元素添加到 pair 键值对中，来启动。而 Fragment 则利用类似的方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sharedElementFragment.setReenterTransition(slideTransition);</div><div class="line">   sharedElementFragment.setExitTransition(slideTransition);</div><div class="line">   sharedElementFragment.setSharedElementEnterTransition(<span class="keyword">new</span> ChangeBounds());</div></pre></td></tr></table></figure>
+<ul>
+<li>参考泡网系列文章：<a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0201/2394.html" title="参考泡网" target="_blank" rel="external">http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0201/2394.html</a></li>
+<li>内部实现<a href="http://jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0116/2320.html" title="Content Transition内部揭秘" target="_blank" rel="external">http://jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0116/2320.html</a></li>
+</ul>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li>文中代码多来自：<a href="https://github.com/lgvalle/Material-Animations" title="Material-Animations 开源动画库" target="_blank" rel="external">https://github.com/lgvalle/Material-Animations</a></li>
+<li>官方介绍：<a href="https://developer.android.com/training/material/animations.html" title="定义定制动画" target="_blank" rel="external">https://developer.android.com/training/material/animations.html</a></li>
+<li>泡网原文出处：<a href="http://www.androiddesignpatterns.com/2014/12/activity-fragment-transitions-in-android-lollipop-part1.html" title="Getting Started with Activity &amp; Fragment Transitions " target="_blank" rel="external">http://www.androiddesignpatterns.com/2014/12/activity-fragment-transitions-in-android-lollipop-part1.html</a></li>
+</ul>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Material-Animations/" rel="tag">#Material Animations</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/19/单例模式/" rel="next" title="设计模式之单例模式">
+                <i class="fa fa-chevron-left"></i> 设计模式之单例模式
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/04/md animations/"
+           data-title="Service" data-url="http://nvgtor.github.io/2016/11/04/md animations/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/myIcon.jpg"
+               alt="EastYoung" />
+          <p class="site-author-name" itemprop="name">EastYoung</p>
+          <p class="site-description motion-element" itemprop="description">其实并不难是你太悲观</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Material-design-Animations"><span class="nav-number">1.</span> <span class="nav-text">Material design Animations</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定制窗口转换动画"><span class="nav-number">1.1.</span> <span class="nav-text">定制窗口转换动画</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过渡（Transition）动画类型"><span class="nav-number">1.2.</span> <span class="nav-text">过渡（Transition）动画类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#进入退出动画效果"><span class="nav-number">1.2.1.</span> <span class="nav-text">进入退出动画效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#共享元素"><span class="nav-number">1.2.2.</span> <span class="nav-text">共享元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Circlr-Reveal"><span class="nav-number">1.2.3.</span> <span class="nav-text">Circlr Reveal</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#由代码指定转场动画"><span class="nav-number">1.2.4.</span> <span class="nav-text">由代码指定转场动画</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#由-XML-指定转场动画"><span class="nav-number">1.2.5.</span> <span class="nav-text">由 XML 指定转场动画</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#默认退出动画"><span class="nav-number">1.2.6.</span> <span class="nav-text">默认退出动画</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#共享元素动画"><span class="nav-number">1.2.7.</span> <span class="nav-text">共享元素动画</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">2.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EastYoung</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+本站总访问量 <span id="busuanzi_value_site_pv"></span> &nbsp&nbsp&nbsp
+您是第<span id="busuanzi_value_site_uv"></span>个来到的小伙伴
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nvgtor"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,797 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="哈希查找," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="哈希表哈希表就是一种以 键-值(key-indexed) 存储数据的结构，我们只要输入待查找的值即key，即可查找到其对应的值。基本思想是在记录的存储地址和它的关键字之间建立一个确定的对应关系。这样，不经过比较，一次存取就能得到所需查找元素的查找方法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="哈希查找">
+<meta property="og:url" content="http://nvgtor.github.io/2016/05/03/哈希查找/index.html">
+<meta property="og:site_name" content="EastYoung's blog">
+<meta property="og:description" content="哈希表哈希表就是一种以 键-值(key-indexed) 存储数据的结构，我们只要输入待查找的值即key，即可查找到其对应的值。基本思想是在记录的存储地址和它的关键字之间建立一个确定的对应关系。这样，不经过比较，一次存取就能得到所需查找元素的查找方法。">
+<meta property="og:updated_time" content="2016-05-04T03:38:38.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="哈希查找">
+<meta name="twitter:description" content="哈希表哈希表就是一种以 键-值(key-indexed) 存储数据的结构，我们只要输入待查找的值即key，即可查找到其对应的值。基本思想是在记录的存储地址和它的关键字之间建立一个确定的对应关系。这样，不经过比较，一次存取就能得到所需查找元素的查找方法。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 哈希查找 | EastYoung's blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EastYoung's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">其实很简单其实很自然</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                哈希查找
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-03T16:23:02+08:00" content="2016-05-03">
+              2016-05-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/03/哈希查找/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/03/哈希查找/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+            <span>&nbsp; | &nbsp;
+            <span id="busuanzi_value_page_pv" ></span>次阅读
+            </span>    
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h1><p>哈希表就是一种以 键-值(key-indexed) 存储数据的结构，我们只要输入待查找的值即key，即可查找到其对应的值。基本思想是在记录的存储地址和它的关键字之间建立一个确定的对应关系。这样，不经过比较，一次存取就能得到所需查找元素的查找方法。</p>
+ <a id="more"></a>
+<h2 id="哈希函数"><a href="#哈希函数" class="headerlink" title="哈希函数"></a>哈希函数</h2><p>将关键字映射为检索表中适当存储位置的函数h(key)。</p>
+<p>哈希函数的构造方法：</p>
+<ol>
+<li>直接定址法</li>
+<li>数字分析法</li>
+<li>平方取中法</li>
+<li>折叠法</li>
+<li>除留余数法</li>
+<li>乘余取整法</li>
+<li>随机数法</li>
+</ol>
+<h2 id="哈希地址"><a href="#哈希地址" class="headerlink" title="哈希地址"></a>哈希地址</h2><p>哈希函数h(key)的值为哈希地址</p>
+<h2 id="哈希地址冲突"><a href="#哈希地址冲突" class="headerlink" title="哈希地址冲突"></a>哈希地址冲突</h2><p>对于两个不同关键字 key1 != key2, h(key1) == h(key2)，两个不同关键字需要同一个存储位置的现象。</p>
+<p>处理冲突的方法：</p>
+<ol>
+<li><p>开放定址法</p>
+<p> 就是把哈希表中的空位置向处理地址冲突开放。具体做法是，当发生地址冲突时，从发生冲突地址位置开始，使用某种方法在哈希表中行程一种探查序列，沿此序列逐个位置查看，知道找到一个空闲位置将记录插入。</p>
+<p> 产生探查序列的方法有：线性探查法、平方探查法、随机探查法</p>
+</li>
+<li><p>链地址法</p>
+<p> 链地址法是将哈希表地址相同的数据元素存储到同一个单链表中。</p>
+</li>
+</ol>
+<p>基于链表的哈希表：</p>
+<pre><code>public class MHashTable<t> {
+    MLinkList<t> table[];
+
+    /**
+     * len是哈希表长度，如果len不是素数，则取大于len的最小素数作为哈希表的长度
+     * @param len
+     */
+    public MHashTable(int len){
+        int np;
+        if (isPrime(len)) np = len;
+        else {
+            if (len % 2 == 0) len = len + 1;
+            for (np = len; ; np++){
+                if (isPrime(np))
+                    break;
+            }
+        }
+        table = new MLinkList[np];
+        for (int i = 0; i < table.length; i++){
+            table[i] = new MLinkList<t>();
+        }
+    }
+
+    // 哈希函数
+    public int hashCode(T key){
+        int hc = Math.abs(key.hashCode());
+        return hc % table.length;
+    }
+
+    //插入
+    public void add(T key){
+        int ha = hashCode(key);
+        table[ha].add(key);
+    }
+
+    //删除
+    public void remove(T key){
+        int ha = key.hashCode();
+        table[ha].remove(key);
+    }
+
+    //查找
+    public T search(T key){
+        int ha = hashCode(key);
+        return table[ha].search(key);
+    }
+
+    /**
+     * 判断是否是素数
+     * @param n
+     * @return
+     */
+    public static boolean isPrime(int n){
+        int m = (int) Math.sqrt(n);
+        if (n < 2) return false;
+        for (int i = 2; i <= m;="" ++i){="" if="" (n="" %="" i="=" 0)="" return="" false;="" }="" true;="" <="" code=""></=></t></t></t></code></pre>    
+
+<h2 id="哈希查找算法性能"><a href="#哈希查找算法性能" class="headerlink" title="哈希查找算法性能"></a>哈希查找算法性能</h2><p>对于哈希表查找，关键字比较的次数取决于产生冲突的次数，而影响冲突产生的因素有：</p>
+<ol>
+<li>哈希函数是否均匀</li>
+<li>处理冲突的方法</li>
+<li><p>哈希表的装载因子，装载因子定义为：</p>
+<p> α = 表中数据元素 / 表的长度</p>
+</li>
+</ol>
+<p>不同处理冲突方法的平均查找长度：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">处理冲突方法</th>
+<th style="text-align:center">查找成功时</th>
+<th style="text-align:left">查找不成功时</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">线性探查法</td>
+<td style="text-align:center">(1/2)* (1 + 1/(1 - α))</td>
+<td style="text-align:left">（1 + 1 / (1 - α)^2） / 2</td>
+</tr>
+<tr>
+<td style="text-align:center">平方探查法</td>
+<td style="text-align:center">-ln(1+α) / α</td>
+<td style="text-align:left">1 / (1 - α)</td>
+</tr>
+<tr>
+<td style="text-align:center">链地址法</td>
+<td style="text-align:center">1 + α/2</td>
+<td style="text-align:left">α + e^(-α)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="哈希映射"><a href="#哈希映射" class="headerlink" title="哈希映射"></a>哈希映射</h2><p>映射（Map）概念：Map 建立了两个不同类型数据集之间的一一对应关系，映射可以看成键值对<key, value="">的一个集合或者列表。</key,></p>
+<h1 id="串匹配"><a href="#串匹配" class="headerlink" title="串匹配"></a>串匹配</h1><p>串模式匹配算法即自串查找，s,p 是两个串，在主串 s 中查找子串的过程称为模式匹配。</p>
+<h2 id="简单的模式匹配算法"><a href="#简单的模式匹配算法" class="headerlink" title="简单的模式匹配算法"></a>简单的模式匹配算法</h2><ul>
+<li><p>思路： 首先将 s1 与 t1 比较，若不同，就将 s2 与 t1 比较，…,直到 s 的某一个字符 si 和 t1 相同，再将它们之后的字符串进行比较，若也相同，则继续比较，当 s 的某一个字符 si 与 t 的 字符 tj 不同时，则 s 返回本趟开始字符的下一个字符，即 s(i-j+2), t 返回 t1，继续下一趟的比较。若 t 中的字符全部比较完毕，则说明本趟匹配成功，否则匹配失败。</p>
+</li>
+<li><p>BF算法：</p>
+</li>
+</ul>
+<pre><code>/**
+     * 简单模式匹配
+     * @param s
+     * @param p
+     * @return
+     */
+    private int indexBF(char s[], char p[]){
+        int i = 0, j = 0;
+        while (i < s.length && j < p.length){
+            if (s[i] == p[j]){
+                i++;
+                j++;
+            } else {
+                i = i - j + 1;
+                j = 1;
+            } // 回溯
+        }
+        if (j > p.length) return (i - p.length);
+        else return -1;
+    }
+</code></pre>
+
+<p>时间复杂度：</p>
+<p>s 串长 n , p 串长 m</p>
+<ol>
+<li>最好情况：</li>
+</ol>
+<p>每趟不成功的匹配都发生在第一对字符比较时，设匹配成功在 si 处，则在前面 i-1 趟中比较了 i-1 次，第 i 次匹配成功比较 m 次, 总共比较 i - 1 + m 次。所有匹配成功的可能共有 n - m + 1 种，等概率 pi = 1 / (n - m + 1)。因此最好情况平均比较次数为：</p>
+<pre><code>∑pi * (i - 1 + m) = (n + m) / 2  （1 =&lt; i &lt;= n - m + 1）
+</code></pre><p>复杂度： O(n+m)</p>
+<ol>
+<li>最坏情况：</li>
+</ol>
+<p>每趟不成功的匹配都发生在 p 的最后一个字符，前 i-1 趟比较 (i-1) <em> m, 第 i 趟比较 m 次，总共比较 i</em>m 次，因此：</p>
+<pre><code>∑pi * (i * m) = m*(n - m + 2) / 2
+</code></pre><p>复杂度：O（n*m）</p>
+<ul>
+<li>KMP算法</li>
+</ul>
+<p>复杂度：O（n*m）,一般情况下，实际执行时间是 O（n+m）。</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/哈希查找/" rel="tag">#哈希查找</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/03/观察者模式/" rel="next" title="设计模式之观察者模式">
+                <i class="fa fa-chevron-left"></i> 设计模式之观察者模式
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/05/java注解/" rel="prev" title="注解">
+                注解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/03/哈希查找/"
+           data-title="哈希查找" data-url="http://nvgtor.github.io/2016/05/03/哈希查找/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/myIcon.jpg"
+               alt="EastYoung" />
+          <p class="site-author-name" itemprop="name">EastYoung</p>
+          <p class="site-description motion-element" itemprop="description">其实并不难是你太悲观</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#哈希表"><span class="nav-number">1.</span> <span class="nav-text">哈希表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#哈希函数"><span class="nav-number">1.1.</span> <span class="nav-text">哈希函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#哈希地址"><span class="nav-number">1.2.</span> <span class="nav-text">哈希地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#哈希地址冲突"><span class="nav-number">1.3.</span> <span class="nav-text">哈希地址冲突</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#哈希查找算法性能"><span class="nav-number">1.4.</span> <span class="nav-text">哈希查找算法性能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#哈希映射"><span class="nav-number">1.5.</span> <span class="nav-text">哈希映射</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#串匹配"><span class="nav-number">2.</span> <span class="nav-text">串匹配</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单的模式匹配算法"><span class="nav-number">2.1.</span> <span class="nav-text">简单的模式匹配算法</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EastYoung</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+本站总访问量 <span id="busuanzi_value_site_pv"></span> &nbsp&nbsp&nbsp
+您是第<span id="busuanzi_value_site_uv"></span>个来到的小伙伴
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nvgtor"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

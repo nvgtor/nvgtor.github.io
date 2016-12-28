@@ -1,0 +1,707 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Activity," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Activity 的生命周期Activity 的生存期onCreate –&amp;gt; onStart –&amp;gt; onResume –&amp;gt; onPause –&amp;gt; onStop –&amp;gt; onDestroy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Activity">
+<meta property="og:url" content="http://nvgtor.github.io/2016/05/11/AndroidActivity/index.html">
+<meta property="og:site_name" content="EastYoung's blog">
+<meta property="og:description" content="Activity 的生命周期Activity 的生存期onCreate –&amp;gt; onStart –&amp;gt; onResume –&amp;gt; onPause –&amp;gt; onStop –&amp;gt; onDestroy">
+<meta property="og:image" content="http://cl.ly/1a0y312W0i06/activity_lifecycle.png">
+<meta property="og:updated_time" content="2016-05-12T03:58:17.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Activity">
+<meta name="twitter:description" content="Activity 的生命周期Activity 的生存期onCreate –&amp;gt; onStart –&amp;gt; onResume –&amp;gt; onPause –&amp;gt; onStop –&amp;gt; onDestroy">
+<meta name="twitter:image" content="http://cl.ly/1a0y312W0i06/activity_lifecycle.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Activity | EastYoung's blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EastYoung's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">其实很简单其实很自然</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Activity
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-11T14:57:22+08:00" content="2016-05-11">
+              2016-05-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">Android笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/11/AndroidActivity/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/11/AndroidActivity/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+            <span>&nbsp; | &nbsp;
+            <span id="busuanzi_value_page_pv" ></span>次阅读
+            </span>    
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Activity-的生命周期"><a href="#Activity-的生命周期" class="headerlink" title="Activity 的生命周期"></a>Activity 的生命周期</h1><h2 id="Activity-的生存期"><a href="#Activity-的生存期" class="headerlink" title="Activity 的生存期"></a>Activity 的生存期</h2><p>onCreate –&gt; onStart –&gt; onResume –&gt; onPause –&gt; onStop –&gt; onDestroy</p>
+<a id="more"></a>
+<p><img src="http://cl.ly/1a0y312W0i06/activity_lifecycle.png" alt=""></p>
+<ol>
+<li><p><strong>onCreate()</strong> 完成初始化操作，如：加载布局，绑定事件。</p>
+</li>
+<li><p><strong>onStart()</strong> 不可见变为可见时候调用。</p>
+</li>
+<li><p><strong>onResume()</strong> 准备和用户进行交互的时候调用</p>
+</li>
+<li><p><strong>onPause()</strong> 当系统准备去启动或者回复另一个 Activity 的时候调用。通常在这个方法将一些消耗 GPU 的资源释放掉（如OpenGL ES 中要在这个方法中调用 glSurfaceView.onPause()）以及保存一些关键数据，但在这个方法中的执行速度要快。</p>
+</li>
+<li><p><strong>onStop()</strong> 在完全不可见的时候调用，和 onPause() 方法的区别在于，如果启动的是对话框式的活动，那么执行 onPause() 方法，不执行 onStop().</p>
+</li>
+<li><p><strong>onDestroy()</strong> 在 Activity 被销毁之前调用，之后 Activity 的状态变为销毁转态。</p>
+</li>
+<li><p><strong>onRestart()</strong> 这个方法在 Activity 由停止状态变为运行状态之前调用。</p>
+</li>
+</ol>
+<h2 id="Activity-的其他方法"><a href="#Activity-的其他方法" class="headerlink" title="Activity 的其他方法"></a>Activity 的其他方法</h2><p><a href="http://stormzhang.com/android/2014/09/14/activity-lifecycle1/" target="_blank" rel="external">stormzhang 更详细的介绍</a></p>
+<ul>
+<li>onContentChanged、onPostCreate、onPostResume、onConfigurationChanged、onSaveInstanceState、onRestoreInstanceState</li>
+</ul>
+<p><strong>过程</strong></p>
+<p>onCreate –&gt; onContentChanged –&gt; onStart –&gt; onPostCreate –&gt; onResume –&gt; onPostResume –&gt; onPause –&gt; onStop –&gt; onDestroy</p>
+<ul>
+<li>onSaveInstanceState、onRestoreInstanceState</li>
+</ul>
+<h2 id="特定场景下-Activity-的生命周期"><a href="#特定场景下-Activity-的生命周期" class="headerlink" title="特定场景下 Activity 的生命周期"></a>特定场景下 Activity 的生命周期</h2><ul>
+<li>首次启动 onCreate –&gt; onStart –&gt; onResume</li>
+<li>按下返回键 onPause –&gt; onStop –&gt; onDestroy</li>
+<li>按 home 键 onPause –&gt; onSaveInstanceState –&gt; onStop</li>
+<li>再次打开 onRestart –&gt; onStart –&gt; onResume</li>
+<li>屏幕旋转 </li>
+<li>FirstActivity打开SecondActivity</li>
+</ul>
+<h1 id="Activity-的启动模式"><a href="#Activity-的启动模式" class="headerlink" title="Activity 的启动模式"></a>Activity 的启动模式</h1><h2 id="4个模式"><a href="#4个模式" class="headerlink" title="4个模式"></a>4个模式</h2><p>activity有四种启动模式，分别为standard，singleTop，singleTask，singleInstance。如果要使用这四种启动模式，必须在manifest文件中<activity>标签中的launchMode属性中配置</activity></p>
+<ul>
+<li><p>standard</p>
+<p>  Activity 默认的启动模式。没当启动一个新的活动，它就会在（back stack）回退栈中入栈，并处于栈顶的位置，系统不会在乎这个 Activity 是否在栈中，每次启动都会创建该 Activity 的一个实例。</p>
+</li>
+<li><p>singleTop</p>
+<p>  如果一个以singleTop模式启动的activity的实例已经存在于任务桟的桟顶，那么再启动这个Activity时，不会创建新的实例，而是重用位于栈顶的那个实例，并且会调用该实例的onNewIntent()方法将Intent对象传递到这个实例中。</p>
+</li>
+<li><p>singleTask</p>
+<p>  每次启动该 Activity 时系统首先会在返回栈中检查是否存在该 Activity 的实例，如果发现已经存在则直接使用该实例，并把在这个 Activity 之上的所有 Activity 统统出栈，如果没有发现就会创建一个新的活动实例。</p>
+</li>
+<li><p>singleInstance</p>
+<p>  指定为 singleInstance 模式的活动会启用一个新的返回栈来管理这个活动，可以解决共享 Activity 实例的问题。</p>
+<p>  以singleInstance模式启动的Activity在整个系统中是单例的，如果在启动这样的Activiyt时，已经存在了一个实例，那么会把它所在的任务调度到前台，重用这个实例。</p>
+</li>
+</ul>
+<h2 id="重要属性-taskAffinity"><a href="#重要属性-taskAffinity" class="headerlink" title="重要属性 taskAffinity"></a>重要属性 taskAffinity</h2><p><a href="http://blog.csdn.net/zhangjg_blog/article/details/10923643" target="_blank" rel="external">详解taskAffinity的博客</a></p>
+<p>manifest文件中<activity>的一个重要属性，taskAffinity</activity></p>
+<ul>
+<li>taskAffinity表示当前activity具有亲和力的一个任务（task），这个 taskAffinity表示一个任务，这个任务就是当前activity所在的任务。</li>
+<li>具有相同的affinity的activity（即设置了相同taskAffinity属性的activity）属于同一个任务</li>
+<li>默认情况下，一个应用中的所有activity具有相同的taskAffinity，即应用程序的包名。我们可以通过设置不同的taskAffinity属性给应用中的activity分组，也可以把不同的       应用中的activity的taskAffinity设置成相同的值。</li>
+<li>为一个activity的taskAffinity设置一个空字符串，表明这个activity不属于任何task</li>
+<li>这个属性决定两件事：当activity被re-parent时，它可以被re-paren哪个任务中；当activity以FLAG_ACTIVITY_NEW_TASK标志启动时，它会被启动到哪个任务中。</li>
+</ul>
+<p><strong>任务（Task）不仅可以跨应用（Application），还可以跨进程（Process）。</strong></p>
+<h1 id="Intent-FLAG"><a href="#Intent-FLAG" class="headerlink" title="Intent FLAG"></a>Intent FLAG</h1><p><a href="http://www.cnblogs.com/xiaoQLu/archive/2012/07/17/2595294.html" target="_blank" rel="external">详解Intent FLAG的博客</a></p>
+<ul>
+<li><p>FLAG_ACTIVITY_NEW_TASK</p>
+<p>  设置此状态，记住以下原则，首先会查找是否存在和被启动的Activity具有相同的亲和性的任务栈（即taskAffinity，注意同一个应用程序中的activity的亲和性一样),如果有，刚直接把这个栈整体移动到前台，并保持栈中的状态不变，即栈中的activity顺序不变，如果没有，则新建一个栈来存放被启动的activity</p>
+</li>
+<li><p>FLAG_ACTIVITY_CLEAR_TOP</p>
+</li>
+<li>FLAG_ACTIVITY_BROUGHT_TO_FRONT</li>
+<li>FLAG_ACTIVITY_MULTIPLE_TASK</li>
+<li>FLAG_ACTIVITY_SINGLE_TOP</li>
+<li>FLAG_ACTIVITY_RESET_TASK_IF_NEEDED</li>
+</ul>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Activity/" rel="tag">#Activity</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/10/工厂模式/" rel="next" title="设计模式之工厂模式">
+                <i class="fa fa-chevron-left"></i> 设计模式之工厂模式
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/12/Android服务/" rel="prev" title="Service">
+                Service <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/11/AndroidActivity/"
+           data-title="Activity" data-url="http://nvgtor.github.io/2016/05/11/AndroidActivity/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/myIcon.jpg"
+               alt="EastYoung" />
+          <p class="site-author-name" itemprop="name">EastYoung</p>
+          <p class="site-description motion-element" itemprop="description">其实并不难是你太悲观</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Activity-的生命周期"><span class="nav-number">1.</span> <span class="nav-text">Activity 的生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Activity-的生存期"><span class="nav-number">1.1.</span> <span class="nav-text">Activity 的生存期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Activity-的其他方法"><span class="nav-number">1.2.</span> <span class="nav-text">Activity 的其他方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特定场景下-Activity-的生命周期"><span class="nav-number">1.3.</span> <span class="nav-text">特定场景下 Activity 的生命周期</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Activity-的启动模式"><span class="nav-number">2.</span> <span class="nav-text">Activity 的启动模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4个模式"><span class="nav-number">2.1.</span> <span class="nav-text">4个模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重要属性-taskAffinity"><span class="nav-number">2.2.</span> <span class="nav-text">重要属性 taskAffinity</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Intent-FLAG"><span class="nav-number">3.</span> <span class="nav-text">Intent FLAG</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EastYoung</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+本站总访问量 <span id="busuanzi_value_site_pv"></span> &nbsp&nbsp&nbsp
+您是第<span id="busuanzi_value_site_uv"></span>个来到的小伙伴
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nvgtor"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

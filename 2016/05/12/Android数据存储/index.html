@@ -1,0 +1,828 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="数据持久化," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="文件存储Android 中一种基本的数据存储方式，它不对存储内容进行任何的格式化处理，所有数据都是原封不动的保存到文件当中的，因而他比较适合用于存储一些简单的文本数据或二进制数据。
+常说的文件（I/O）存储方法，常用语存储大数量的数据，但是缺点是更新数据将是一件困难的事情。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据存储">
+<meta property="og:url" content="http://nvgtor.github.io/2016/05/12/Android数据存储/index.html">
+<meta property="og:site_name" content="EastYoung's blog">
+<meta property="og:description" content="文件存储Android 中一种基本的数据存储方式，它不对存储内容进行任何的格式化处理，所有数据都是原封不动的保存到文件当中的，因而他比较适合用于存储一些简单的文本数据或二进制数据。
+常说的文件（I/O）存储方法，常用语存储大数量的数据，但是缺点是更新数据将是一件困难的事情。">
+<meta property="og:updated_time" content="2016-05-16T09:42:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据存储">
+<meta name="twitter:description" content="文件存储Android 中一种基本的数据存储方式，它不对存储内容进行任何的格式化处理，所有数据都是原封不动的保存到文件当中的，因而他比较适合用于存储一些简单的文本数据或二进制数据。
+常说的文件（I/O）存储方法，常用语存储大数量的数据，但是缺点是更新数据将是一件困难的事情。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 数据存储 | EastYoung's blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EastYoung's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">其实很简单其实很自然</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                数据存储
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-12T14:14:22+08:00" content="2016-05-12">
+              2016-05-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">Android笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/12/Android数据存储/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/12/Android数据存储/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+            <span>&nbsp; | &nbsp;
+            <span id="busuanzi_value_page_pv" ></span>次阅读
+            </span>    
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="文件存储"><a href="#文件存储" class="headerlink" title="文件存储"></a>文件存储</h1><p>Android 中一种基本的数据存储方式，它不对存储内容进行任何的格式化处理，所有数据都是原封不动的保存到文件当中的，因而他比较适合用于存储一些简单的文本数据或二进制数据。</p>
+<p>常说的文件（I/O）存储方法，常用语存储大数量的数据，但是缺点是更新数据将是一件困难的事情。</p>
+<a id="more"></a>
+<h2 id="将数据存储到文件中"><a href="#将数据存储到文件中" class="headerlink" title="将数据存储到文件中"></a>将数据存储到文件中</h2><p>利用 Content 类的 openFileOutput() 方法，有两个参数，第一个是文件名，第二个是文件的操作模式，主要有 MODE_PRIVATE 和 MODE_APPEND 两种。文件默认都是储存到 /data/data/package name/files/ 目录下。</p>
+<ul>
+<li>MODE_PRIVATE 默认的模式，表示指定同样的文件名的时候，所写入的内容会覆盖文件中的内容。</li>
+<li>MODE_APPEND 不覆盖，追加</li>
+</ul>
+<h2 id="从文件中读取数据"><a href="#从文件中读取数据" class="headerlink" title="从文件中读取数据"></a>从文件中读取数据</h2><p>利用 Content 类的 openFileInput() 方法，一个参数，文件名。</p>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p>利用 try-with-resources 语句来关闭文件。</p>
+<pre><code>public class DataSaveActivity extends AppCompatActivity {
+
+    private static final String FILE_NAME = "maData";
+
+    @Bind(R.id.text_input)
+    EditText textInput;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_data_save);
+        ButterKnife.bind(this);
+
+        String inputText = loadData(FILE_NAME);
+        if (!TextUtils.isEmpty(inputText)){
+            textInput.setText(inputText);
+            textInput.setSelection(inputText.length());
+        }
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        String inputText = textInput.getText().toString();
+        saveData(FILE_NAME,inputText);
+    }
+
+    /**
+     * try-with_resources requires API level 19
+     * try-with_resources 语法保证close方法的调用
+     * @param fileName
+     * @param str
+     */
+    public void saveData(String fileName, String str){
+        FileOutputStream out = null;
+        try {
+            out = openFileOutput(fileName, Context.MODE_PRIVATE);
+            try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out))){
+                writer.write(str);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void save(String fileName,String str){
+        FileOutputStream out = null;
+        BufferedWriter writer = null;
+        try {
+            out = openFileOutput(fileName, Context.MODE_PRIVATE);
+            writer = new BufferedWriter(new OutputStreamWriter(out));
+            writer.write(str);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (writer != null){
+                try {
+                    writer.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public String loadData(String fileName){
+        FileInputStream in = null;
+        StringBuilder content = new StringBuilder();
+        try {
+            in = openFileInput(fileName);
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(in))){
+                String line = "";
+                while ((line = reader.readLine()) != null){
+                    content.append(line);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return content.toString();
+    }
+
+    public String load(String fileName){
+        FileInputStream in = null;
+        BufferedReader reader = null;
+        StringBuilder content = new StringBuilder();
+        try {
+            in = openFileInput(fileName);
+            reader = new BufferedReader(new InputStreamReader(in));
+            String line = "";
+            while ((line = reader.readLine()) != null){
+                content.append(line);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (reader != null){
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return content.toString();
+    }
+}
+</code></pre>
+
+<h1 id="SharedPreference-存储"><a href="#SharedPreference-存储" class="headerlink" title="SharedPreference 存储"></a>SharedPreference 存储</h1><p>除了SQLite数据库外，SharedPreferences也是一种轻型的数据存储方式，它的本质是基于XML文件存储key-value键值对数据，通常用来存储一些简单的配置信息。其存储位置在/data/data/&lt;包名&gt;/shared_prefs目录下。SharedPreferences对象本身只能获取数据而不支持存储和修改，存储修改是通过Editor对象实现。</p>
+<p>可以保存的类型有：boolean，float，int，long，String。这些数据将会永久保存</p>
+<p>SharedPreferences存储的步骤如下：</p>
+<ul>
+<li>根据Context获取SharedPreferences对象</li>
+<li>利用edit()方法获取Editor对象。</li>
+<li>通过Editor对象存储key-value键值对数据。</li>
+<li>通过commit()方法提交数据。</li>
+</ul>
+<h2 id="将数据存储到-SharedPreferences-中"><a href="#将数据存储到-SharedPreferences-中" class="headerlink" title="将数据存储到 SharedPreferences 中"></a>将数据存储到 SharedPreferences 中</h2><h3 id="获得SharedPreferences对象的三种方式："><a href="#获得SharedPreferences对象的三种方式：" class="headerlink" title="获得SharedPreferences对象的三种方式："></a>获得SharedPreferences对象的三种方式：</h3><ol>
+<li><p>Context类中的getSharedPreferences()方法。</p>
+<p> getSharedPreferences()接收两个参数：第一个参数用于指定文件的名称（若不存在则自动创建，无需加后缀，系统自动加），第二个参数指定文件的操作模式，主要有两种模式：MODE_PRIVATE和MODE_MULTI_PROCESS，MODE_PRIVATE和直接传入0效果一样，表示只有当前的应用程序才可以对该SharedPreferences文件进行读写；MODE_MULTI_PROCESS则一般用于多个进程对同一个SharedPreferences文件进行读写的情况。</p>
+<p> 通过这种方法获得的SharedPreferences对象能被同一个应用中的所有Activity访问。</p>
+</li>
+<li><p>Activity类中的getPreferences()方法，该方法只接受一个模式参数，而文件名自动为当前Activity的类名。</p>
+<p> 通过这种方法获得的SharedPreferences对象，若其它Activity想获得该SharedPreferences文件，则只能通过Context类中的getSharedPreferences()方法获取SharedPreferences对象，当然文件名必须是该SharedPreferences文件名。</p>
+</li>
+<li><p>PreferenceManager类中的getDefaultSharedPreferences()方法</p>
+<p> 该方法为静态方法，只有一个Context参数，并自动使用当前应用程序的包名作为前缀来命名SharedPreferences文件。</p>
+</li>
+</ol>
+<h3 id="向SharedPreferences文件中保存数据"><a href="#向SharedPreferences文件中保存数据" class="headerlink" title="向SharedPreferences文件中保存数据"></a>向SharedPreferences文件中保存数据</h3><p>步骤：</p>
+<ol>
+<li>调用SharedPreferences对象的edit()方法来获取一个SharedPreferences.Editor（内部类）对象；</li>
+<li>通过putXXX()方法向Editor对象中添加数据；</li>
+<li><p>调用commit()方法提交数据，完成数据储操作。</p>
+<pre><code>SharedPreferences.Editor editor = getSharedPreferences(&quot;fileName&quot;, MODE_PRIVATE).edit();
+   editor.putString(&quot;name&quot;,&quot;nvgtor&quot;);
+   editor.putInt(&quot;age&quot;,1);
+   editor.commit();
+</code></pre></li>
+</ol>
+<h2 id="从SharedPreferences文件中读取数据"><a href="#从SharedPreferences文件中读取数据" class="headerlink" title="从SharedPreferences文件中读取数据"></a>从SharedPreferences文件中读取数据</h2><pre><code>SharedPreferences sharedPreferences = getSharedPreferences(&quot;fileName&quot;,MODE_PRIVATE);
+  String name = sharedPreferences.getString(&quot;name&quot;,&quot;&quot;);
+  int age = sharedPreferences.getInt(&quot;age&quot;,0);
+</code></pre><h1 id="SQLite数据库存储"><a href="#SQLite数据库存储" class="headerlink" title="SQLite数据库存储"></a>SQLite数据库存储</h1><ul>
+<li>SQLite是开源的，支持标准SQL语法的关系型数据库，支持事务，运行时需要很小的内存（250k）； </li>
+<li>支持的数据类型包括：Text，INTEGER，REAL（like double in Java），其他的所有数据类型必须转换成以上数据类型才能被存储在数据库中，</li>
+<li>SQLite是嵌入在每一个Android设备中的，所以使用SQLite并不需要去安装和管理数据库</li>
+<li>创建一个数据库后，默认是存在DATA/APP_NAME/databases/FILENAME下的。</li>
+</ul>
+<h2 id="SQLiteOpenHelper-类操作数据库"><a href="#SQLiteOpenHelper-类操作数据库" class="headerlink" title="SQLiteOpenHelper 类操作数据库"></a>SQLiteOpenHelper 类操作数据库</h2><p>该类用来管理数据库的创建 和版本更新, 通常使用其子类, 实现onCreate() 和 onUpgrade()方法</p>
+<p>类中方法：</p>
+<ol>
+<li><p>读方式打开数据库</p>
+<p> 以读写的方式打开数据库 :先以读写方式打开数据库, 如果磁盘满了, 就会打开失败,然后会尝试以只读的方式打开数据库;</p>
+<pre><code>public SQLiteDatabase getReadableDatabase ()  
+</code></pre></li>
+<li><p>写方式打开数据库</p>
+<p> 先以读写方式打开数据库, 如果磁盘满了, 就会出错,不推荐使用这种方法, 使用 getReadableDatabase()方法即可</p>
+<pre><code>public SQLiteDatabase getWritableDatabase ()  
+</code></pre></li>
+</ol>
+<ol>
+<li><p>创建数据库</p>
+<p>  第一次创建数据库的时候回调该方法, 一般在该方法中 创建数据库表;调用时机: 当使用getReadableDatabase()方法 获取数据库 实例 的时候, 如果数据库不存在, 就会调用这个方法;方法内容 : 重写该方法一般 将 创建数据库表的 execSQL()方法 和 初始化表数据的一些 insert()方法写在里面;</p>
+<pre><code>public abstract void onCreate (SQLiteDatabase db)  
+</code></pre></li>
+<li><p>更新数据库</p>
+<pre><code>public abstract void onUpgrade (SQLiteDatabase db, int oldVersion, int newVersion)  
+</code></pre></li>
+<li><p>关闭数据库</p>
+<pre><code>public synchronized void close ()  
+</code></pre></li>
+</ol>
+<p><a href="http://blog.csdn.net/shulianghan/article/details/19028665" target="_blank" rel="external">更多数据库存储介绍</a></p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据持久化/" rel="tag">#数据持久化</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/12/Android服务/" rel="next" title="Service">
+                <i class="fa fa-chevron-left"></i> Service
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/12/Android广播/" rel="prev" title="Broadcast">
+                Broadcast <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/12/Android数据存储/"
+           data-title="数据存储" data-url="http://nvgtor.github.io/2016/05/12/Android数据存储/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/myIcon.jpg"
+               alt="EastYoung" />
+          <p class="site-author-name" itemprop="name">EastYoung</p>
+          <p class="site-description motion-element" itemprop="description">其实并不难是你太悲观</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#文件存储"><span class="nav-number">1.</span> <span class="nav-text">文件存储</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#将数据存储到文件中"><span class="nav-number">1.1.</span> <span class="nav-text">将数据存储到文件中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#从文件中读取数据"><span class="nav-number">1.2.</span> <span class="nav-text">从文件中读取数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例子"><span class="nav-number">1.3.</span> <span class="nav-text">例子</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SharedPreference-存储"><span class="nav-number">2.</span> <span class="nav-text">SharedPreference 存储</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#将数据存储到-SharedPreferences-中"><span class="nav-number">2.1.</span> <span class="nav-text">将数据存储到 SharedPreferences 中</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获得SharedPreferences对象的三种方式："><span class="nav-number">2.1.1.</span> <span class="nav-text">获得SharedPreferences对象的三种方式：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#向SharedPreferences文件中保存数据"><span class="nav-number">2.1.2.</span> <span class="nav-text">向SharedPreferences文件中保存数据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#从SharedPreferences文件中读取数据"><span class="nav-number">2.2.</span> <span class="nav-text">从SharedPreferences文件中读取数据</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQLite数据库存储"><span class="nav-number">3.</span> <span class="nav-text">SQLite数据库存储</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SQLiteOpenHelper-类操作数据库"><span class="nav-number">3.1.</span> <span class="nav-text">SQLiteOpenHelper 类操作数据库</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EastYoung</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+本站总访问量 <span id="busuanzi_value_site_pv"></span> &nbsp&nbsp&nbsp
+您是第<span id="busuanzi_value_site_uv"></span>个来到的小伙伴
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nvgtor"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

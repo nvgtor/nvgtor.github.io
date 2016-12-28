@@ -1,0 +1,909 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="顺序表," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="1.1线性表定义线性表是具有相同数据类型的 n(n &amp;gt;= 0) 个数据元素的有限序列，通常记为：（a1,a2,…,ai,ai+1,…,an）,特征如下：
+
+表中的元素个数n称为表的长度， n = 0 时称为空表。
+当 1 &amp;lt; i &amp;lt; n时，第i个元素ai的直接前驱是ai-1,a1无直接前驱；第i个元素ai的直接后继是ai+1,an无直接后继。
+所有的元素类型相同，且不能出现缺项。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构学习笔记之线性表(java)">
+<meta property="og:url" content="http://nvgtor.github.io/2016/04/15/数据结构学习笔记之线性表-java/index.html">
+<meta property="og:site_name" content="EastYoung's blog">
+<meta property="og:description" content="1.1线性表定义线性表是具有相同数据类型的 n(n &amp;gt;= 0) 个数据元素的有限序列，通常记为：（a1,a2,…,ai,ai+1,…,an）,特征如下：
+
+表中的元素个数n称为表的长度， n = 0 时称为空表。
+当 1 &amp;lt; i &amp;lt; n时，第i个元素ai的直接前驱是ai-1,a1无直接前驱；第i个元素ai的直接后继是ai+1,an无直接后继。
+所有的元素类型相同，且不能出现缺项。">
+<meta property="og:updated_time" content="2016-04-27T06:54:47.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构学习笔记之线性表(java)">
+<meta name="twitter:description" content="1.1线性表定义线性表是具有相同数据类型的 n(n &amp;gt;= 0) 个数据元素的有限序列，通常记为：（a1,a2,…,ai,ai+1,…,an）,特征如下：
+
+表中的元素个数n称为表的长度， n = 0 时称为空表。
+当 1 &amp;lt; i &amp;lt; n时，第i个元素ai的直接前驱是ai-1,a1无直接前驱；第i个元素ai的直接后继是ai+1,an无直接后继。
+所有的元素类型相同，且不能出现缺项。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 数据结构学习笔记之线性表(java) | EastYoung's blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EastYoung's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">其实很简单其实很自然</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                数据结构学习笔记之线性表(java)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-15T01:20:27+08:00" content="2016-04-15">
+              2016-04-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/数据结构/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/15/数据结构学习笔记之线性表-java/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/15/数据结构学习笔记之线性表-java/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+            <span>&nbsp; | &nbsp;
+            <span id="busuanzi_value_page_pv" ></span>次阅读
+            </span>    
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1-1线性表定义"><a href="#1-1线性表定义" class="headerlink" title="1.1线性表定义"></a>1.1线性表定义</h2><p>线性表是具有相同数据类型的 n(n &gt;= 0) 个数据元素的有限序列，通常记为：（a1,a2,…,ai,ai+1,…,an）,特征如下：</p>
+<ol>
+<li>表中的元素个数n称为表的长度， n = 0 时称为空表。</li>
+<li>当 1 &lt; i &lt; n时，第i个元素ai的直接前驱是ai-1,a1无直接前驱；第i个元素ai的直接后继是ai+1,an无直接后继。</li>
+<li>所有的元素类型相同，且不能出现缺项。</li>
+<li><p>每个数据元素可以是简单的数据类型，也可以是任意复杂的数据类型。</p>
+<a id="more"></a>
+</li>
+</ol>
+<h2 id="1-2线性表抽象数据类型（ADT）"><a href="#1-2线性表抽象数据类型（ADT）" class="headerlink" title="1.2线性表抽象数据类型（ADT）"></a>1.2线性表抽象数据类型（ADT）</h2><p>在这个接口 MList 的基础上，顺序表和链表直接实现这个接口，并可以定义各自的特殊方法。</p>
+<pre><code> public interface MList<t> {
+    //数据元素：(a1,a2,...,an)
+    //部分基本操作
+
+    //判断线性表是否为空
+    boolean isEmpty();
+    //线性表元素个数
+    int length();
+    //取第i个位置的数据元素，返回数据元素的值
+    T get(int i);
+    //将第i个位置的数据元素设置为值x
+    void set(int i, T x);
+    //将位置i及其后的元素依次后移一个位置， 将x插入到第i位置
+    void add(int i, T x);
+    //删除第i个位置的数据元素，位置 i+1 及其后的元素一次迁移一个位置
+    T remove(int i);
+    //返回数据元素x的表List中的位置
+    int indexOf(T x);
+} </t></code></pre>
+
+<p>在java中，抽象数据类型的描述可以采用两种方式：第一种是抽象类；第二种是接口。下面用抽象类描述线性表。</p>
+<h2 id="1-3线性表抽象类定义"><a href="#1-3线性表抽象类定义" class="headerlink" title="1.3线性表抽象类定义"></a>1.3线性表抽象类定义</h2><pre><code> public abstract class MAbsList<t> implements Iterable<t>, MList<t>{
+    protected int length;
+
+    //返回第 i(i >= 0) 个元素
+    abstract public T get(int i);
+    //设置第i个元素为x
+    abstract public void set(int i, T x);
+    // 查找，返回首次出现的关键字为key的元素
+    abstract public int indexOf(int begin, int end, T key);
+    //插入x作为第i个元素
+    abstract public void add(int i, T x);
+    abstract public void clear();
+    //删除第i个元素并返回被删除对象
+    abstract public T remove(int i);
+    //返回一个迭代器
+    abstract public Iterator<t> iterator();
+
+    //判断线性表是否为空
+    public boolean isEmpty(){
+        return length == 0;
+    }
+
+    //返回线性表长度
+    public int length(){
+        return length;
+    }
+
+    //在线性表最后插入x
+    public void add(T x){
+        add(length, x);
+    }
+
+    public void append(T x){
+        add(length, x);
+    }
+
+    public int indexOf(T o){
+        return indexOf(0, length, o);
+    }
+
+    public int indexOf(int begin, T o){
+        return indexOf(begin, length, o);
+    }
+
+    public T remove(T o){
+        return remove(indexOf(o));
+    }
+} </t></t></t></t></code></pre>
+
+
+<h2 id="2-1顺序表"><a href="#2-1顺序表" class="headerlink" title="2.1顺序表"></a>2.1顺序表</h2><p>定义：把线性表的元素按逻辑顺序依次存放在一组地址连续的存储单元里，用这种方法存储的线性表简称为顺序表。java中数组就是一种典型的顺序表，但数组有一个缺点即数组长度一旦确定，并为数组分配了数组存储空间，则数组就不能再增加长度。<br>特点：存储结构直接反映了逻辑结构。</p>
+<h2 id="2-2顺序表类定义"><a href="#2-2顺序表类定义" class="headerlink" title="2.2顺序表类定义"></a>2.2顺序表类定义</h2><ol>
+<li>由于线性表中的元素类型是任意的，所以使用泛型，但java不支持泛型数组，所以在MSeqList中，保存实际数据的数组声明为Object类型。</li>
+<li>顺序表容量管理由4个函数来实现：setCapacity(),getCapacity(),setIncr()和grow()。</li>
+<li>顺序表实质上是数组，能够实现随机存取，由get(),set()方法实现。</li>
+<li>向顺序表插入元素，数据存储空间不够时进行扩容，时间复杂度是O(n)。删除的时候也是O(n).</li>
+<li>查找，因为允许顺序表元素为空，所以要对这种情况处理。</li>
+<li>插入与排序</li>
+<li><p>顺序表转换为数组或字符串</p>
+<pre><code> public class MSeqList<t> extends MAbsList<t> implements Iterable<t>{
+
+ //顺序表增量长度
+ private int incrementSize;
+ //保存顺序表数据的数组
+ protected Object[]  data;
+
+ //默认构造函数
+ public MSeqList() {
+     this(16);
+ }
+
+ //构造函数，capacity是顺序表容量
+ public MSeqList(int capacity) {
+     if (capacity <= 0="" 0)="" capacity="16;" length="0;" incrementsize="0;" data="new" object[capacity];="" }="" 构造函数，用数组elem初始化顺序表="" public="" mseqlist(t[]="" elem)="" {="" length);="" 设置新的容量="" void="" setcapacity(int="" newsize){="" newsize);="" 取得顺序表容量="" int="" getcapacity(){="" return="" data.length;="" 设置顺序表每次容量增加时增量大小，默认值是16="" setincr(int="" inc){="" 内部使用，自动增加顺序表容量="" private="" grow(){="" newsize="data.length" +="" incrementsize;="" 取得顺序表长度，同length()="" size(){="" length;="" compare(t="" a,="" t="" b){="" if="" (a="" instanceof="" comparable="" &&="" b="" comparable){="" ((comparable)="" a).compareto((comparable)b);="" }else="" ((string)a).compareto((string)="" b);="" @override="" get(int="" i)="" (i="" <="" ||="" i=""> length - 1) return null;
+     return (T) data[i];
+ }
+
+ @Override
+ public boolean set(int i, T x) {
+     if (i < 0 || i > length - 1) return false;
+     else {
+         data[i] = x;
+         return true;
+     }
+ }
+
+ @Override
+ public int indexOf(int begin, int end, T key) {
+     //顺序查找
+     if (key == null){
+         //查找null值
+         for (int i = 0; i < length; i++){
+             if (data[i] == null)
+                 return i;
+         }
+     }else {
+         //查找有效值
+         for (int i = 0; i < length; i++){
+             if (compare(key, (T) data[i]) == 0){
+                 return i;
+             }
+         }
+     }
+     return -1;
+ }
+
+ @Override
+ public void add(int i, T x) {
+     //顺序表容量满，自动增蓉
+     if (length == data.length) grow();
+     if (i < 0) i = 0;
+     if (i > length) i = length;
+     for (int j = length - 1; j >= i; j--){
+         data[j + 1] = data[j];
+     }
+     data[i] = x;
+     length++;
+ }
+
+ @Override
+ public void add(T x) {
+     if (length == data.length) grow();
+     data[length] = x;
+     length++;
+ }
+
+ @Override
+ public void append(T x) {
+     add(x);
+ }
+
+ //以有序方式向顺序表增加数据元素x
+ public void addSort(T x){
+     insertOrder(length, x);
+     length++;
+ }
+
+ //对顺序表排序
+ public void sort(){
+     for (int i = 0; i <= length-1;="" i++){="" insertorder(i,="" (t)="" data[i]);="" }="" 内部使用，以有序方式向顺序表增加数据元素x="" protected="" void="" insertorder(int="" end,="" t="" x){="" if="" (length="=" data.length)="" grow();="" int="" k;="" for="" (k="end" -="" 1;="" k="">= 0; k--){
+         if (compare(x, (T) data[k]) < 0)
+             data[k+1] = data[k];
+         else
+             break;
+     }
+     data[k+1] = x;
+ }
+
+ @Override
+ public void clear() {
+     for (int i = 0; i < length; i++){
+         data[i] = null;
+         //java虚拟机的垃圾收集器自动处理
+     }
+     length = 0;
+ }
+
+ @Override
+ public T remove(int i) {
+     if (i < 0 || i > length - 1)
+         throw new IndexOutOfBoundsException("下标越界 i=" + i);
+     T olddata = (T) data[i];
+     for (int j = i; j < length - 1; j++){
+         data[j] = data[j + 1];
+     }
+     data[--length] = null;
+     return olddata;
+ }
+
+ @Override
+ public T remove(T o) {
+     int i = indexOf(o);
+     return remove(i);
+ }
+
+ @Override
+ public Iterator<t> iterator() {
+     return null;
+ }
+
+ @Override
+ public String toString() {
+     StringBuilder builder = new StringBuilder();
+     builder = builder.append("(");
+     for (int i = 0; i < length - 1; i++){
+         builder = builder.append(data[i].toString() + ",");
+     }
+     builder = builder.append(data[length-1] + ")");
+     String s = new String(builder);
+     return s;
+ }
+
+ //将顺序表转换为Object数组
+ public Object[] toArray(){
+     return Arrays.copyOf(this.data, this.length);
+ }
+
+ /**
+  * 将顺序表转换为类型为E的数组
+  * a的长度可以是0，a的主要作用是告诉系统将顺序表转换为类型为E[]的数组
+  * @param a
+  * @return
+  */
+  public <e> E[] toArray(E[] a){
+     if (a.length < length){
+         //创建一个与数组a的运行时类型相同的新数组， a的长度可以为0
+         return (E[]) Arrays.copyOf(this.data, this.length, a.getClass());
+     }
+     System.arraycopy(this.data, 0, a, 0, this.length);
+     if (a.length > this.length){
+         a[length] = null;
+     }
+     return a;
+ }
+
+ //内部类，迭代器实现原理与链表迭代器相同
+ class MyIterator implements Iterator<t>{
+
+     private int index = 0;
+
+     @Override
+     public boolean hasNext() {
+         //在调用next()后，index自增，确保index不等于length
+         return index != length();
+     }
+
+     @Override
+     public T next() {
+         return get(index++);
+     }
+
+     @Override
+     public void remove() {
+
+     }
+ }
+}
+</t></e></t></=></=></t></t></t></code></pre></li>
+</ol>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/顺序表/" rel="tag">#顺序表</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/20/数据结构学习笔记之链表-java/" rel="prev" title="数据结构学习笔记之链表(java)">
+                数据结构学习笔记之链表(java) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/04/15/数据结构学习笔记之线性表-java/"
+           data-title="数据结构学习笔记之线性表(java)" data-url="http://nvgtor.github.io/2016/04/15/数据结构学习笔记之线性表-java/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/myIcon.jpg"
+               alt="EastYoung" />
+          <p class="site-author-name" itemprop="name">EastYoung</p>
+          <p class="site-description motion-element" itemprop="description">其实并不难是你太悲观</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1线性表定义"><span class="nav-number">1.</span> <span class="nav-text">1.1线性表定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2线性表抽象数据类型（ADT）"><span class="nav-number">2.</span> <span class="nav-text">1.2线性表抽象数据类型（ADT）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3线性表抽象类定义"><span class="nav-number">3.</span> <span class="nav-text">1.3线性表抽象类定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1顺序表"><span class="nav-number">4.</span> <span class="nav-text">2.1顺序表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2顺序表类定义"><span class="nav-number">5.</span> <span class="nav-text">2.2顺序表类定义</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EastYoung</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+本站总访问量 <span id="busuanzi_value_site_pv"></span> &nbsp&nbsp&nbsp
+您是第<span id="busuanzi_value_site_uv"></span>个来到的小伙伴
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nvgtor"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

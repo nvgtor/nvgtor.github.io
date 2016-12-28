@@ -1,0 +1,729 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="异常， 断言," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="异常
+异常是一个事件，它发生在程序运行期间，干扰了正常的指令流程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="异常和断言">
+<meta property="og:url" content="http://nvgtor.github.io/2016/05/06/异常和断言/index.html">
+<meta property="og:site_name" content="EastYoung's blog">
+<meta property="og:description" content="异常
+异常是一个事件，它发生在程序运行期间，干扰了正常的指令流程">
+<meta property="og:image" content="http://cl.ly/1X2C341c2l2C/%E5%BC%82%E5%B8%B8.jpg">
+<meta property="og:updated_time" content="2016-05-06T14:02:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="异常和断言">
+<meta name="twitter:description" content="异常
+异常是一个事件，它发生在程序运行期间，干扰了正常的指令流程">
+<meta name="twitter:image" content="http://cl.ly/1X2C341c2l2C/%E5%BC%82%E5%B8%B8.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 异常和断言 | EastYoung's blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EastYoung's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">其实很简单其实很自然</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                异常和断言
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-06T21:25:10+08:00" content="2016-05-06">
+              2016-05-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/06/异常和断言/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/06/异常和断言/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+            <span>&nbsp; | &nbsp;
+            <span id="busuanzi_value_page_pv" ></span>次阅读
+            </span>    
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h1><ul>
+<li>异常是一个事件，它发生在程序运行期间，干扰了正常的指令流程</li>
+</ul>
+<a id="more"></a>
+<ul>
+<li>异常情形是指阻止当前方法或者作用域继续执行的问题。在这里一定要明确一点：异常代码某种程度的错误，尽管Java有异常处理机制，但是我们不能以“正常”的眼光来看待异常，异常处理机制的原因就是告诉你：这里可能会或者已经产生了错误，您的程序出现了不正常的情况，可能会导致程序失败！</li>
+</ul>
+<h2 id="异常继承层次"><a href="#异常继承层次" class="headerlink" title="异常继承层次"></a>异常继承层次</h2><p><img src="http://cl.ly/1X2C341c2l2C/%E5%BC%82%E5%B8%B8.jpg" alt=""></p>
+<ul>
+<li><p>所有的异常类都派生自 Throwable 类。</p>
+</li>
+<li><p>其中Error为错误，是程序无法处理的，如OutOfMemoryError、ThreadDeath等，出现这种情况你唯一能做的就是听之任之，交由JVM来处理，不过JVM在大多数情况下会选择终止线程。</p>
+</li>
+<li><p>而Exception是程序可以处理的异常。它又分为两种CheckedException（已检查异常）。</p>
+</li>
+<li><p>已检查异常用于错误可以被提前预知的情况。一个常见的错误原因是输入和输出，文件可能损坏，网络连接可能会失败。</p>
+</li>
+<li><p>一种是UncheckedException（未检查异常）。其中CheckException发生在编译阶段，必须要使用try…catch（或者throws）否则编译不通过。而UncheckedException发生在运行期，具有不确定性，主要是由于程序的逻辑问题所引起的，例如没有检查空指针异常。</p>
+</li>
+</ul>
+<h2 id="try-catch-finally"><a href="#try-catch-finally" class="headerlink" title="try catch finally"></a>try catch finally</h2><ol>
+<li><p>当程序遇到异常时会终止程序的运行（即后面的代码不在执行），控制权交由异常处理机制处理。</p>
+</li>
+<li><p>catch捕捉异常后，执行里面的函数。</p>
+</li>
+<li><p>不论程序是否发生异常，finally代码块总是会执行。所以finally一般用来关闭资源。</p>
+</li>
+<li><p>一旦某个catch捕获到匹配的异常类型，将进入异常处理代码。一经处理结束，就意味着整个try-catch语句结束。其他的catch子句不再有匹配和捕获异常类型的机会。</p>
+</li>
+</ol>
+<h2 id="抛出异常"><a href="#抛出异常" class="headerlink" title="抛出异常"></a>抛出异常</h2><h3 id="throws抛出异常"><a href="#throws抛出异常" class="headerlink" title="throws抛出异常"></a>throws抛出异常</h3><p>如果一个方法可能会出现异常，但没有能力处理这种异常，可以在方法声明处用throws子句来声明抛出异常。</p>
+<p>语法：</p>
+<pre><code>methodname throws Exception1,Exception2,..,ExceptionN  
+{
+    //方法具体内容  
+} 
+</code></pre><p>Throws抛出异常的规则：</p>
+<ol>
+<li><p>如果是不可查异常（unchecked exception），即Error、RuntimeException或它们的子类，那么可以不使用throws关键字来声明要抛出的异常，编译仍能顺利通过，但在运行时会被系统抛出。</p>
+</li>
+<li><p>必须声明方法可抛出的任何可查异常（checked exception）。即如果一个方法可能出现受可查异常，要么用try-catch语句捕获，要么用throws子句声明将它抛出，否则会导致编译错误</p>
+</li>
+<li><p>仅当抛出了异常，该方法的调用者才必须处理或者重新抛出该异常。当方法的调用者无力处理该异常的时候，应该继续抛出，而不是囫囵吞枣。</p>
+</li>
+<li><p>调用方法必须遵循任何可查异常的处理和声明规则。若覆盖一个方法，则不能声明与覆盖方法不同的异常。声明的任何异常必须是被覆盖方法所声明异常的同类或子类。</p>
+</li>
+</ol>
+<h3 id="使用throw抛出异常"><a href="#使用throw抛出异常" class="headerlink" title="使用throw抛出异常"></a>使用throw抛出异常</h3><p>throw总是出现在函数体中，用来抛出一个Throwable类型的异常。程序会在throw语句后立即终止，它后面的语句执行不到，然后在包含它的所有try块中（可能在上层调用函数中）从里向外寻找含有与其匹配的catch子句的try块。</p>
+<p>要注意的是，throw 抛出的只能够是可抛出类Throwable 或者其子类的实例对象。</p>
+<p>语法：</p>
+<pre><code>throw new IOException;
+</code></pre><p>如果抛出了检查异常，则还应该在方法头部声明方法可能抛出的异常类型。该方法的调用者也必须检查处理抛出的异常。</p>
+<h3 id="自定义异常"><a href="#自定义异常" class="headerlink" title="自定义异常"></a>自定义异常</h3><p>使用Java内置的异常类可以描述在编程时出现的大部分异常情况。除此之外，用户还可以自定义异常。用户自定义异常类，只需继承Exception类即可。</p>
+<p>在程序中使用自定义异常类，大体可分为以下几个步骤。</p>
+<ol>
+<li><p>创建自定义异常类。</p>
+</li>
+<li><p>在方法中通过throw关键字抛出异常对象。</p>
+</li>
+<li><p>如果在当前抛出异常的方法中处理异常，可以使用try-catch语句捕获并处理；否则在方法的声明处通过throws关键字指明要抛出给方法调用者的异常，继续进行下一步操作。</p>
+</li>
+<li><p>在出现异常方法的调用者中捕获并处理异常。</p>
+</li>
+</ol>
+<h2 id="try-with-resource-（java7特性）语句"><a href="#try-with-resource-（java7特性）语句" class="headerlink" title="try-with-resource （java7特性）语句"></a>try-with-resource （java7特性）语句</h2><p>Try-with-resources是java7中一个新的异常处理机制，它能够很容易地关闭在try-catch语句块中使用的资源。</p>
+<p>语法：</p>
+<pre><code>try(ResourceType1 res1 = init1; ResourceType2 res2 = init2;...){
+    statements
+}
+</code></pre><p>每一个资源必须属于一个实现了 AutoCloseable 接口的类。</p>
+<h1 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>断言是防御性编程中一种常见的语法。假设你的代码依赖于某属性，且该属性需要满足某些条件，例如，你可能正在计算：</p>
+<pre><code>double y = Math.sqrt(x);
+</code></pre><p>你确信 x 不是负值。不过你任然想再次确认。你也可以抛出一个异常：</p>
+<pre><code>if(x &lt; 0) throw new IllegalStateException(x + &quot;&lt;0&quot;);
+</code></pre><p>不过，及时测试完成后，这个异常触发条件也会一直待在程序中，减慢运行速度。相反，断言机制允许你在测试时加入检测条件，并且在生产代码中自动移除他们。</p>
+<p>在 Java 中，断言用于调试目的以验证内部假设。</p>
+<h2 id="使用断言"><a href="#使用断言" class="headerlink" title="使用断言"></a>使用断言</h2><p>在 java 中，有两种形式的断言语句：</p>
+<ul>
+<li>assert condition;</li>
+<li>assert condition : expression;</li>
+</ul>
+<p>assert 会计算条件表达式的值，如果为 false，则会抛出一个 AssertionError。在第二种表达式中，表达式会转变为一个字符串，这个字符串会成为错误对象的消息。</p>
+<p>例如：</p>
+<p>为了断言 x 是一个非负数，你可以直接使用：</p>
+<pre><code>assert x &gt;= 0;
+</code></pre><p>或者你可以将 x 的实际值传进 AssertionError 对象，这样后面就可以显示它：</p>
+<pre><code>assert x &gt;= 0 : x;
+</code></pre><h2 id="启用和禁用断言"><a href="#启用和禁用断言" class="headerlink" title="启用和禁用断言"></a>启用和禁用断言</h2><p>默认情况下，断言是被禁用的。在运行程序时，加上 -enableassertions 或者 -ea 选项可以启用断言。</p>
+<h1 id="参考博客"><a href="#参考博客" class="headerlink" title="参考博客"></a>参考博客</h1><ol>
+<li><a href="http://blog.csdn.net/hguisu/article/details/6155636" target="_blank" rel="external">深入理解java异常处理机制</a></li>
+<li><a href="http://www.cnblogs.com/chenssy/p/3438130.html" target="_blank" rel="external">java提高篇(十六)—–异常（一）</a></li>
+<li><a href="http://ifeve.com/java-7%E4%B8%AD%E7%9A%84try-with-resources/" target="_blank" rel="external">try-with-resource</a></li>
+</ol>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/异常，-断言/" rel="tag">#异常， 断言</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/05/java注解/" rel="next" title="注解">
+                <i class="fa fa-chevron-left"></i> 注解
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/06/装饰者模式/" rel="prev" title="设计模式之装饰者模式">
+                设计模式之装饰者模式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/06/异常和断言/"
+           data-title="异常和断言" data-url="http://nvgtor.github.io/2016/05/06/异常和断言/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/myIcon.jpg"
+               alt="EastYoung" />
+          <p class="site-author-name" itemprop="name">EastYoung</p>
+          <p class="site-description motion-element" itemprop="description">其实并不难是你太悲观</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#异常"><span class="nav-number">1.</span> <span class="nav-text">异常</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#异常继承层次"><span class="nav-number">1.1.</span> <span class="nav-text">异常继承层次</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#try-catch-finally"><span class="nav-number">1.2.</span> <span class="nav-text">try catch finally</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抛出异常"><span class="nav-number">1.3.</span> <span class="nav-text">抛出异常</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#throws抛出异常"><span class="nav-number">1.3.1.</span> <span class="nav-text">throws抛出异常</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用throw抛出异常"><span class="nav-number">1.3.2.</span> <span class="nav-text">使用throw抛出异常</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义异常"><span class="nav-number">1.3.3.</span> <span class="nav-text">自定义异常</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#try-with-resource-（java7特性）语句"><span class="nav-number">1.4.</span> <span class="nav-text">try-with-resource （java7特性）语句</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#断言"><span class="nav-number">2.</span> <span class="nav-text">断言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用断言"><span class="nav-number">2.2.</span> <span class="nav-text">使用断言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启用和禁用断言"><span class="nav-number">2.3.</span> <span class="nav-text">启用和禁用断言</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考博客"><span class="nav-number">3.</span> <span class="nav-text">参考博客</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EastYoung</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+本站总访问量 <span id="busuanzi_value_site_pv"></span> &nbsp&nbsp&nbsp
+您是第<span id="busuanzi_value_site_uv"></span>个来到的小伙伴
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nvgtor"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

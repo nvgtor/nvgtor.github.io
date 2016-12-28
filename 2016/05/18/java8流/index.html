@@ -1,0 +1,777 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Stream," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="简介流（Stream）提供了数据视图，让你可以在笔集合类更高的概念层上制定操作，使用流，只需要指定做什么，而不是则么做。你只需要将操作的调度执行留给实现。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Stream">
+<meta property="og:url" content="http://nvgtor.github.io/2016/05/18/java8流/index.html">
+<meta property="og:site_name" content="EastYoung's blog">
+<meta property="og:description" content="简介流（Stream）提供了数据视图，让你可以在笔集合类更高的概念层上制定操作，使用流，只需要指定做什么，而不是则么做。你只需要将操作的调度执行留给实现。">
+<meta property="og:updated_time" content="2016-06-10T13:40:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Stream">
+<meta name="twitter:description" content="简介流（Stream）提供了数据视图，让你可以在笔集合类更高的概念层上制定操作，使用流，只需要指定做什么，而不是则么做。你只需要将操作的调度执行留给实现。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Stream | EastYoung's blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EastYoung's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">其实很简单其实很自然</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Stream
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-18T17:01:10+08:00" content="2016-05-18">
+              2016-05-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/18/java8流/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/18/java8流/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+            <span>&nbsp; | &nbsp;
+            <span id="busuanzi_value_page_pv" ></span>次阅读
+            </span>    
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>流（Stream）提供了数据视图，让你可以在笔集合类更高的概念层上制定操作，使用流，只需要指定做什么，而不是则么做。你只需要将操作的调度执行留给实现。</p>
+ <a id="more"></a>                                                          
+<h2 id="从迭代到-Stream-操作"><a href="#从迭代到-Stream-操作" class="headerlink" title="从迭代到 Stream 操作"></a>从迭代到 Stream 操作</h2><p>例子统计一个文件中的长单词（在Android Studio中实现）：</p>
+<ul>
+<li><p>读取 raw 文件中的 txt 文件：</p>
+<pre><code>public static String readTextFileFromResource(Context context, int ResId){
+      StringBuilder body = new StringBuilder();
+
+      InputStream inputStream = context.getResources().openRawResource(ResId);
+      InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+      BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+      String nextLine;
+      try {
+          while ((nextLine = bufferedReader.readLine()) != null){
+              body.append(nextLine);
+          }
+      } catch (IOException e) {
+          e.printStackTrace();
+      }
+
+      return body.toString();
+  }
+</code></pre>
+</li>
+<li><p>普通迭代来统计：video_sequences.txt 文件有 76KB</p>
+<pre><code>String contents = TextResReader.readTextFileFromResource(this, R.raw.video_sequences);
+      Log.d("contents", contents);
+  //用正则将字符串拆分成单词
+      List<string> words = Arrays.asList(contents.split("[^a-zA-z0-9]"));
+      int count = 0;
+      long startTime = System.currentTimeMillis();
+      for (String w : words) {
+          if (w.length() > 12)
+              count++;
+      }
+      Log.d("Count", count + "");
+      long endTime = System.currentTimeMillis(); //获取结束时间
+      System.out.println("普通程序运行时间： " + (endTime - startTime) + "ms");
+</string></code></pre>
+</li>
+<li><p>使用流，实现相同的功能：</p>
+<pre><code>long startTime1 = System.currentTimeMillis();
+      long counts = Stream.of(words).filter(w -> w.length() > 12).count();
+      Log.d("StreamCount", counts + "");
+      long endTime1 = System.currentTimeMillis(); //获取结束时间
+      System.out.println("Stream程序运行时间： " + (endTime1 - startTime1) + "ms");
+</code></pre>
+
+</li>
+</ul>
+<p>打印结果：</p>
+<pre><code>D/Count: 183
+I/System.out: 普通程序运行时间： 64ms
+D/StreamCount: 183
+I/System.out: Stream程序运行时间： 30ms
+</code></pre>
+
+<p>只使用了一行代码就能搞定，不用为了过滤和扫描循环了，效率也提高了不少。 Stream 遵循做什么，而不是怎么去做的原则。在这个实例中，我们描述了需要做的事情，找到单词并对他们计数，我们不需要指定顺序，不需要指定在哪个线程上运行，执行顺序和执行线程都会自动由 Stream 实现。</p>
+<p>流表面上看起来与集合类似，允许你转换和检索数据，但是他们是不同的：</p>
+<ul>
+<li>流不存储元素。它们存储在底层的集合或者按需生成。</li>
+<li>流操作不改变源数据。filter方法不会从一个新流中删除元素，而是生成一个不包含特定元素的新流。</li>
+<li>如果可能的话Stream操作可能是延迟执行的。</li>
+</ul>
+<p>使用流的流程</p>
+<ol>
+<li>创建一个Stream</li>
+<li>指定将初始流转换成其他流的中间操作，可能需要多步操作。</li>
+<li>应用终止操纵产生结果，在这之后流就不会用到了。</li>
+</ol>
+<h1 id="创建-Stream"><a href="#创建-Stream" class="headerlink" title="创建 Stream"></a>创建 Stream</h1><ul>
+<li>可以使用 Collection 接口的 stream 方法将任何集合转化为 Stream</li>
+<li>如果面对的是数组，则使用静态方法 Stream.of()方法将它转化为一个 stream</li>
+</ul>
+<p>一些创建方法：</p>
+<pre><code>//1.Stream.of()
+//split 方法返回 String[] 数组
+Stream<string> wordsStream = Stream.of(contents.split("[^a-zA-z0-9]"));
+ //of方法可以接受可变长度的参数
+Stream<string> song = Stream.of("gently", "down", "the", "stream");
+
+//2.Array.stream(array, from, to) 将数组的一部分转化成 Stream
+
+//3.创建一个不含任何元素的 Stream
+Stream<string> silence = Stream.empty();
+
+// Stream 接口有两个创建无限 Stream 的方法 generate()、iterate()
+//4.generate()方法
+//参数是一个 Supplier<t> 的对象 下面创建一个常量值的 Stream
+Stream<string> echos = Stream.generate(() -> "echo");
+//一个含有随机数的 Stream
+Stream<double> randoms = Stream.generate(Math::random);
+//5.iterate()方法
+//创建一个如 0 1 2 3 ... 的无穷数列，可以使用iterate()方法
+//第一个参数种子值，第二个是一个函数
+Stream<biginteger> integers = Stream.iterate(BigInteger.ZERO, n -> n.add(BigInteger.ONE));
+
+</biginteger></double></string></t></string></string></string></code></pre>
+
+<h2 id="filter、map-和-flatMap-方法"><a href="#filter、map-和-flatMap-方法" class="headerlink" title="filter、map 和 flatMap 方法"></a>filter、map 和 flatMap 方法</h2><p>流的转换产生了一个流，该流的元素来源于其他流。 filter 转换生成一个匹配条件的新流。如：</p>
+<pre><code>//长单词流
+//filter 的参数是一个 Predicate&lt;T&gt; 对象
+Stream&lt;String&gt; longWords = Stream.of(words).filter(w -&gt; w.length() &gt; 12);
+</code></pre><p><strong>将流中的值进行某种形式的转换（map方法）</strong></p>
+<pre><code>//将所有单词转换成小写形式：
+//使用方法引用
+Stream&lt;String&gt; lowercaseWords = Stream.of(words).map(String::toLowerCase);
+//使用 lambda 表达式，产生一个包含每个单词的第一个字符的流
+Stream&lt;String&gt; firstLetters = Stream.of(words).map(s -&gt; s.substring(0, 1));
+</code></pre><p>当使用 map 方法时，函数将作用于每一个元素，这样就产生了一个包含最终结果的新流。假设有一个函数，返回的不是一个值，而是一个包含多个值的流，如：</p>
+<pre><code>public Stream<string> letters(String s){
+        List<string> result = new ArrayList<>();
+        for (int i = 0; i < s.length(); i++){
+            result.add(s.substring(i, i + 1));
+        }
+        return Stream.of(result);
+    }
+</string></string></code></pre>  
+
+<p>letters(“boat”) 返回的是流 [“b”, “o”, “a”, “t”]。</p>
+<p>将该 letters() 方法映射到一个字符串流：</p>
+<p>Stream<stream<string>&gt; result = Stream.of(words).map(w -&gt; letters(w));</stream<string></p>
+<p>结果是：</p>
+<p>[…[“b”,”o”,”a”,”t”],[“y”,”o”,”u”],…], 要将其展开为一个只包含字符串的流 […”b”,”o”,”a”,”t”,”y”,”o”,”u”,…]使用 flatMap 方法而不是 map 方法：</p>
+<pre><code>Stream&lt;String&gt; flatResult = Stream.of(words).flatMap(w -&gt; letters(w));
+</code></pre><h2 id="提取子流和组合流"><a href="#提取子流和组合流" class="headerlink" title="提取子流和组合流"></a>提取子流和组合流</h2><ul>
+<li><p>stream.limit(n) 会返回一个包含 n 个元素的新流（如果原始流的长度小于n，则会返回原始流），这个方法特别适用于裁剪指定长度的流。例如：</p>
+<pre><code>//产生一个10个随机数的流
+Stream&lt;Double&gt; randomsDouble = Stream.generate(Math::random).limit(10);
+</code></pre></li>
+<li><p>stream.skip(n) 正好相反，它会丢弃前 n 个元素。</p>
+<pre><code>Stream&lt;String&gt; randomsSkip = Stream.of(&quot;gently&quot;, &quot;down&quot;, &quot;the&quot;, &quot;stream&quot;).skip(1);
+</code></pre></li>
+<li><p>concat 连接流，第一个流不应该是无限的</p>
+<pre><code>Stream&lt;String&gt; combined = Stream.concat(letters(&quot;hello&quot;), letters(&quot;world&quot;));
+//生成 combined: [&quot;h&quot;, &quot;e&quot;, &quot;l&quot;, &quot;l&quot;, &quot;o&quot;, &quot;w&quot;, &quot;o&quot;, &quot;r&quot;, &quot;l&quot;, &quot;d&quot;]
+</code></pre></li>
+</ul>
+<h2 id="其他流转换"><a href="#其他流转换" class="headerlink" title="其他流转换"></a>其他流转换</h2><ul>
+<li><p>distinct方法会根据原始流中的元素返回一个具有相同顺序、抑制了重复元素的新流。</p>
+<pre><code>Stream&lt;String&gt; uniqueWords = Stream.of(&quot;gently&quot;, &quot;down&quot;,&quot;down&quot;, &quot;the&quot;, &quot;stream&quot;).distinct();
+</code></pre></li>
+<li><p>Stream排序</p>
+</li>
+</ul>
+<h1 id="简单归约"><a href="#简单归约" class="headerlink" title="简单归约"></a>简单归约</h1><p>归约是流的终止操作，也就是从流中获得答案 。</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Stream/" rel="tag">#Stream</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/16/AndroidContentProvider/" rel="next" title="Content Provider">
+                <i class="fa fa-chevron-left"></i> Content Provider
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/19/单例模式/" rel="prev" title="设计模式之单例模式">
+                设计模式之单例模式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/18/java8流/"
+           data-title="Stream" data-url="http://nvgtor.github.io/2016/05/18/java8流/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/myIcon.jpg"
+               alt="EastYoung" />
+          <p class="site-author-name" itemprop="name">EastYoung</p>
+          <p class="site-description motion-element" itemprop="description">其实并不难是你太悲观</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#从迭代到-Stream-操作"><span class="nav-number">1.1.</span> <span class="nav-text">从迭代到 Stream 操作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建-Stream"><span class="nav-number">2.</span> <span class="nav-text">创建 Stream</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#filter、map-和-flatMap-方法"><span class="nav-number">2.1.</span> <span class="nav-text">filter、map 和 flatMap 方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提取子流和组合流"><span class="nav-number">2.2.</span> <span class="nav-text">提取子流和组合流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他流转换"><span class="nav-number">2.3.</span> <span class="nav-text">其他流转换</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#简单归约"><span class="nav-number">3.</span> <span class="nav-text">简单归约</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EastYoung</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+本站总访问量 <span id="busuanzi_value_site_pv"></span> &nbsp&nbsp&nbsp
+您是第<span id="busuanzi_value_site_uv"></span>个来到的小伙伴
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nvgtor"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

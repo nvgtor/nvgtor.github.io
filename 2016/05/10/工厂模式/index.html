@@ -1,0 +1,1016 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="工厂模式," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="工厂模式当使用 new 时，我们是在实例化一个具体类，用的是实现，而不是接口。代码绑定着具体类会导致代码更脆弱，更缺乏弹性。
+封装创建对象的代码，放到一个“工厂”里。工厂处理创建对象的细节。
+松耦合的OO设计。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式之工厂模式">
+<meta property="og:url" content="http://nvgtor.github.io/2016/05/10/工厂模式/index.html">
+<meta property="og:site_name" content="EastYoung's blog">
+<meta property="og:description" content="工厂模式当使用 new 时，我们是在实例化一个具体类，用的是实现，而不是接口。代码绑定着具体类会导致代码更脆弱，更缺乏弹性。
+封装创建对象的代码，放到一个“工厂”里。工厂处理创建对象的细节。
+松耦合的OO设计。">
+<meta property="og:image" content="http://cl.ly/2F0Z2U2l1623/%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82pizza.png">
+<meta property="og:image" content="http://cl.ly/0P221D2x1S22/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="http://cl.ly/3e2g2D022Q0W/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E5%88%9B%E5%BB%BA%E8%80%85%E7%B1%BB.png">
+<meta property="og:image" content="http://cl.ly/1g2Z0a0d1F3r/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E4%BA%A7%E5%93%81%E7%B1%BB.png">
+<meta property="og:updated_time" content="2016-05-11T06:13:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="设计模式之工厂模式">
+<meta name="twitter:description" content="工厂模式当使用 new 时，我们是在实例化一个具体类，用的是实现，而不是接口。代码绑定着具体类会导致代码更脆弱，更缺乏弹性。
+封装创建对象的代码，放到一个“工厂”里。工厂处理创建对象的细节。
+松耦合的OO设计。">
+<meta name="twitter:image" content="http://cl.ly/2F0Z2U2l1623/%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82pizza.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 设计模式之工厂模式 | EastYoung's blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EastYoung's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">其实很简单其实很自然</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                设计模式之工厂模式
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-10T23:14:20+08:00" content="2016-05-10">
+              2016-05-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/10/工厂模式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/10/工厂模式/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+            <span>&nbsp; | &nbsp;
+            <span id="busuanzi_value_page_pv" ></span>次阅读
+            </span>    
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h1><p>当使用 new 时，我们是在实例化一个具体类，用的是实现，而不是接口。代码绑定着具体类会导致代码更脆弱，更缺乏弹性。</p>
+<p>封装创建对象的代码，放到一个“工厂”里。工厂处理创建对象的细节。</p>
+<p>松耦合的OO设计。</p>
+ <a id="more"></a>
+<h2 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>简单工厂其实不是一个设计模式，反而比较像一种变成习惯。</p>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><ul>
+<li>工厂类</li>
+</ul>
+<pre><code>/**
+ * 简单工厂类，负责创建对象
+ */
+public class SimplePizzaFactory {
+    public Pizza createPizza(String type){
+        Pizza pizza = null;
+        switch (type){
+            case "cheese":
+                pizza = new CheesePizza();
+                break;
+            case "pepperoni":
+                pizza = new Pepperonipizza();
+                break;
+            case "clam":
+                pizza = new ClamPizza();
+                break;
+            case "veggie":
+                pizza = new VeggiePizza();
+                break;
+        }
+        return pizza;
+    }
+}
+</code></pre>
+
+<ul>
+<li>使用类</li>
+</ul>
+<pre><code>/**
+ * 披萨店
+ * 调用工厂生产披萨
+ */
+public class PizzaStore {
+    SimplePizzaFactory factory;
+
+    public PizzaStore(SimplePizzaFactory factory){
+        this.factory = factory;
+    }
+
+    /**
+     * 传入订单类型来使用工厂创建披萨
+     * @param type
+     * @return
+     */
+    public Pizza orderPizza(String type){
+        Pizza pizza;
+        pizza = factory.createPizza(type);
+        pizza.prepare();
+        pizza.bake();
+        pizza.cut();
+        pizza.box();
+        return pizza;
+    }
+
+    //其他方法
+}
+</code></pre>
+
+<h3 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h3><p><img src="http://cl.ly/2F0Z2U2l1623/%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82pizza.png" alt=""></p>
+<p>角色：</p>
+<ol>
+<li>工厂类角色：这是本模式的核心，含有一定的商业逻辑和判断逻辑，用来创建产品</li>
+<li>抽象产品角色：它一般是具体产品继承的父类或者实现的接口。         </li>
+<li>具体产品角色：工厂类所创建的对象就是此角色的实例。在Java中由一个具体类实现。 </li>
+</ol>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>下面我们从开闭原则（对扩展开放；对修改封闭）上来分析下简单工厂模式，每增加一种新的披萨，需要在工厂类中增加相应的创建业务逻辑（switch 中添加 case)，违背开闭原则。</p>
+<h3 id="静态工厂"><a href="#静态工厂" class="headerlink" title="静态工厂"></a>静态工厂</h3><p>利用静态方法定义一个简单的工厂，这是很常见的，称为静态工厂。为何这样用？因为不需要使用创建对象的方法来实例化对象。但是也有缺点，不能通过继承来改变创建方法的行为。</p>
+<h2 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h2><h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><p>定义一个用于创建对象的接口，让子类决定实例化哪一个类。工厂方法模式让一个类的实例化延迟到其子类。</p>
+<p>工厂方法用来处理对象的创建，并将这样的行为封装在子类中，这样，客户程序中关于超类的代码就和子类对象创建代码解耦了。</p>
+<h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3><p><img src="http://cl.ly/0P221D2x1S22/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E7%BB%93%E6%9E%84.png" alt=""></p>
+<h3 id="例子-1"><a href="#例子-1" class="headerlink" title="例子"></a>例子</h3><ul>
+<li>创建者（Creator）类</li>
+</ul>
+<pre><code>/**
+ * 抽象的披萨店
+ */
+public abstract class PizzaStore {
+    /**
+     * 传入订单类型来使用工厂方法创建披萨
+     * @param type
+     * @return
+     */
+    public Pizza orderPizza(String type){
+        Pizza pizza;
+        //创建
+        pizza = createPizza(type);
+//        pizza.prepare();
+//        pizza.bake();
+//        pizza.cut();
+//        pizza.box();
+        return pizza;
+    }
+
+    //实例化披萨的责任被移到一个“方法”中，此方法就如同是一个“工厂”
+    abstract Pizza createPizza(String type);
+
+    //其他方法
+}
+</code></pre>
+
+<ul>
+<li>具体创建者</li>
+</ul>
+<pre><code>/**
+ * 加盟店 纽约店创建当地风味披萨
+ * 返回Pizza由子类全权负责实例化哪一个具体Pizza
+ */
+public class NYPizzaStore extends PizzaStore {
+    @Override
+    Pizza createPizza(String type) {
+        Pizza pizza = null;
+        switch (type){
+            case "cheese":
+                pizza = new NYStyleCheesePizza();
+                break;
+            case "pepperoni":
+                pizza = new NYStylePepperoniPizza();
+                break;
+            case "clam":
+                pizza = new NYStyleClamPizza();
+                break;
+            case "veggie":
+                pizza = new NYStyleVeggiePizza();
+                break;
+        }
+        return pizza;
+    }
+}
+</code></pre>
+
+<ul>
+<li>产品类</li>
+</ul>
+<pre><code>/**
+ * 产品类
+ */
+public abstract class Pizza {
+    String name;
+    String dough;
+    String sauce;
+    ArrayList toppings = new ArrayList();
+
+    void prepare(){
+        System.out.println("Preparing" + name);
+        System.out.println("Tossing dough...");
+        System.out.println("Adding sauce...");
+        System.out.println("Adding toppings:");
+        for (int i = 0; i < toppings.size(); i++){
+            System.out.println("    " + toppings.get(i));
+        }
+    }
+
+    void bake(){
+        System.out.println("Baking...");
+    }
+
+    void cut(){
+        System.out.println("Cutting...");
+    }
+
+    void box(){
+        System.out.println("Boxing...");
+    }
+
+    public String getName() {
+        return name;
+    }
+}
+</code></pre>
+
+<ul>
+<li>具体产品</li>
+</ul>
+<pre><code>/**
+ * 抽象类Pizza的具体子类
+ */
+public class NYStyleCheesePizza extends Pizza {
+    public NYStyleCheesePizza() {
+        name = "NY Style Cheese Pizza";
+        dough = "Thin Crust Dough";
+        sauce = "Marinara Sauce";
+        toppings.add("Grated Reggiano Cheese");
+    }
+}
+</code></pre>
+
+<ul>
+<li>使用</li>
+</ul>
+<pre><code>  PizzaStore nyStore = new NYPizzaStore();
+  Pizza pizza = nyStore.orderPizza("cheese");
+  System.out.println("your ordered a " + pizza.getName() + "\n");
+</code></pre>
+
+<h3 id="类图-1"><a href="#类图-1" class="headerlink" title="类图"></a>类图</h3><ul>
+<li>创建者类</li>
+</ul>
+<p><img src="http://cl.ly/3e2g2D022Q0W/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E5%88%9B%E5%BB%BA%E8%80%85%E7%B1%BB.png" alt=""></p>
+<ul>
+<li>产品类</li>
+</ul>
+<p><img src="http://cl.ly/1g2Z0a0d1F3r/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E4%BA%A7%E5%93%81%E7%B1%BB.png" alt=""></p>
+<h3 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h3><p><strong>参与角色</strong></p>
+<ol>
+<li>Product（document）定义工厂方法所创建对象的接口。</li>
+<li>ConcreteProduct（mydocument）实现 product 接口。</li>
+<li>Creator（application）声明工厂方法，可以调用工厂方法以创建一个product对象</li>
+<li>ConcreteCreator （MyApplication）重新定义工厂方法，以返回一个ConcreteProduct实例</li>
+</ol>
+<p><strong>总结</strong></p>
+<p>工厂方法模式将产品的“实现”从“使用”中解耦，如果增加产品或改变产品的实现，Creator 不会受到影响，因为 Creator 与任何ConcreteProduct 之间都不是紧耦合。</p>
+<p><strong>简单工厂和工厂方法的区别：</strong></p>
+<p>工厂方法的具体创建者类看起来像是简单工厂。简单工厂把全部的事情，在一个地方都处理完了，然而工厂方法却是创建一个框架，让子类决定要如何实现。简单工厂不具备工厂方法的弹性，因为简单工厂不能变更正在创建的产品。</p>
+<h2 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h2><h3 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h3><p>提供一个接口，用于创建相关或依赖对象的家族，而不需要明确指定具体类。</p>
+<h3 id="例子-2"><a href="#例子-2" class="headerlink" title="例子"></a>例子</h3><p>披萨店要统一原料，由一个原料工厂来提供各种原料：</p>
+<ul>
+<li><p>工厂接口</p>
+<pre><code>public interface PizzaIngredientFactory{
+
+    public Dough createDough();
+    public Sauce createSauce();
+    public Cheese creatrCheese();
+    ...     
+}
+</code></pre></li>
+<li><p>为每一个区域建造一个工厂，如：纽约原料工厂：</p>
+<pre><code>public class NYPizzaIngredientFactory implements PizzaIngredientFactory{
+    public Dough createDough(){
+        return new THinCrustDough();
+    }
+
+    public Sauce createSauce(){
+        return new MarinaraSauce();
+    }
+
+    ...
+}
+</code></pre></li>
+<li><p>重做披萨，使用工厂生产出来的原料</p>
+</li>
+</ul>
+<pre><code>/**
+ * 产品类
+ */
+public abstract class Pizza {
+    String name;
+    //一组原料
+    Dough dough;
+    Sauce sauce;
+    Veggies veggies[];
+    Cheese cheese;
+    ...
+
+    //抽象方法，收集制作披萨的原料，来自原料工厂
+    abstract void prepare();
+
+    void bake(){
+        System.out.println("Baking...");
+    }
+
+    void cut(){
+        System.out.println("Cutting...");
+    }
+
+    void box(){
+        System.out.println("Boxing...");
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+}
+</code></pre>
+
+<ul>
+<li>具体产品类 调用原料工厂</li>
+</ul>
+<pre><code>public class CheesePizza extends Pizza {
+    PizzaIngredientFactory indgredientFactory;
+
+    //构造函数传入原料工厂
+    public CheesePizza(PizzaIngredientFactory indgredientFactory;){
+        this.indgredientFactory = indgredientFactory;    
+    }
+
+    void prepare(){
+        System.out.println("preparing" + name);
+        indgredientFactory.createDough();
+        indgredientFactory.createSauce();
+        indgredientFactory.createCheese();
+    }
+}
+</code></pre>
+
+<ul>
+<li>具体创建者类 再调用原料工厂</li>
+</ul>
+<pre><code>public class NYPizzaStore extends PizzaStore {
+    @Override
+    Pizza createPizza(String type) {
+        Pizza pizza = null;
+        NYPizzaIngredientFactory ingredientFactory = new NYPizzaIngredientFactory();
+        switch (type){
+            case "cheese":
+                pizza = new NYStyleCheesePizza(ingredientFactory);
+        pizza.setName("cheese");
+                break;
+            case "pepperoni":
+                pizza = new NYStylePepperoniPizza(ingredientFactory);
+        pizza.setName("pepperoni");
+                break;
+            case "clam":
+                pizza = new NYStyleClamPizza(ingredientFactory);
+        pizza.setName("clam");
+                break;
+            case "veggie":
+                pizza = new NYStyleVeggiePizza(ingredientFactory);
+        pizza.setName("veggie");
+                break;
+        }
+        return pizza;
+    }
+}
+</code></pre>
+
+<ul>
+<li>过程</li>
+</ul>
+<pre><code>//创建一个具体生产者的实例 一个纽约披萨店
+PizzaStore nyPizzaStore = new NYPizzaStore();
+//接受订单
+nyPizzaStore.orderPizza("cheese");
+//orderPizza 调用 createPizza方法
+Pizza pizza = createPizza("cheese");
+//涉及原料工厂
+Pizza pizza = new CheesePizza(nyIngredientFactory);
+//接下来要准备披萨，一旦调用 prepare方法，工厂将被要求准备原料
+void prepare(){
+    dough = factory.createDough();
+    sauce = factory.createSauce();
+    ...
+}
+</code></pre>
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>抽象工厂允许客户使用抽象的接口来创建一组相关的产品，而不需要知道（或关心）实际产出的具体产品是什么。这样一来，客户就从具体的产品中被解耦。</p>
+<p>抽象工厂的方法经常以工厂方法的方式实现。抽象工厂的任务是定义一个负责创建一组产品的接口，这个接口内的每个方法都负责创建一个具体产品，同时我们利用实现抽象工厂的子类来提供这些具体的做法。</p>
+<p><strong>抽象工厂与工厂方法的区别</strong></p>
+<p>工厂方法：创建对象用的方法时继承。使用工厂方法创建一个对象，需要扩张一个类，并覆盖它的工厂方法。</p>
+<p>抽象工厂：创建对象通过对象的组合。提供一个用来创建一个产品家族的抽象类型，这个类型的子类定义列产品被产生的方法。</p>
+<h1 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h1><ul>
+<li><p>依赖倒置原则： 要依赖抽象，不要依赖具体类。</p>
+<p>  跟针对接口编程，不针对实现编程有点类似，然而这里更强调“抽象”。这个原则说明了：不能让高层组件依赖底层组件，而且，不管高层组件或底层组件，两者都应该依赖于抽象。</p>
+<p>  所谓高层组件，是由其他底层组件定义其行为的类，例如 PizzaStore 是高层组件，因为它的行为是由披萨定义的： PizzaStore 创建不同的披萨对象。而披萨本身属于底层组件。</p>
+<p>  例如工厂方法中，底层组件具体具体产品类（具体披萨类）依赖于高层的抽象（Pizza类），同样的高层组件也依赖于相同的抽象（抽象PizazStore依赖Pizza抽象）。</p>
+</li>
+</ul>
+<p>下面的指导方针，能帮你避免在OO设计中违反依赖倒置原则：</p>
+<ol>
+<li>变量不可以持有具体类的引用（用 new 就会持有具体类的引用，可以用工厂模式避开）。</li>
+<li>不要让类派生自具体类（如果派生自具体类，就会依赖于具体类。请派生自一个抽象（接口或抽象类））。</li>
+<li>不要覆盖基类中的方法（如果覆盖，那么基类就不是一个适合被继承的抽象，基类中实现的方法，应该由子类共享）。 </li>
+</ol>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/工厂模式/" rel="tag">#工厂模式</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/06/装饰者模式/" rel="next" title="设计模式之装饰者模式">
+                <i class="fa fa-chevron-left"></i> 设计模式之装饰者模式
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/11/AndroidActivity/" rel="prev" title="Activity">
+                Activity <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/10/工厂模式/"
+           data-title="设计模式之工厂模式" data-url="http://nvgtor.github.io/2016/05/10/工厂模式/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/myIcon.jpg"
+               alt="EastYoung" />
+          <p class="site-author-name" itemprop="name">EastYoung</p>
+          <p class="site-description motion-element" itemprop="description">其实并不难是你太悲观</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#工厂模式"><span class="nav-number">1.</span> <span class="nav-text">工厂模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单工厂模式"><span class="nav-number">1.1.</span> <span class="nav-text">简单工厂模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义"><span class="nav-number">1.1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子"><span class="nav-number">1.1.2.</span> <span class="nav-text">例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类图"><span class="nav-number">1.1.3.</span> <span class="nav-text">类图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析"><span class="nav-number">1.1.4.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静态工厂"><span class="nav-number">1.1.5.</span> <span class="nav-text">静态工厂</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工厂方法模式"><span class="nav-number">1.2.</span> <span class="nav-text">工厂方法模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结构"><span class="nav-number">1.2.2.</span> <span class="nav-text">结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子-1"><span class="nav-number">1.2.3.</span> <span class="nav-text">例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类图-1"><span class="nav-number">1.2.4.</span> <span class="nav-text">类图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析-1"><span class="nav-number">1.2.5.</span> <span class="nav-text">分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象工厂模式"><span class="nav-number">1.3.</span> <span class="nav-text">抽象工厂模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义-2"><span class="nav-number">1.3.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子-2"><span class="nav-number">1.3.2.</span> <span class="nav-text">例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.3.3.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设计原则"><span class="nav-number">2.</span> <span class="nav-text">设计原则</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EastYoung</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+本站总访问量 <span id="busuanzi_value_site_pv"></span> &nbsp&nbsp&nbsp
+您是第<span id="busuanzi_value_site_uv"></span>个来到的小伙伴
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nvgtor"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

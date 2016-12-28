@@ -1,0 +1,1168 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="链表," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="单链表顺序表与单链表区别
+顺序表最重要的优点是存储结构与逻辑结构一一对应，这样对于随机存储元素非常有利，但是有两个主要的缺点，一是插入和删除效率低,时间复杂度都是 O(n)。 二是数组一旦创建，它的大小就是不可改变的。
+链表的大小是动态的；链表的插入、删除非常高效。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构学习笔记之链表(java)">
+<meta property="og:url" content="http://nvgtor.github.io/2016/04/20/数据结构学习笔记之链表-java/index.html">
+<meta property="og:site_name" content="EastYoung's blog">
+<meta property="og:description" content="单链表顺序表与单链表区别
+顺序表最重要的优点是存储结构与逻辑结构一一对应，这样对于随机存储元素非常有利，但是有两个主要的缺点，一是插入和删除效率低,时间复杂度都是 O(n)。 二是数组一旦创建，它的大小就是不可改变的。
+链表的大小是动态的；链表的插入、删除非常高效。">
+<meta property="og:updated_time" content="2016-04-27T06:54:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构学习笔记之链表(java)">
+<meta name="twitter:description" content="单链表顺序表与单链表区别
+顺序表最重要的优点是存储结构与逻辑结构一一对应，这样对于随机存储元素非常有利，但是有两个主要的缺点，一是插入和删除效率低,时间复杂度都是 O(n)。 二是数组一旦创建，它的大小就是不可改变的。
+链表的大小是动态的；链表的插入、删除非常高效。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 数据结构学习笔记之链表(java) | EastYoung's blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EastYoung's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">其实很简单其实很自然</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                数据结构学习笔记之链表(java)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-20T21:20:27+08:00" content="2016-04-20">
+              2016-04-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/数据结构/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/20/数据结构学习笔记之链表-java/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/20/数据结构学习笔记之链表-java/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+            <span>&nbsp; | &nbsp;
+            <span id="busuanzi_value_page_pv" ></span>次阅读
+            </span>    
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="单链表"><a href="#单链表" class="headerlink" title="单链表"></a>单链表</h2><h3 id="顺序表与单链表区别"><a href="#顺序表与单链表区别" class="headerlink" title="顺序表与单链表区别"></a>顺序表与单链表区别</h3><ul>
+<li>顺序表最重要的优点是存储结构与逻辑结构一一对应，这样对于随机存储元素非常有利，但是有两个主要的缺点，一是插入和删除效率低,时间复杂度都是 O(n)。 二是数组一旦创建，它的大小就是不可改变的。</li>
+<li><p>链表的大小是动态的；链表的插入、删除非常高效。</p>
+<a id="more"></a>
+</li>
+</ul>
+<h3 id="单链表-1"><a href="#单链表-1" class="headerlink" title="单链表"></a>单链表</h3><h4 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h4><p>将逻辑上具有线性关系的数据元素按链式方式存储，就构成链表，这里的链式方式存储，其本质是指利用指针将各个数据元素链接起来。</p>
+<h4 id="单链表-2"><a href="#单链表-2" class="headerlink" title="单链表"></a>单链表</h4><p>单链表使用一个指向后继元素的指针将具有线性关系的各个节点链接起来，并且最后一个节点的后继指针为空指针。每个节点包含两个要素：</p>
+<ol>
+<li>数据域  节点保存的数据元素（data）</li>
+<li>指针域  指向后继节点的指针（next）</li>
+</ol>
+<p>对于单链表的一个节点，可以简单的用Java描述：</p>
+<pre><code>public class Lnode<t> {
+        public T data;
+        public Lnode<t> next;
+    }
+</t></t></code></pre>
+
+<p>在具体的实现单链表时，有两种实现方式：一种是带头节点的单链表；另一种是不带头节点的单链表。</p>
+<ol>
+<li>带头节点的单链表</li>
+</ol>
+<p><strong>头节点：</strong> 指向链表的第一个有效节点，头节点本身不包含有效数据，用于对链表的处理。<br>对于带头节点的单链表我们定义一个头指针指向链表的头节点：</p>
+<pre><code>Lnode head;
+</code></pre><p>head 的 data 域一般不用，而 head 的 next 域指向链表的第一个有效节点，如果链表是空链表，则<br>head.next = null;</p>
+<ol>
+<li>不带头节点的单链表</li>
+</ol>
+<p>对于不带头节点的单链表，只需要一个指向头节点的引用变量 first 即可以对整个链表进行操作，指向头节点的引用变量也称为头指针，头指针是整个链表的入口点。头指针定义：</p>
+<pre><code>Lnode first;
+</code></pre><p>其中 first 直接指向第一个有效节点。如果是空链表，则 first = null;</p>
+<h4 id="链表面向对象描述"><a href="#链表面向对象描述" class="headerlink" title="链表面向对象描述"></a>链表面向对象描述</h4><ul>
+<li>链表节点类最基本的数据成员是 data 和 next 。 使用泛型方法来定义链表节点类。链表节点使用泛型，要求泛型类型 T 是必须可比较的，类型 T 要实现Comparable接口。</li>
+</ul>
+<pre><code>public class Lnode<t> implements Comparable<lnode<t>>{
+    public T data;
+    public Lnode<t> next;
+
+    public Lnode(T key) {
+        data = key;
+        next = null;
+    }
+
+    public Lnode(T key, Lnode<t> next) {
+        this.data = key;
+        this.next = next;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        Lnode<t> node = (Lnode<t>) o;
+        return data.equals(node.data);
+    }
+
+    @Override
+    public int compareTo(Lnode<t> another) {
+        Comparable<t> x;
+        if (data instanceof Comparable){
+            x = (Comparable<t>) data;
+            return x.compareTo(another.data);
+        }
+        else throw new ClassCastException("类型无法比较");
+    }
+
+    @Override
+    public String toString() {
+        return data.toString();
+    }
+}
+</t></t></t></t></t></t></t></lnode<t></t></code></pre>
+
+<ul>
+<li>链表类</li>
+</ul>
+<p>链表类的定义实际上是链表抽象数据类型的具体实现，下面是单链表类的定义：</p>
+<ul>
+<li>一般的单链表只需要一个头指针 first 即可以代表整个链表，但是为了链表尾部插入节点的效率更高，增加一个尾指针 last, last 始终指向链表的最后一个节点。（这里所说的指针并不是 C++ 中的指针， java 没有指针 ，这里指的是一个引用变量）</li>
+<li>数据存储算法</li>
+<li><p>向链表插入元素(按逻辑位置i（0,1,…,n）插入)</p>
+<p>  分为4种情况：(1).向空链表插入一个新节点； (2).在链表头节点之前插入新节点； (3).在链表中间插入新节点； (4).在链表尾部插入新节点。</p>
+<p>  前插法：链表的头指针是 first 指针 p 指向链表中间某个节点，要求将值为 x 的节点 s 插入到节点 p 之前。两种情况：（1）节点 p 就是 头节点[ s.next = first; first = s;]；(2)节点 p 是非头节点，这种情况需要循环遍历到 p 的前驱节点 q [ s.next = p; q.next = s]</p>
+</li>
+</ul>
+<ul>
+<li><p>向链表删除元素</p>
+<p>  分为3种情况：(1)链表是空链表； (2) 被删除节点是头节点； (3) 被删除节点是链表中间某个节点</p>
+</li>
+</ul>
+<ul>
+<li>查找节点</li>
+<li><p>向链表有序插入节点</p>
+<p>  链表的有序插入：链表 first 现在的节点值是按照升序排列的，现在要将节点 s 插入到 first 中，使得插入节点 s 后，链表中各个节点的值任然是升序有序的。分4种情况：</p>
+<p>  （1）链表为空；(2)插入节点的值小于头节点的值；(3)插入节点的值大于尾节点的值；(4)插入节点的值处于中间位置</p>
+</li>
+<li><p>链表排序</p>
+<p>  插入排序：可以将一个链表分为两部分，已排序链表 s1 和未排序链表 s2，插入排序思路就是从未排序链表中取出头节点（p）, 然后将 p 按有序的方式插入到已排序链表 s1 之中。</p>
+</li>
+<li><p>链表转换为字符串和数组</p>
+</li>
+</ul>
+<pre><code>/**
+ * Created by nvgtor on 2016/4/20.
+ * 单链表类
+ */
+public class MLinkList<t> extends MAbsList<t> implements Iterable<t> {
+
+    //头指针和尾指针
+    Lnode<t> first, last;
+    //指向当前节点的迭代器指针
+    Iterator<t> iterator = null;
+
+    public MLinkList() {
+        first = last = null;
+        this.iterator = new LinkIterator();
+    }
+
+    /**
+     * 数据存储
+     *
+     * 1. getNode(int i) 返回i号节点的引用，内部使用
+     * 2. get(int i)
+     * 3. set(int i, T x)
+     * 算法时间复杂度：最坏O(n),最好O（1），平均O（n）
+     */
+    protected Lnode<t> getNode(int i){
+        if (i < 0 || i > length - 1) return null;
+        if (i == 0) return first;
+        Lnode<t> p = first;
+        int j = 0;
+        while (p != null && j < i){
+            p = p.next;
+            j++;
+        }
+        return p;
+    }
+
+    @Override
+    public T get(int i) {
+        Lnode<t> p = getNode(i);
+        if (p == null) return null;
+        else return p.data;
+    }
+
+    @Override
+    public boolean set(int i, T x) {
+        Lnode<t> p = getNode(i);
+        if (p == null) return false;
+        else {
+            p.data = x;
+            return true;
+        }
+    }
+
+    /**
+     * 插入算法
+     * 1. add(int i, T x) 在链表逻辑上的i(0,1,...,n)号位置插入元素x
+     * 2. add(T key)
+     * 3.addBack(T x)
+     * 4.addFront(T x)
+     */
+    @Override
+    public void add(int i, T x) {
+        Lnode<t> p, s;
+        int j = i - 1;
+        s = new Lnode<t>(x, null);
+        if (first == null || length == 0){
+            //向空链表插入节点s
+            first = s;
+            last = s;
+        } else if (j < 0){
+            //在头节点之前插入节点s
+            s.next = first;
+            first = s;
+        } else if (j >= length - 1){
+            //在链表尾插入节点s
+            last.next = s;
+            last = s;
+        } else {
+            //链表中间插入节点s
+            p = getNode(j);
+            s.next = p.next;
+            p.next = s;
+        }
+        length++;
+    }
+
+    //重载add(), 在链表尾部插入
+    public void add(T key){
+        add(length, key);
+    }
+
+    //将值为x的节点插入尾部
+    public void addBack(T key){
+        add(length, key);
+    }
+
+    //将值为x的节点插入头部
+    public void addFront(T key){
+        add(0, key);
+    }
+
+    /**
+     * 单链表删除i节点
+     * 1.remove(int i)
+     * 2.removeNode(int i)
+     * 3.remove()
+     * 4.removeFront()
+     * 5.removeBack()
+     */
+    @Override
+    public T remove(int i) {
+        //删除i节点
+        Lnode<t> p = removeNode(i);
+        if (p != null) return p.data;
+        else return null;
+    }
+
+    //核心算法: 删除i号节点，内部使用
+    protected Lnode<t> removeNode(int i){
+        Lnode<t> p, q;
+        if (first == null || length == 0) return null;
+        if (i == 0){
+            //删除头节点
+            p = first;
+            first = first.next;
+            length = length - 1;
+            return p;
+        }
+        if (i >= 1 && i <= length="" -1){="" 删除中间节点以及尾节点="" p="getNode(i" -="" 1);="" q="p.next;" p.next="q.next;" if="" (q="=" last)="" last="p;" 1;="" return="" q;="" }="" null;="" 删除头节点="" public="" t="" remove(){="" removenode(0).data;="" removefront(){="" 删除尾节点="" removeback(){="" removenode(length="" 1).data;="" **="" *="" 单链表查找算法="" 查找逻辑上在[begin,="" end]范围内是否存在值为="" key="" 的节点，="" 否则返回="" -1="" 1.indexof(int="" begin,="" int="" end,="" key)="" 2.search(t="" 3.contains(t="" @override="" indexof(int="" {="" 查找key="" lnode<t=""> p = getNode(begin);
+        int i = begin;
+        while (p != null && i < end){
+            if (p.data.equals(key)) return i;
+            p = p.next;
+            i++;
+        }
+        return -1;
+    }
+
+    //同indexOf, 一般不用， 主要用于实现字典
+    public T search(T key){
+        Lnode<t> p = getNode(0);
+        while (p != null){
+            if (p.data.equals(key)) return p.data;
+            p = p.next;
+        }
+        return null;
+    }
+
+    //判断链表是否包含key的节点
+    public boolean contains(T key){
+        if (indexOf(key) == -1) return false;
+        else return true;
+    }
+
+    /**
+     * 单链表有序插入算法
+     * 1.addSort(T x)
+     * 2.insertOrder(Lnode<t> s)
+     */
+    //将值为x的节点有序插入链表，调用insertOrder实现
+    public void addSort(T x){
+        Lnode<t> s = new Lnode<t>(x, null);
+        insertOrder(s);
+    }
+
+    //内部使用，有序插入
+    public void insertOrder(Lnode<t> s){
+        Lnode<t> p1, p2;
+        length = length + 1;
+        if (first == null) {
+            //空链表插入
+            first = s;
+            last = first;
+            return;
+        }
+        if (compare(s, first) < 0){
+            //插到头节点前
+            s.next = first;
+            first = s;
+            return;
+        }
+        if (compare(s, last) > 0){
+            //插到尾节点后
+            last.next = s;
+            last = s;
+            return;
+        }
+        //被插入的节点在 p1 和 p2 之间
+        p2 = first;
+        p1 = p2;
+        while (p2 != null){
+            if (compare(s, p2) > 0){
+                p1 = p2;
+                p2 = p2.next;
+            } else
+                break;
+        }
+        s.next = p2;
+        p1.next = s;
+        return;
+    }
+
+    /**
+     * 链表排序 插入排序
+     * 1. sort()
+     */
+
+    //链表排序
+    public void sort(){
+        MLinkList<t> s1 = new MLinkList<>();//有序链表
+        Lnode<t> p;
+        p = this.removeNode(0);
+        while (p != null){
+            s1.addSort(p.data);
+            p = this.removeNode(0);
+        }
+        this.first = s1.first;
+        this.last = s1.last;
+        this.length = s1.length;
+    }
+
+    /**
+     * 单链表转换为字符串
+     */
+    public String toString(Lnode<t> first) {
+        String s;
+        Lnode<t> p;
+        p = first;
+        s = "(";
+        while (p != null){
+            s = s + p.data.toString();
+            p = p.next;
+        }
+        s = s + ")";
+        return s;
+    }
+
+    /**
+     * 单链表转换为数 Object 型数组
+     */
+    public Object[] toArray(){
+        Object[] a = new Object[length];
+        Lnode<t> p = first;
+        for (int i = 0; i < length; i++){
+            a[i] = p.data;
+            p = p.next;
+        }
+        return a;
+    }
+
+    /**
+     * 单链表转换为特定类型数组
+     * 转换为与链表节点值类型相同的数组
+     */
+    public <e> E[] toArray(E[] a){
+        if (a.length < length){
+            a = (E[])java.lang.reflect.Array.newInstance(a.getClass().getComponentType(), length);
+            int i = 0;
+            Object[] result = a;
+            Lnode<t> x = this.first;
+            for (i = 0; i < length; i++){
+                result[i] = x.data;
+                x = x.next;
+            }
+        }
+        if (a.length > length){
+            a[length] = null;
+        }
+        return a;
+    }
+
+    @Override
+    public void clear() {
+        //删除整个链表
+        first = last = null;
+        length = 0;
+    }
+
+    public void removeAll(){
+        clear();
+    }
+
+    private int compare(Lnode<t> a, Lnode<t> b){
+        //比较器，内部使用
+        return a.compareTo(b);
+    }
+
+    /**
+     * 链表迭代器 Iterable 接口重写的方法
+     *
+     */
+    @Override
+    public Iterator<t> iterator() {
+        this.iterator = new LinkIterator();
+        return this.iterator;
+    }
+
+    //内部类 实现迭代器
+    private class LinkIterator implements Iterator<t> {
+
+        private int index = 0;
+        private Lnode<t> current = first;
+
+        @Override
+        public boolean hasNext() {
+            return (index != length() && current != null);
+        }
+
+        @Override
+        public T next() {
+            T temp = current.data;
+            current = current.next;
+            index++;
+            return temp;
+        }
+
+        public int nextIndex(){
+            return index++;
+        }
+
+        @Override
+        public void remove() {
+
+        }
+    }
+}
+</t></t></t></t></t></t></e></t></t></t></t></t></t></t></t></t></t></t></=></t></t></t></t></t></t></t></t></t></t></t></t></t></t></code></pre>
+
+
+<h2 id="链表迭代器"><a href="#链表迭代器" class="headerlink" title="链表迭代器"></a>链表迭代器</h2><h3 id="迭代器概念"><a href="#迭代器概念" class="headerlink" title="迭代器概念"></a>迭代器概念</h3><p><strong>迭代器 (Iterator)</strong> 是软件设计的一种模式，其一般含义是：提供一种方法处理一个容器 (Container) 对象中各个元素，而又不暴露该容器对象的内部细节。所谓容器就是容纳数据的一种数据结构。<br>迭代器提供一种方法依次处理容器对象中各个元素，而又无须暴露该对象的内部表示。根据对容器的特点，基本迭代器可以分为三类：</p>
+<ul>
+<li>单向迭代器(Forward Iterator): 也称前向迭代器，这类迭代器只能沿一个方向单步处理容器数据。</li>
+<li>双向迭代器 (Bidirectional Iterator): 这类迭代器可以从前、后两个方向单步处理容器数据。</li>
+<li>随机迭代器 (Random Access Iterator): 这类迭代器能完成上面两类迭代器的工作，它自己独有的特性就是可以像指针那样进行算术运算，而不只是仅仅只有单步向前或向后迭代的功能。</li>
+</ul>
+<p>实现一个简单的单向迭代器需要以下几个步骤：</p>
+<ol>
+<li>对于线性表（顺序表或者链表）类需要实现 Iterable 接口，Iterable 接口只有一个方法 iterator()，这个方法返回一个 Iterator对象。</li>
+<li>定义一个迭代器类，如 MyIterator 实现 Iterator 接口，重写里面的三个方法。</li>
+</ol>
+<p>对于容器类的数据结构，实现了迭代器后，可以使用迭代器进行容器的遍历。</p>
+<h3 id="Iterator-和-Iterable"><a href="#Iterator-和-Iterable" class="headerlink" title="Iterator 和 Iterable"></a>Iterator 和 Iterable</h3><ul>
+<li>Iterator</li>
+</ul>
+<p>java提供专门的迭代器接口 Iterator ，我们可以对某个容器型数据结构实现该接口以提供标准的 java 的 java 迭代器。源码如下：</p>
+<pre><code>public interface Iterator<e>{
+    boolean hasNext();
+    E next();
+    void remove();
+}
+</e></code></pre>
+
+<ul>
+<li>Iterable</li>
+</ul>
+<p>java 还提供了 Iterable 接口，Iterable 接口实现的功能是“返回”一个迭代器，常用的实现该接口的子接口有： Collection<e>,Deque<e>,List<e>,Queue<e>,Set<e>等。该接口的 iterator()方法返回一个标准的 Iterator 实现，实现了该接口的容器对象可以使用 java 的 for each 语法进行循环遍历。</e></e></e></e></e></p>
+<pre><code>public interface Iterable<e>{
+    Iterator<t> iterator();
+}
+</t></e></code></pre>
+
+<ul>
+<li>for each</li>
+</ul>
+<p>for each 语法是 java 5.0 后增加的一个循环结构，可以用来处理集合（容器）中的所有元素而不需要明确指定变量的起始值和终止值。 </p>
+<ul>
+<li>Iterator 与泛型搭配 </li>
+</ul>
+<p>Iterator 对集合类中的任何一个实现类，都可以返回这样一个 Iterator 对象，其试用与任何一个类。<br>因为集合类（List 和 Set 等）可以装入的对象的类型是不确定的，从集合中取出时都是 Object 类型，用时需要进行强制转换，这样会很麻烦。之所以用泛型，就是提前告诉集合确定要装入集合的类型，这样就可以直接使用而不用进行类型转换。</p>
+<ul>
+<li>链表类 MLinkList 迭代器的实现，代码如上。</li>
+</ul>
+<h2 id="循环链表和双链表"><a href="#循环链表和双链表" class="headerlink" title="循环链表和双链表"></a>循环链表和双链表</h2><h3 id="循环链表"><a href="#循环链表" class="headerlink" title="循环链表"></a>循环链表</h3><p>将单链表最后一个节点的指针域该为存放链表头节点的地址，就使得整个链表构成一个环，又没有增加额外的存储空间，这种链表称为单循环链表（循环链表）。<br>循环链表与单链表的区别：</p>
+<ul>
+<li>在建立一个循环链表时，必须使最后一个节点的指针指向表头节点，而不是像单链表那样设置为 null。此种情况还适用于在最后一个节点后面插入一个新的节点。</li>
+<li>在判断是否到表尾时，通过判断该节点指针域的值是否为表头节点，当指针的值等于表头节点是，说明已经到表尾，而不是像单链表那样判断指针域值是否为 null。</li>
+<li>实际使用中，为了灵活性，一般使用尾节点的指针 rear 来代表整个链表。因为用尾指针rear表示的单循环链表对开始结点a1和终端结点an查找时间都是O(1)。而表的操作常常是在表的首尾位置上进行。</li>
+</ul>
+<h3 id="双向链表"><a href="#双向链表" class="headerlink" title="双向链表"></a>双向链表</h3><p>双向链表： 双链表的每个节点具有两个指针，其中一个指向节点的前驱，另一个指向节点的后继。</p>
+<ul>
+<li>节点定义：<pre><code>public class DoubleNode {
+  public int data;
+  public DoubleNode prior;//前驱
+  public DoubleNode next;//后继
+}
+</code></pre>
+
+</li>
+</ul>
+<p>双链表结构具有对称性：</p>
+<pre><code>p.prior.next = p = p.next.prior
+</code></pre><ul>
+<li>双链表插入运算</li>
+</ul>
+<p>插入时仅需指出直接前驱节点 p ,而连接时则必须注意先后次序是：“先右后左”, 连接次序非常重要：</p>
+<pre><code>s = new DoubleNode;
+s.data = e;
+s.next = p.next
+p.next.prior = s
+p.next = s
+s.prior = p
+</code></pre><ul>
+<li>双链表删除运算</li>
+</ul>
+<p>设要删除的节点为 p ,  将其删除时不需要引入新的辅助指针变量，可以直接断开节点的链接关系，如：</p>
+<pre><code>p.prior.next = p.next;
+p.next.prior = p.prior;
+</code></pre><h2 id="顺序表与链表的比较"><a href="#顺序表与链表的比较" class="headerlink" title="顺序表与链表的比较"></a>顺序表与链表的比较</h2><h3 id="顺序存储的优缺点"><a href="#顺序存储的优缺点" class="headerlink" title="顺序存储的优缺点"></a>顺序存储的优缺点</h3><p>优点</p>
+<ul>
+<li>方法简单，各种高级语言中都有数组，容易实现</li>
+<li>无需为表示结点间的逻辑关系而增加额外的存储开销</li>
+<li>顺序表具有按元素序号随机访问的特点</li>
+</ul>
+<p>缺点</p>
+<ul>
+<li>在顺序表进行插入、删除操作时，平均移动大约表中一半的元素，n 较大时，效率低下</li>
+<li>需要预先分配足够大的存储空间，若预先估计过大，则可能会导致顺序表后部大量闲置；如果分配过小，则又会造成溢出。</li>
+</ul>
+<h3 id="链表优缺点"><a href="#链表优缺点" class="headerlink" title="链表优缺点"></a>链表优缺点</h3><p>链表的优缺点恰好与顺序表相反。在实际中怎样选取存储结构，通常基于以下几点考虑：</p>
+<ul>
+<li><p>基于存储的考虑</p>
+<p>  对线性表的长度或存储规模难以估计时，不宜采用顺序表；链表不用事先估计存储规模，但链表的存储密度较低。</p>
+</li>
+<li><p>基于运算的考虑</p>
+<p>  在顺序表中按序号访问 ai 的时间性能是 O(1)，而链表中按序号访问的时间性能是 O（n），插入和删除操作，当数据量较大表较长时，链表虽然也要找插入位置，但主要是比较操作，而不用移动，从这个角度看链表性能更优。</p>
+</li>
+<li><p>基于环境的考虑</p>
+<p>  顺序表容易实现，高级语言都有数组类型，链表基于指针，前者更简单些。</p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/链表/" rel="tag">#链表</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/15/数据结构学习笔记之线性表-java/" rel="next" title="数据结构学习笔记之线性表(java)">
+                <i class="fa fa-chevron-left"></i> 数据结构学习笔记之线性表(java)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/21/java新特性之接口变化/" rel="prev" title="java8新特性之接口变化">
+                java8新特性之接口变化 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/04/20/数据结构学习笔记之链表-java/"
+           data-title="数据结构学习笔记之链表(java)" data-url="http://nvgtor.github.io/2016/04/20/数据结构学习笔记之链表-java/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/myIcon.jpg"
+               alt="EastYoung" />
+          <p class="site-author-name" itemprop="name">EastYoung</p>
+          <p class="site-description motion-element" itemprop="description">其实并不难是你太悲观</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#单链表"><span class="nav-number">1.</span> <span class="nav-text">单链表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#顺序表与单链表区别"><span class="nav-number">1.1.</span> <span class="nav-text">顺序表与单链表区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单链表-1"><span class="nav-number">1.2.</span> <span class="nav-text">单链表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#链表"><span class="nav-number">1.2.1.</span> <span class="nav-text">链表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单链表-2"><span class="nav-number">1.2.2.</span> <span class="nav-text">单链表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#链表面向对象描述"><span class="nav-number">1.2.3.</span> <span class="nav-text">链表面向对象描述</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#链表迭代器"><span class="nav-number">2.</span> <span class="nav-text">链表迭代器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#迭代器概念"><span class="nav-number">2.1.</span> <span class="nav-text">迭代器概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Iterator-和-Iterable"><span class="nav-number">2.2.</span> <span class="nav-text">Iterator 和 Iterable</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#循环链表和双链表"><span class="nav-number">3.</span> <span class="nav-text">循环链表和双链表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#循环链表"><span class="nav-number">3.1.</span> <span class="nav-text">循环链表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双向链表"><span class="nav-number">3.2.</span> <span class="nav-text">双向链表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#顺序表与链表的比较"><span class="nav-number">4.</span> <span class="nav-text">顺序表与链表的比较</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#顺序存储的优缺点"><span class="nav-number">4.1.</span> <span class="nav-text">顺序存储的优缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#链表优缺点"><span class="nav-number">4.2.</span> <span class="nav-text">链表优缺点</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EastYoung</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+本站总访问量 <span id="busuanzi_value_site_pv"></span> &nbsp&nbsp&nbsp
+您是第<span id="busuanzi_value_site_uv"></span>个来到的小伙伴
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nvgtor"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

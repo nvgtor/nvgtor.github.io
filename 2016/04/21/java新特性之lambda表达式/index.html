@@ -1,0 +1,776 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="lambda表达式， 函数式表达式," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="“lambda 表达式”是一块代码，你可以将它传递出去，这样后面就可以执行一次或多次。很多情况下指定这样一个代码块是有用的：
+
+传递给 Arrays.sort 一个比较方法
+在单独的线程中运行任务
+指定一个当按钮被点击时应该发生的行为
+
+然而，java 是面向对象语言，其中的（几乎）所有一切都是对象。java 中没有函数类型。作为一种替代，函数被表达为对象，也就是实现了特定接口的类的实例。lamb">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java8新特性之lambda表达式">
+<meta property="og:url" content="http://nvgtor.github.io/2016/04/21/java新特性之lambda表达式/index.html">
+<meta property="og:site_name" content="EastYoung's blog">
+<meta property="og:description" content="“lambda 表达式”是一块代码，你可以将它传递出去，这样后面就可以执行一次或多次。很多情况下指定这样一个代码块是有用的：
+
+传递给 Arrays.sort 一个比较方法
+在单独的线程中运行任务
+指定一个当按钮被点击时应该发生的行为
+
+然而，java 是面向对象语言，其中的（几乎）所有一切都是对象。java 中没有函数类型。作为一种替代，函数被表达为对象，也就是实现了特定接口的类的实例。lamb">
+<meta property="og:updated_time" content="2016-04-21T09:25:29.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java8新特性之lambda表达式">
+<meta name="twitter:description" content="“lambda 表达式”是一块代码，你可以将它传递出去，这样后面就可以执行一次或多次。很多情况下指定这样一个代码块是有用的：
+
+传递给 Arrays.sort 一个比较方法
+在单独的线程中运行任务
+指定一个当按钮被点击时应该发生的行为
+
+然而，java 是面向对象语言，其中的（几乎）所有一切都是对象。java 中没有函数类型。作为一种替代，函数被表达为对象，也就是实现了特定接口的类的实例。lamb">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> java8新特性之lambda表达式 | EastYoung's blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EastYoung's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">其实很简单其实很自然</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                java8新特性之lambda表达式
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-21T15:05:33+08:00" content="2016-04-21">
+              2016-04-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/21/java新特性之lambda表达式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/21/java新特性之lambda表达式/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+            <span>&nbsp; | &nbsp;
+            <span id="busuanzi_value_page_pv" ></span>次阅读
+            </span>    
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>“lambda 表达式”是一块代码，你可以将它传递出去，这样后面就可以执行一次或多次。很多情况下指定这样一个代码块是有用的：</p>
+<ul>
+<li>传递给 Arrays.sort 一个比较方法</li>
+<li>在单独的线程中运行任务</li>
+<li>指定一个当按钮被点击时应该发生的行为</li>
+</ul>
+<p>然而，java 是面向对象语言，其中的（几乎）所有一切都是对象。java 中没有函数类型。作为一种替代，函数被表达为对象，也就是实现了特定接口的类的实例。lambda 表达式给你一种便捷的语法来创建这样的实例。</p>
+<p>android studio 中如何使用 lambda 参考： <a href="https://github.com/evant/gradle-retrolambda" target="_blank" rel="external">gradle-retrolambda</a></p>
+ <a id="more"></a>
+<h2 id="lambda-表达式语法"><a href="#lambda-表达式语法" class="headerlink" title="lambda 表达式语法"></a>lambda 表达式语法</h2><ul>
+<li>一个简单的表达式</li>
+</ul>
+<pre><code>String[] friends = {"peter", "paul", "mary"};
+Arrays.sort(friends, (x, y) -> x.compareTo(y));
+</code></pre>
+- 如果 lambda 表达式的表达体执行一个无法用一个表达式表示的计算，那么用编写方法的方式来写：即用 {} 包裹代码并明确写上 return 语句：
+
+<pre><code>Arrays.sort(friends, (String x, String y) -> {
+    int d = x.length() - y.length();
+    if (d < 0) return -1;
+    else if (d > 0) return 1;
+    else return 0;
+});
+</code></pre>
+
+<ul>
+<li>如果 lambda 表达式没有参数，提供空的小括号，就像没有参数的方法：</li>
+</ul>
+<pre><code>Runnable task = () -> { for(int i = 0; i < 10; i++) Log.d("MainActivity", i + "");};
+</code></pre>
+
+<ul>
+<li>如果 lambda 表达式的参数类型可以被推倒出来，则可以省略类型，如：</li>
+</ul>
+<pre><code>Comparator<string> comparator = (x, y) -> x.compareTo(y);
+</string></code></pre>
+
+<ul>
+<li>如果某个方法只有一个参数，并且该参数类型是可以推导出来的，你甚至可以省略小括号。</li>
+<li>永远不需要为 lambda 表达式指定返回类型。编译器会从表达式推断出类型，并且会检查返回类型是否与期望的类型先匹配。</li>
+</ul>
+<h2 id="函数式接口"><a href="#函数式接口" class="headerlink" title="函数式接口"></a>函数式接口</h2><p>java 有许多表达行为的接口，例如 Runnable 或 Comparetor 。 lambda 表达式兼容这些接口。无论何时，当你期望只有一个抽象方法的接口对象时，就可以提供一个 lambda 表达式。 这样的接口称为 函数式接口。如：</p>
+<pre><code>Arrays.sort(friends, (x, y) -&gt; x.compareTo(y));
+</code></pre><p>第二个参数接受一个实现了 Comparetor<string> 接口的类的实例。调用该对象的 compare 方法会执行 lambda 表达式中的代码。这些对象和类的管理完全依赖于实现，并且是高度优化的。</string></p>
+<p><strong>在 java 中，对 lambda 表达式你只能做一件事：将其放入类型为函数式接口的变量中，这样它就被转换为该接口的实例</strong></p>
+<p>注意：不能将一个 lambda 表达式赋值给一个 Object 类型的变量，因为 Object 是类，不是函数式接口。</p>
+<h2 id="方法引用和构造函数引用"><a href="#方法引用和构造函数引用" class="headerlink" title="方法引用和构造函数引用"></a>方法引用和构造函数引用</h2><p>有时，你想要传递给其他代码块的操作已经有实现的方法了。有一种特殊的语法<strong><em>方法引用</em></strong>，它甚至比调用方法的 lambda 表达式更短。类似的便捷方法构造函数也有。</p>
+<h3 id="方法引用"><a href="#方法引用" class="headerlink" title="方法引用"></a>方法引用</h3><p>如果你想不区分大小写地对字符串进行排序，就可以这样调用：</p>
+<pre><code>Arrays.sort(friends, (x, y) -&gt; x.compareToIgnoreCase(y));
+</code></pre><p>方法引用：</p>
+<pre><code>Arrays.sort(friends, String :: compareToIgnoreCase);
+</code></pre><p>其它例子：</p>
+<pre><code>//删除列表所有的 null 值
+list.removeIf(Objects :: isNull); 等同于 x -&gt; Objects.isNull(x)
+//打印列表
+list.forEach(System.out :: println); 等同于 x -&gt; System.out.println(x)
+</code></pre><p>删除</p>
+<p>表达式 String :: compareToIgnoreCase 是方法引用，它等同于 lambda 表达式 (x, y) -&gt; x.compareToIgnoreCase(y)。</p>
+<p>有3种使用方式，操作符 :: 将方法名称与类或对象名称分隔开：</p>
+<ol>
+<li>类 :: 实例方法 –&gt; 第一个参数变成方法的接受者，并且其它参数也传递给该方法。 </li>
+<li>类 :: 静态方法 –&gt; 所有的参数传递给静态方法</li>
+<li>对象 :: 实例方法 –&gt; 在给定的对象上调用方法</li>
+</ol>
+<h3 id="构造函数引用"><a href="#构造函数引用" class="headerlink" title="构造函数引用"></a>构造函数引用</h3><p>构造函数引用于方法引用类似，不同的是构造函数引用中的方法名都是 new。如：</p>
+<pre><code>int[] :: new //是一个含有一个参数的构造函数，该参数为数组的长度。它等同于 lambda 表达式 n -&gt; new int[n]
+</code></pre><h2 id="使用-lambda-表达式"><a href="#使用-lambda-表达式" class="headerlink" title="使用 lambda 表达式"></a>使用 lambda 表达式</h2><h3 id="实现延迟执行"><a href="#实现延迟执行" class="headerlink" title="实现延迟执行"></a>实现延迟执行</h3><p>使用 lambda 表达式就在于延迟执行。毕竟，如果你想立即执行一段代码，无须将代码封装进 lambda ，你可以直接调用。延迟执行的原因很多，例如：</p>
+<ol>
+<li>在另一个单独的线程运行代码</li>
+<li>多次运行代码</li>
+<li>在算法恰当时刻运行代码（例如排序中的比较操作）</li>
+<li>当某些情况发生时运行代码(点击事件，数据到达等)</li>
+<li>只有在有需要的时候才运行代码</li>
+</ol>
+<h3 id="常用函数式接口"><a href="#常用函数式接口" class="headerlink" title="常用函数式接口"></a>常用函数式接口</h3><ul>
+<li>Runnable</li>
+<li>Supplier<t></t></li>
+<li>Function<t, r=""></t,></li>
+<li>Consumer<t></t></li>
+<li>…</li>
+</ul>
+<h3 id="实现自己的函数式接口"><a href="#实现自己的函数式接口" class="headerlink" title="实现自己的函数式接口"></a>实现自己的函数式接口</h3><ol>
+<li>声明接口</li>
+<li>将接口对象传入函数的参数中</li>
+<li>在函数里调用接口中的方法</li>
+<li>调用函数，传入 lambda 表达式</li>
+</ol>
+<h2 id="lambda-表达式和变量作用域"><a href="#lambda-表达式和变量作用域" class="headerlink" title="lambda 表达式和变量作用域"></a>lambda 表达式和变量作用域</h2><h3 id="lambda-表达式的作用域"><a href="#lambda-表达式的作用域" class="headerlink" title="lambda 表达式的作用域"></a>lambda 表达式的作用域</h3><ul>
+<li><p>lambda 表达式的方法体与嵌套代码块有着相同的作用域。因此，也使用同样的命名冲突和屏蔽规则。</p>
+<p>  如不允许局部变量与参数变量同名；方法内部不允许有同名的变量。</p>
+</li>
+<li><p>lambda 表达式中的关键字 this 代表的是创建 lambda 表达式的方法的 this 参数。</p>
+</li>
+</ul>
+<h3 id="访问来自闭合作用域的变量"><a href="#访问来自闭合作用域的变量" class="headerlink" title="访问来自闭合作用域的变量"></a>访问来自闭合作用域的变量</h3><p>经常要在 lambda 表达式中访问来自闭合方法或类的变量。如下例子：</p>
+<pre><code>public static void repeatMessage(String text, int count){
+    Runnable r = () -&gt; {
+      for (int i = 0; i &lt; count; i++){
+          System.out.println(text);
+      }  
+    };
+
+    new Thread(r).start();
+}
+
+//调用
+repeatMessage(&quot;Hello&quot;, 1000);
+</code></pre><p>lambda 表达式有三个部分：</p>
+<ol>
+<li>代码块</li>
+<li>参数</li>
+<li>自由变量的值 —— 自由变量是指，既不是参数变量。也不是代码内部定义的变量。</li>
+</ol>
+<p>上述示例中， lambda 表达式有两个自由变量， text 和 count。代表 lambda 表达式的数据结构必须存储这些变量的值（也就是 “hello” 和 “1000”）。我们说这些变量值以及被 lambda 表达式捕获了（通过具体的实现细节来完成捕获。例如，可以将 lambda 表达式转变为带有一个方法的对象，这样自由变量的值就可以复制到该对象的实例变量中）。</p>
+<p>约束：在 lambda 表达式中，你只能引用那些值不会改变的变量。</p>
+<p>如下会出错：</p>
+<pre><code>for (int i = 0; i &lt; 100; i++){
+        new Thread(() -&gt; System.out.println(i)).start();
+    }
+</code></pre><p>也就是说捕获的变量应该是个 final 变量。</p>
+<p>然而这样是可以的：</p>
+<pre><code>for (String s : friends){
+        new Thread(() -&gt; System.out.println(s)).start();
+    }
+</code></pre><p>每一个迭代器会创建一个新的 s 变量，并且从 数组 friends 中将下一个值赋给 s.</p>
+<p>同样， lambda 表达式不能修改任何捕获的变量。</p>
+<p><strong>描述带有自由变量值的代码块的技术名词是闭包（closure）, 在 java 中， lambda 表达式就是闭包</strong></p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/lambda表达式，-函数式表达式/" rel="tag">#lambda表达式， 函数式表达式</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/21/java新特性之接口变化/" rel="next" title="java8新特性之接口变化">
+                <i class="fa fa-chevron-left"></i> java8新特性之接口变化
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/23/策略模式/" rel="prev" title="设计模式之策略模式">
+                设计模式之策略模式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/04/21/java新特性之lambda表达式/"
+           data-title="java8新特性之lambda表达式" data-url="http://nvgtor.github.io/2016/04/21/java新特性之lambda表达式/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/myIcon.jpg"
+               alt="EastYoung" />
+          <p class="site-author-name" itemprop="name">EastYoung</p>
+          <p class="site-description motion-element" itemprop="description">其实并不难是你太悲观</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#lambda-表达式语法"><span class="nav-number">1.</span> <span class="nav-text">lambda 表达式语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数式接口"><span class="nav-number">2.</span> <span class="nav-text">函数式接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法引用和构造函数引用"><span class="nav-number">3.</span> <span class="nav-text">方法引用和构造函数引用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法引用"><span class="nav-number">3.1.</span> <span class="nav-text">方法引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构造函数引用"><span class="nav-number">3.2.</span> <span class="nav-text">构造函数引用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-lambda-表达式"><span class="nav-number">4.</span> <span class="nav-text">使用 lambda 表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现延迟执行"><span class="nav-number">4.1.</span> <span class="nav-text">实现延迟执行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用函数式接口"><span class="nav-number">4.2.</span> <span class="nav-text">常用函数式接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现自己的函数式接口"><span class="nav-number">4.3.</span> <span class="nav-text">实现自己的函数式接口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lambda-表达式和变量作用域"><span class="nav-number">5.</span> <span class="nav-text">lambda 表达式和变量作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#lambda-表达式的作用域"><span class="nav-number">5.1.</span> <span class="nav-text">lambda 表达式的作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#访问来自闭合作用域的变量"><span class="nav-number">5.2.</span> <span class="nav-text">访问来自闭合作用域的变量</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EastYoung</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+本站总访问量 <span id="busuanzi_value_site_pv"></span> &nbsp&nbsp&nbsp
+您是第<span id="busuanzi_value_site_uv"></span>个来到的小伙伴
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nvgtor"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

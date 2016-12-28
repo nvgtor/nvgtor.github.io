@@ -1,0 +1,914 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="栈," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="栈基本概念
+栈是一个线性表，其插入和删除操作都在表的同一端进行。其中插入和删除元素的一端被称为栈顶，另一端被称为栈底。
+
+特点：先进后出。
+
+堆栈的抽象数据类型描述（ADT）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构学习笔记之栈(java)">
+<meta property="og:url" content="http://nvgtor.github.io/2016/04/25/数据结构学习笔记之栈/index.html">
+<meta property="og:site_name" content="EastYoung's blog">
+<meta property="og:description" content="栈基本概念
+栈是一个线性表，其插入和删除操作都在表的同一端进行。其中插入和删除元素的一端被称为栈顶，另一端被称为栈底。
+
+特点：先进后出。
+
+堆栈的抽象数据类型描述（ADT）">
+<meta property="og:updated_time" content="2016-04-27T06:54:38.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构学习笔记之栈(java)">
+<meta name="twitter:description" content="栈基本概念
+栈是一个线性表，其插入和删除操作都在表的同一端进行。其中插入和删除元素的一端被称为栈顶，另一端被称为栈底。
+
+特点：先进后出。
+
+堆栈的抽象数据类型描述（ADT）">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 数据结构学习笔记之栈(java) | EastYoung's blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EastYoung's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">其实很简单其实很自然</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                数据结构学习笔记之栈(java)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-25T14:02:50+08:00" content="2016-04-25">
+              2016-04-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/数据结构/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/25/数据结构学习笔记之栈/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/25/数据结构学习笔记之栈/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+            <span>&nbsp; | &nbsp;
+            <span id="busuanzi_value_page_pv" ></span>次阅读
+            </span>    
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
+<li><p>栈是一个线性表，其插入和删除操作都在表的同一端进行。其中插入和删除元素的一端被称为栈顶，另一端被称为栈底。</p>
+</li>
+<li><p>特点：先进后出。</p>
+</li>
+<li><p>堆栈的抽象数据类型描述（ADT）</p>
+<a id="more"></a>
+</li>
+</ul>
+<pre><code>public interface MStack<t> {
+    boolean isEmpty();
+    T getTop();//取栈顶元素
+    void push(T x);//添加元素
+    T pop();//删除栈顶元素并返回
+}
+</t></code></pre>
+
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>用顺序表实现的栈称为顺序栈，用链表实现的栈称为链栈。</p>
+<h3 id="链栈"><a href="#链栈" class="headerlink" title="链栈"></a>链栈</h3><ul>
+<li>栈中的数据元素用一个链表来存储。需要确定哪一端对应于栈顶。如果把链表的前端作为栈顶，那么可以利用链表操作 addFront 和 removeFront 来实现堆栈的元素插入和删除，时间复杂度均为 O(1)。</li>
+<li><p>继承与聚合</p>
+<p>  重用链表已经实现的功能，重用有两种方式继承与聚合。</p>
+</li>
+</ul>
+<h4 id="继承方式实现链栈"><a href="#继承方式实现链栈" class="headerlink" title="继承方式实现链栈"></a>继承方式实现链栈</h4><pre><code>public class MLinkStack<t> extends MLinkList<t> implements MStack<t>{
+
+    public MLinkStack(){
+        super();
+    }
+
+    @Override
+    public T getTop() {
+        return get(0);
+    }
+
+    @Override
+    public void push(T x) {
+        addFront(x);
+    }
+
+    @Override
+    public T pop() {
+        return remove(0);
+    }
+}
+</t></t></t></code></pre>
+
+<h4 id="聚合方式实现链栈"><a href="#聚合方式实现链栈" class="headerlink" title="聚合方式实现链栈"></a>聚合方式实现链栈</h4><pre><code>public class MLinkStack2<t> {
+    private MLinkList<t> list;
+    public MLinkStack2(){
+        list = new MLinkList<t>();
+    }
+    public void push(T x){
+        list.addFront(x);
+    }
+    public T pop(){
+        return list.removeFront();
+    }
+    public T getTop(){
+        return list.get(0);
+    }
+}
+</t></t></t></code></pre>
+
+<h3 id="顺序栈"><a href="#顺序栈" class="headerlink" title="顺序栈"></a>顺序栈</h3><ul>
+<li>利用数组实现的栈称为顺序栈，栈中的数据元素用一个一维数组来存储（T[] data）。一般将 data[0] 作为栈底，用一个整型变量 top 来作为指示栈顶位置的指针，称为栈顶指针。</li>
+<li>利用顺序表类 MSeqList 来实现顺序栈。聚合方式：</li>
+</ul>
+<pre><code>public final class MSeqStack<t> {
+    private MSeqList<t> slist;//定义一个顺序表
+
+    public MSeqStack(int num){
+        slist = new MSeqList<t>(num);
+    }
+
+    boolean isEmpty(){
+        return slist.isEmpty();
+    }
+
+    public void push(T e){
+        slist.add(e);
+    }
+
+    public T pop(){
+        return slist.remove(slist.length() - 1);
+    }
+
+    public T getTop(){
+        return slist.get(slist.length() - 1);
+    }
+
+    public String toString(){
+        return slist.toString();
+    }
+
+    public T[] toArray(T a[]){
+        return slist.toArray(a);
+    }
+}
+</t></t></t></code></pre>
+
+
+<h2 id="算法应用"><a href="#算法应用" class="headerlink" title="算法应用"></a>算法应用</h2><h3 id="进制转换（十进制转r进制）"><a href="#进制转换（十进制转r进制）" class="headerlink" title="进制转换（十进制转r进制）"></a>进制转换（十进制转r进制）</h3><pre><code>/**
+     * 栈来实现十进制转r进制
+     * @param n
+     * @param r
+     */
+    public void decimaToBinary(int n, int r){
+        MSeqStack<integer> seqStack = new MSeqStack<>(16);
+        Integer x;
+        while (n > 0){
+            seqStack.push(n % r);
+            n /= r;
+        }
+        while (!seqStack.isEmpty()){
+            x = seqStack.pop();
+            System.out.println(x);
+        }
+    }
+</integer></code></pre>
+
+<h3 id="表达式求值"><a href="#表达式求值" class="headerlink" title="表达式求值"></a>表达式求值</h3><p>此处讨论之含双目运算符的算术表达式，算术表达式的三种形式：</p>
+<ol>
+<li>常规表达式：a <em> b + (c - d / e) </em> f</li>
+<li>前缀式：    + <em> a b </em> - c / d e f</li>
+<li>后缀式: a b <em> c d e / - f </em> +</li>
+</ol>
+<p>三种表达式的特点：</p>
+<ol>
+<li>操作数之间的相对次序不变</li>
+<li>运算符的相对次序不同</li>
+</ol>
+<p>后缀表达式的运算特点：</p>
+<ol>
+<li>运算符在式中出现的顺序恰为表达式的运算顺序。</li>
+<li>每个运算符与它之前紧靠它的两个操作数构成一个最小表达式。</li>
+</ol>
+<p>可以很容易的使用栈来实现后缀表达式的求值。</p>
+<h4 id="常规表达式转后缀表达式"><a href="#常规表达式转后缀表达式" class="headerlink" title="常规表达式转后缀表达式"></a>常规表达式转后缀表达式</h4><p>从常规表达式中从左往右读取每一个记号，如果记号是操作数，则直接输出到后缀表达式。对于操作符，需要比较相邻两个操作符的优先级，如果当前操作符的优先高于栈顶操作符的优先级，则进栈。如果小于，则栈顶操作符出栈，并添加到后缀表达式，继续取栈顶操作符，重复此过程，直到当前操作符的优先级大于栈顶操作符的优先级。</p>
+<p><strong>算法</strong> </p>
+<pre><code>public class Calculate {
+    /**
+     * 将字符串转化成List
+     * @param str
+     * @return
+     */
+    public ArrayList<string> getStringList(String str){
+        ArrayList<string> result = new ArrayList<string>();
+        String num = "";
+        for (int i = 0; i < str.length(); i++) {
+            if(Character.isDigit(str.charAt(i))){
+                num = num + str.charAt(i);
+            }else{
+                if(num != ""){
+                    result.add(num);
+                }
+                result.add(str.charAt(i) + "");
+                num = "";
+            }
+        }
+        if(num != ""){
+            result.add(num);
+        }
+        return result;
+    }
+
+    /**
+     * 将中缀表达式转化为后缀表达式
+     * @param inOrderList
+     * @return
+     */
+    public ArrayList<string> getPostOrder(ArrayList<string> inOrderList){
+
+        ArrayList<string> result = new ArrayList<string>();
+        Stack<string> stack = new Stack<string>();
+        for (int i = 0; i < inOrderList.size(); i++) {
+            if(Character.isDigit(inOrderList.get(i).charAt(0))){
+                result.add(inOrderList.get(i));
+            }else{
+                switch (inOrderList.get(i).charAt(0)) {
+                    case '(':
+                        stack.push(inOrderList.get(i));
+                        break;
+                    case ')':
+                        while (!stack.peek().equals("(")) {
+                            result.add(stack.pop());
+                        }
+                        stack.pop();
+                        break;
+                    default:
+                        while (!stack.isEmpty() && compare(stack.peek(), inOrderList.get(i))){
+                            result.add(stack.pop());
+                        }
+                        stack.push(inOrderList.get(i));
+                        break;
+                }
+            }
+        }
+        while(!stack.isEmpty()){
+            result.add(stack.pop());
+        }
+        return result;
+    }
+
+    /**
+     * 计算后缀表达式
+     * @param postOrder
+     * @return
+     */
+    public Integer calculate(ArrayList<string> postOrder){
+        Stack stack = new Stack();
+        for (int i = 0; i < postOrder.size(); i++) {
+            if(Character.isDigit(postOrder.get(i).charAt(0))){
+                stack.push(Integer.parseInt(postOrder.get(i)));
+            }else{
+                Integer back = (Integer)stack.pop();
+                Integer front = (Integer)stack.pop();
+                Integer res = 0;
+                switch (postOrder.get(i).charAt(0)) {
+                    case '+':
+                        res = front + back;
+                        break;
+                    case '-':
+                        res = front - back;
+                        break;
+                    case '*':
+                        res = front * back;
+                        break;
+                    case '/':
+                        res = front / back;
+                        break;
+                }
+                stack.push(res);
+            }
+        }
+        return (Integer)stack.pop();
+    }
+
+    /**
+     * 比较运算符等级
+     * @param peek
+     * @param cur
+     * @return
+     */
+    public static boolean compare(String peek, String cur){
+        if("*".equals(peek) && ("/".equals(cur) || "*".equals(cur) ||"+".equals(cur) ||"-".equals(cur))){
+            return true;
+        }else if("/".equals(peek) && ("/".equals(cur) || "*".equals(cur) ||"+".equals(cur) ||"-".equals(cur))){
+            return true;
+        }else if("+".equals(peek) && ("+".equals(cur) || "-".equals(cur))){
+            return true;
+        }else if("-".equals(peek) && ("+".equals(cur) || "-".equals(cur))){
+            return true;
+        }
+        return false;
+    }
+}
+
+</string></string></string></string></string></string></string></string></string></string></code></pre>
+
+<ul>
+<li>调用：<br><code><pre>Calculate calculate = new Calculate();<pre><code>String s = &quot;12+(23*3-56+7)*(2+90)/2&quot;;
+ArrayList result = calculate.getStringList(s);  //String转换为List
+result = calculate.getPostOrder(result);   //中缀变后缀
+int i = calculate.calculate(result);   //计算
+System.out.println(i);
+</code></pre></pre></code></li>
+</ul>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/栈/" rel="tag">#栈</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/23/策略模式/" rel="next" title="设计模式之策略模式">
+                <i class="fa fa-chevron-left"></i> 设计模式之策略模式
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/27/数据结构学习笔记之队列-java/" rel="prev" title="数据结构学习笔记之队列(java)">
+                数据结构学习笔记之队列(java) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/04/25/数据结构学习笔记之栈/"
+           data-title="数据结构学习笔记之栈(java)" data-url="http://nvgtor.github.io/2016/04/25/数据结构学习笔记之栈/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/myIcon.jpg"
+               alt="EastYoung" />
+          <p class="site-author-name" itemprop="name">EastYoung</p>
+          <p class="site-description motion-element" itemprop="description">其实并不难是你太悲观</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#栈"><span class="nav-number">1.</span> <span class="nav-text">栈</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念"><span class="nav-number">1.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">1.2.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#链栈"><span class="nav-number">1.2.1.</span> <span class="nav-text">链栈</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#继承方式实现链栈"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">继承方式实现链栈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#聚合方式实现链栈"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">聚合方式实现链栈</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#顺序栈"><span class="nav-number">1.2.2.</span> <span class="nav-text">顺序栈</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法应用"><span class="nav-number">1.3.</span> <span class="nav-text">算法应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#进制转换（十进制转r进制）"><span class="nav-number">1.3.1.</span> <span class="nav-text">进制转换（十进制转r进制）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表达式求值"><span class="nav-number">1.3.2.</span> <span class="nav-text">表达式求值</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#常规表达式转后缀表达式"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">常规表达式转后缀表达式</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EastYoung</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+本站总访问量 <span id="busuanzi_value_site_pv"></span> &nbsp&nbsp&nbsp
+您是第<span id="busuanzi_value_site_uv"></span>个来到的小伙伴
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nvgtor"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

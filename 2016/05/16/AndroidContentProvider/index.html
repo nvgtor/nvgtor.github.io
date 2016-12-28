@@ -1,0 +1,887 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="ContentProvider," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="ContentProvider 简介ContentProvider 主要用于在不同的应用程序之间实现数据共享的功能，它提供了一套完整的机制，允许一个程序访问另一个程序中的数据，同时还能保证被访问数据的安全性。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Content Provider">
+<meta property="og:url" content="http://nvgtor.github.io/2016/05/16/AndroidContentProvider/index.html">
+<meta property="og:site_name" content="EastYoung's blog">
+<meta property="og:description" content="ContentProvider 简介ContentProvider 主要用于在不同的应用程序之间实现数据共享的功能，它提供了一套完整的机制，允许一个程序访问另一个程序中的数据，同时还能保证被访问数据的安全性。">
+<meta property="og:updated_time" content="2016-05-23T10:05:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Content Provider">
+<meta name="twitter:description" content="ContentProvider 简介ContentProvider 主要用于在不同的应用程序之间实现数据共享的功能，它提供了一套完整的机制，允许一个程序访问另一个程序中的数据，同时还能保证被访问数据的安全性。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Content Provider | EastYoung's blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EastYoung's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">其实很简单其实很自然</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Content Provider
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-16T17:51:22+08:00" content="2016-05-16">
+              2016-05-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">Android笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/16/AndroidContentProvider/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/16/AndroidContentProvider/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+            <span>&nbsp; | &nbsp;
+            <span id="busuanzi_value_page_pv" ></span>次阅读
+            </span>    
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="ContentProvider-简介"><a href="#ContentProvider-简介" class="headerlink" title="ContentProvider 简介"></a>ContentProvider 简介</h1><p>ContentProvider 主要用于在不同的应用程序之间实现数据共享的功能，它提供了一套完整的机制，允许一个程序访问另一个程序中的数据，同时还能保证被访问数据的安全性。</p>
+<a id="more"></a>
+<p>实现各个应用程序之间的（跨应用）数据共享，比如联系人应用中就使用了ContentProvider,你在自己的应用中可以读取和修改联系人的数据，不过需要获得相应的权限。其实它也只是一个中间人，真正的数据源是文件或者SQLite等</p>
+<p>内容提供器的用法一般有两种，一种是使用现有的内容提供器来读取和操作相应程序中的数据，另一种是创建自己的内容提供器把我们程序的数据提供外部接口访问。</p>
+<h1 id="访问其他程序中的数据"><a href="#访问其他程序中的数据" class="headerlink" title="访问其他程序中的数据"></a>访问其他程序中的数据</h1><p>如 Android 自带的电话博、短信、媒体库等都提供了了对其数据访问的外部接口。</p>
+<h2 id="ContentResolver-用法"><a href="#ContentResolver-用法" class="headerlink" title="ContentResolver 用法"></a>ContentResolver 用法</h2><p>通过 Context 类中的 getContentResolver() 方法来获得 ContentResolver 类的实例，进而去访问内容提供器共享的数据。 ContentResolver 类中也提供了增删改查这些方法。这些方法接受一个 内容 URL 参数。</p>
+<h2 id="增删改查"><a href="#增删改查" class="headerlink" title="增删改查"></a>增删改查</h2><p>URL 由权限（authority）和路径(path)两部分组成, 内容 URL 的标准格式：</p>
+<pre><code>content://com.nvgtor.app.provider/table1
+协议声明         权限                路径
+</code></pre><ol>
+<li><p>query 方法</p>
+<pre><code>Cursor cursor = getContentResolver().query(uri,//解析内容字符串后的Uri对象
+    projection,//指定查询列名
+    selection,//指定 where 的约束条件
+    selectionArgs,//为 where 中的占位符提供具体值
+    sortOrder//指定查询结果的排序方式
+    );
+</code></pre></li>
+<li><p>insert 方法</p>
+<pre><code>ContentValues values = new ContentValues();
+values.put(&quot;column1&quot;, &quot;nvgtor&quot;);
+getContentResolver().insert(uri, values);
+</code></pre></li>
+<li><p>update 方法</p>
+<pre><code>getContentResolver().update(uri, values, &quot;column1 = ? and column2 = ?&quot;, new String[]{&quot;text&quot;, &quot;100&quot;});
+</code></pre></li>
+<li><p>delete 方法</p>
+<pre><code>getContentResolver().delete(uri, &quot;column2 = ?&quot;, new String[]{&quot;100&quot;});
+</code></pre></li>
+</ol>
+<h3 id="读取联系人实例"><a href="#读取联系人实例" class="headerlink" title="读取联系人实例"></a>读取联系人实例</h3><p>android6.0 需动态请求读写联系人的权限</p>
+<pre><code>private void readContacts() {
+    Cursor cursor = null;
+    try {
+        cursor = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+                null,
+                null,
+                null,
+                null);
+        if (cursor != null) {
+            while (cursor.moveToNext()){
+                String displayName = cursor.getString(
+                        cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+                String number = cursor.getString(
+                        cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                concatList.add(displayName + &quot;/n&quot; + number);
+            }
+        } if (concatList != null) {
+            adapter.notifyDataSetChanged();
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    } finally {
+        if (cursor != null){
+            cursor.close();
+        }
+    }
+}
+</code></pre><h1 id="创建自己的内容提供器"><a href="#创建自己的内容提供器" class="headerlink" title="创建自己的内容提供器"></a>创建自己的内容提供器</h1><p>通过继承 ContentProvider 来创建自己的内容提供器。在本地创建一个数据库，里面创建一张表Book,通过内容提供者可以来增删改查这张表</p>
+<pre><code>public class MyProvider extends ContentProvider {
+
+public static final int BOOK_DIR = 0;
+public static final int BOOK_ITEM = 1;
+public static final int CATEGORY_DIR = 2;
+public static final int CATEGORY_ITEM = 3;
+
+public static final String AUTHORITY = &quot;app.nvgtor.com.leanrning.provider&quot;;
+
+public static UriMatcher uriMatcher;
+
+private MyDatabaseHelper dbHelper;
+
+static {
+    uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
+    uriMatcher.addURI(AUTHORITY, &quot;book&quot;, BOOK_DIR);
+    uriMatcher.addURI(AUTHORITY, &quot;book/#&quot;, BOOK_ITEM);
+    uriMatcher.addURI(AUTHORITY, &quot;category&quot;, CATEGORY_DIR);
+    uriMatcher.addURI(AUTHORITY, &quot;category/#&quot;, CATEGORY_ITEM);
+}
+
+@Override
+public boolean onCreate() {
+    dbHelper = new MyDatabaseHelper(getContext(), &quot;BookStore.db&quot;, null, 2);
+    return true;
+}
+
+@Nullable
+@Override
+public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs,
+                    String sortOrder) {
+    SQLiteDatabase db = dbHelper.getReadableDatabase();
+    Cursor cursor = null;
+    switch (uriMatcher.match(uri)){
+        case BOOK_DIR:
+            cursor = db.query(&quot;Book&quot;, projection, selection, selectionArgs,
+                    null, null, sortOrder);
+            break;
+        case BOOK_ITEM:
+            String bookId = uri.getPathSegments().get(1);
+            cursor = db.query(&quot;Book&quot;, projection, &quot;id = ?&quot;, new String[]{bookId},
+                    null, null, sortOrder);
+            break;
+        case CATEGORY_DIR:
+            cursor = db.query(&quot;Category&quot;, projection, selection, selectionArgs,
+                    null, null, sortOrder);
+            break;
+        case CATEGORY_ITEM:
+            String categorykId = uri.getPathSegments().get(1);
+            cursor = db.query(&quot;Category&quot;, projection, &quot;id = ?&quot;, new String[]{categorykId},
+                    null, null, sortOrder);
+            break;
+        default:
+            break;
+    }
+
+    return cursor;
+}
+
+/**
+ * 用于获取 Uri 对象所对应的 MIME 类型
+ * @param uri
+ * @return
+ */
+@Nullable
+@Override
+public String getType(Uri uri) {
+    switch (uriMatcher.match(uri)) {
+        case BOOK_DIR:
+            return &quot;vnd.android.cursor.dir/vnd.app.nvgtor.com.leanrning.provider.book&quot;;
+        case BOOK_ITEM:
+            return &quot;vnd.android.cursor.item/vnd.app.nvgtor.com.leanrning.provider.book&quot;;
+        case CATEGORY_DIR:
+            return &quot;vnd.android.cursor.dir/vnd.app.nvgtor.com.leanrning.provider.category&quot;;
+        case CATEGORY_ITEM:
+            return &quot;vnd.android.cursor.item/vnd.app.nvgtor.com.leanrning.provider.category&quot;;
+    }
+    return null;
+}
+
+@Nullable
+@Override
+public Uri insert(Uri uri, ContentValues values) {
+    SQLiteDatabase db = dbHelper.getWritableDatabase();
+    Uri uriReturn = null;
+    switch (uriMatcher.match(uri)){
+        case BOOK_DIR:
+        case BOOK_ITEM:
+            long newBookId = db.insert(&quot;Book&quot;, null, values);
+            uriReturn = Uri.parse(&quot;content://&quot; + AUTHORITY + &quot;/book/&quot; + newBookId);
+            break;
+        case CATEGORY_DIR:
+        case CATEGORY_ITEM:
+            long newCategoryId = db.insert(&quot;Category&quot;, null, values);
+            uriReturn = Uri.parse(&quot;content://&quot; + AUTHORITY + &quot;/category/&quot; + newCategoryId);
+            break;
+        default:
+            break;
+    }
+    return uriReturn;
+}
+
+@Override
+public int delete(Uri uri, String selection, String[] selectionArgs) {
+    SQLiteDatabase db = dbHelper.getWritableDatabase();
+    int deleteRows = 0;
+    switch (uriMatcher.match(uri)){
+        case BOOK_DIR:
+            deleteRows = db.delete(&quot;Book&quot;, selection, selectionArgs);
+            break;
+        case BOOK_ITEM:
+            String bookId = uri.getPathSegments().get(1);
+            deleteRows = db.delete(&quot;Book&quot;, &quot;id = ?&quot;, new String[]{bookId});
+            break;
+        case CATEGORY_DIR:
+            deleteRows = db.delete(&quot;Category&quot;, selection, selectionArgs);
+            break;
+        case CATEGORY_ITEM:
+            String categoryId = uri.getPathSegments().get(1);
+            deleteRows = db.delete(&quot;Category&quot;, &quot;id = ?&quot;, new String[]{categoryId});
+            break;
+        default:
+            break;
+    }
+    return deleteRows;
+}
+
+@Override
+public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
+    SQLiteDatabase db = dbHelper.getWritableDatabase();
+    int updateRows = 0;
+    switch (uriMatcher.match(uri)){
+        case BOOK_DIR:
+            updateRows = db.update(&quot;Book&quot;, values, selection, selectionArgs);
+            break;
+        case BOOK_ITEM:
+            String bookId = uri.getPathSegments().get(1);
+            updateRows = db.update(&quot;Book&quot;, values, &quot;id = ?&quot;, new String[]{bookId});
+            break;
+        case CATEGORY_DIR:
+            updateRows = db.update(&quot;Category&quot;, values, selection, selectionArgs);
+            break;
+        case CATEGORY_ITEM:
+            String categoryId = uri.getPathSegments().get(1);
+            updateRows = db.update(&quot;Category&quot;, values, &quot;id = ?&quot;, new String[]{categoryId});
+            break;
+        default:
+            break;
+    }
+    return updateRows;
+}
+}
+</code></pre><p>在另一个程序：</p>
+<pre><code>public void onClick(View v) {
+    switch (v.getId()){
+        case R.id.add_data:
+            Uri uri = Uri.parse(&quot;content://app.nvgtor.com.leanrning.provider/book&quot;);
+            ContentValues values = new ContentValues();
+            values.put(&quot;name&quot;, &quot;A Clash of Kings&quot;);
+            values.put(&quot;author&quot;, &quot;George Martin&quot;);
+            values.put(&quot;pages&quot;, 1040);
+            values.put(&quot;price&quot;, 22.85);
+            Uri newUri = getContentResolver().insert(uri, values);
+            newId = newUri.getPathSegments().get(1);
+            break;
+        case R.id.query_data:
+            Uri uri1 = Uri.parse(&quot;content://app.nvgtor.com.leanrning.provider/book&quot;);
+            Cursor cursor = getContentResolver().query(uri1, null, null, null, null);
+            if (cursor != null) {
+                while (cursor.moveToNext()) {
+                    String name = cursor.getString(cursor.getColumnIndex(&quot;name&quot;));
+                    String author = cursor.getString(cursor.getColumnIndex(&quot;author&quot;));
+                    int pages = cursor.getInt(cursor.getColumnIndex(&quot;pages&quot;));
+                    double price = cursor.getDouble(cursor.getColumnIndex(&quot;price&quot;));
+                    Log.d(TAG, &quot;book name is &quot; + name);
+                    Log.d(TAG, &quot;book author is &quot; + author);
+                    Log.d(TAG, &quot;book pages id &quot; + pages);
+                    Log.d(TAG, &quot;book price is &quot; + price);
+                }
+                cursor.close();
+            }
+            break;
+        case R.id.update_data:
+            Uri uri2 = Uri.parse(&quot;content://app.nvgtor.com.leanrning.provider/book/&quot; + newId);
+            ContentValues values1 = new ContentValues();
+            values1.put(&quot;name&quot;, &quot;A Storm of Swords&quot;);
+            values1.put(&quot;pages&quot;, 1216);
+            values1.put(&quot;price&quot;, 24.90);
+            getContentResolver().update(uri2, values1, null, null);
+            break;
+        case R.id.delete_data:
+            Uri uri3 = Uri.parse(&quot;content://app.nvgtor.com.leanrning.provider/book/&quot; + newId);
+            getContentResolver().delete(uri3, null, null);
+            break;
+    }
+}
+</code></pre><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>第一行代码</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ContentProvider/" rel="tag">#ContentProvider</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/14/排序算法/" rel="next" title="排序算法">
+                <i class="fa fa-chevron-left"></i> 排序算法
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/18/java8流/" rel="prev" title="Stream">
+                Stream <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/16/AndroidContentProvider/"
+           data-title="Content Provider" data-url="http://nvgtor.github.io/2016/05/16/AndroidContentProvider/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/myIcon.jpg"
+               alt="EastYoung" />
+          <p class="site-author-name" itemprop="name">EastYoung</p>
+          <p class="site-description motion-element" itemprop="description">其实并不难是你太悲观</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ContentProvider-简介"><span class="nav-number">1.</span> <span class="nav-text">ContentProvider 简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#访问其他程序中的数据"><span class="nav-number">2.</span> <span class="nav-text">访问其他程序中的数据</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ContentResolver-用法"><span class="nav-number">2.1.</span> <span class="nav-text">ContentResolver 用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#增删改查"><span class="nav-number">2.2.</span> <span class="nav-text">增删改查</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#读取联系人实例"><span class="nav-number">2.2.1.</span> <span class="nav-text">读取联系人实例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建自己的内容提供器"><span class="nav-number">3.</span> <span class="nav-text">创建自己的内容提供器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EastYoung</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+本站总访问量 <span id="busuanzi_value_site_pv"></span> &nbsp&nbsp&nbsp
+您是第<span id="busuanzi_value_site_uv"></span>个来到的小伙伴
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nvgtor"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

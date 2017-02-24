@@ -1,0 +1,691 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Drawable," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Android Drawable
+Success doesn’t come to you. You go to it. — Marva Collins">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Drawable 动画">
+<meta property="og:url" content="http://nvgtor.github.io/2017/02/24/Android Drawable 篇/index.html">
+<meta property="og:site_name" content="EastYoung's blog">
+<meta property="og:description" content="Android Drawable
+Success doesn’t come to you. You go to it. — Marva Collins">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-XiZSfsL9Qjw/WKiPtffYX1I/AAAAAAACgEc/OcJFehtGGE411Fu11AW4_HAYIm2pGTfhwCJoC/w1060-h708-p-rw/20161211_DSC2707-HDR-export.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/nvgtor/res/master/AnimationDrawable.png">
+<meta property="og:updated_time" content="2017-02-24T10:55:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Drawable 动画">
+<meta name="twitter:description" content="Android Drawable
+Success doesn’t come to you. You go to it. — Marva Collins">
+<meta name="twitter:image" content="https://lh3.googleusercontent.com/-XiZSfsL9Qjw/WKiPtffYX1I/AAAAAAACgEc/OcJFehtGGE411Fu11AW4_HAYIm2pGTfhwCJoC/w1060-h708-p-rw/20161211_DSC2707-HDR-export.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Drawable 动画 | EastYoung's blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">EastYoung's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">其实很简单其实很自然</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Drawable 动画
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-24T18:16:22+08:00" content="2017-02-24">
+              2017-02-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">Android笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/02/24/Android Drawable 篇/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/24/Android Drawable 篇/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+            <span>&nbsp; | &nbsp;
+            <span id="busuanzi_value_page_pv" ></span>次阅读
+            </span>    
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Android-Drawable"><a href="#Android-Drawable" class="headerlink" title="Android Drawable"></a>Android Drawable</h1><blockquote>
+<p>Success doesn’t come to you. You go to it. — Marva Collins</p>
+</blockquote>
+<p> <img src="https://lh3.googleusercontent.com/-XiZSfsL9Qjw/WKiPtffYX1I/AAAAAAACgEc/OcJFehtGGE411Fu11AW4_HAYIm2pGTfhwCJoC/w1060-h708-p-rw/20161211_DSC2707-HDR-export.jpg" alt="Success doesn&#39;t come to you. You go to it."></p>
+<a id="more"></a>
+<p>[TOC]</p>
+<blockquote>
+<p>A Drawable is a general abstraction for “something that can be drawn.”  Most<br> often you will deal with Drawable as the type of resource retrieved for<br> drawing things to the screen; the Drawable class provides a generic API for<br> dealing with an underlying visual resource that may take a variety of forms.<br> Unlike a {@link android.view.View}, a Drawable does not have any facility to<br> receive events or otherwise interact with the user.</p>
+</blockquote>
+<p>Drawable 一般指可绘制事物的抽象，通常情况下， Drawable 作为控件的背景图像或者是简单的指示器（例如音量指示器），不像 View 一样能够处理时间传递，也就不能完成和用户交互的动作</p>
+<h2 id="一般的-Drawable"><a href="#一般的-Drawable" class="headerlink" title="一般的 Drawable"></a>一般的 Drawable</h2><p>我们一般都可以通过 XML 来创建 Drawable 资源， 通过 Drawable Resources 来定义，可绘制对象资源是一般概念，是指可在屏幕上绘制的图形，以及可以使用 getDrawable(int) 等 API 检索或者应用到具有 android:drawable 和 android:icon 等属性的其他 XML 资源的图形。共有多种不同类型的可绘制对象</p>
+<p><a href="https://developer.android.com/guide/topics/resources/drawable-resource.html" target="_blank" rel="external">Drawabe Resources 官方文档</a></p>
+<p><a href="http://keeganlee.me/post/android/20150916" target="_blank" rel="external">Android样式的开发:drawable汇总篇</a></p>
+<h2 id="Drawable-动画"><a href="#Drawable-动画" class="headerlink" title="Drawable 动画"></a>Drawable 动画</h2><p>Drawable 动画，也就是常说的帧动画，通过按时间顺序播放一组图片来形成动画，通常在 res/drawable 下通过 xml 文件来创建：</p>
+<p><a href="https://developer.android.com/guide/topics/graphics/drawable-animation.html" target="_blank" rel="external">官方示例 Drawable Animation</a></p>
+<p>实现动画对应的类是： AnimationDrawable,看继承关系：</p>
+<p><img src="https://raw.githubusercontent.com/nvgtor/res/master/AnimationDrawable.png" alt="AnimationDrawable 类图"></p>
+<p>可见它通过实现 Animatable 接口来控制动画，这个接口是自定义 Drawable animation 时应该实现的，里面包含了三个方法，分别是开始、停止、判断是否在动画。</p>
+<p>Drawable 是一个抽象类，我们可以通过继承它来绘制我们需要的 Drawable, 为了方便绘制，它还提供了一些通用的方法，例如：</p>
+<ul>
+<li>setBounds() 确定 Drawable 绘制区域</li>
+<li>getPadding() Drawable 的 padding， 该方法返回 false 代表没有设置 padding</li>
+<li>setState() 控制不同状态下的 drawable，如获得焦点时，按下时</li>
+<li>setLevel() 设置 drawable 的 lever 值</li>
+<li>实现 Callback 接口， setCallback() 如果要实现 drawable 动画效果，必须实现该接口</li>
+</ul>
+<h2 id="自定义-Drawable-动画"><a href="#自定义-Drawable-动画" class="headerlink" title="自定义 Drawable 动画"></a>自定义 Drawable 动画</h2><p>我们通常做动画都是自定义 View 来实现，通过上面的 AnimationDrawable 来看，我们也可以通过自定义 Drawable 这种方式来实现动画，也算是利用代码绘制出帧动画这种效果，这种实现方式算是比较轻量级的，因为我们不用处理事件。</p>
+<p><a href="https://gold.xitu.io/entry/57aaa7740a2b580058722b00" target="_blank" rel="external">例一：自定义动画效果的Drawable</a></p>
+<p>下面的项目算是比较经典的自定义 Drawable 动画了，通过工厂模式创建了一大批自定义加载动画，很酷炫，下面也将记录学习该开源库的笔记，同时结合另一个开源库学习。</p>
+<p><a href="https://github.com/81813780/AVLoadingIndicatorView" target="_blank" rel="external">例二：AVLoadingIndicatorView</a></p>
+<h3 id="继承-Drawable-来实现-Drawable-动画"><a href="#继承-Drawable-来实现-Drawable-动画" class="headerlink" title="继承 Drawable 来实现 Drawable 动画"></a>继承 Drawable 来实现 Drawable 动画</h3><p>继承 Drawable 需要复写下面几个方法，我们主要是通过 draw 方法来绘制特定的动画效果：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">(Canvas canvas)</span> </span>&#123;</div><div class="line">       </div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="meta">@Override</span></div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAlpha</span><span class="params">(<span class="keyword">int</span> alpha)</span> </span>&#123;</div><div class="line"></div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="meta">@Override</span></div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setColorFilter</span><span class="params">(ColorFilter colorFilter)</span> </span>&#123;</div><div class="line"></div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="meta">@Override</span></div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getOpacity</span><span class="params">()</span> </span>&#123;</div><div class="line">       <span class="keyword">return</span> PixelFormat.TRANSLUCENT;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<p>另外，我们还需要通过实现 Animatable 接口来控制动画开始、暂停，判断动画是否在进行：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Interface that drawables supporting animations should implement.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Animatable</span> </span>&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Starts the drawable's animation.</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">start</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Stops the drawable's animation.</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">stop</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Indicates whether the animation is running.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@return</span> True if the animation is running, false otherwise.</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">isRunning</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>此外，为了方便动画的重绘与调度，我们还需要给自定义的 Drawable 设置一个 Callback 接口 （Drawable 内部接口），此接口用来控制 Drawable 的重绘，以及下一帧动画的调度：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Implement this interface if you want to create an animated drawable that</div><div class="line"> * extends &#123;<span class="doctag">@link</span> android.graphics.drawable.Drawable Drawable&#125;.</div><div class="line"> * Upon retrieving a drawable, use</div><div class="line"> * &#123;<span class="doctag">@link</span> Drawable#setCallback(android.graphics.drawable.Drawable.Callback)&#125;</div><div class="line"> * to supply your implementation of the interface to the drawable; it uses</div><div class="line"> * this interface to schedule and execute animation changes.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Callback</span> </span>&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Called when the drawable needs to be redrawn.  A view at this point</div><div class="line">     * should invalidate itself (or at least the part of itself where the</div><div class="line">     * drawable appears).</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> who The drawable that is requesting the update.</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">invalidateDrawable</span><span class="params">(@NonNull Drawable who)</span></span>;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * A Drawable can call this to schedule the next frame of its</div><div class="line">     * animation.  An implementation can generally simply call</div><div class="line">     * &#123;<span class="doctag">@link</span> android.os.Handler#postAtTime(Runnable, Object, long)&#125; with</div><div class="line">     * the parameters &lt;var&gt;(what, who, when)&lt;/var&gt; to perform the</div><div class="line">     * scheduling.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> who The drawable being scheduled.</div><div class="line">     * <span class="doctag">@param</span> what The action to execute.</div><div class="line">     * <span class="doctag">@param</span> when The time (in milliseconds) to run.  The timebase is</div><div class="line">     *             &#123;<span class="doctag">@link</span> android.os.SystemClock#uptimeMillis&#125;</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">scheduleDrawable</span><span class="params">(@NonNull Drawable who, @NonNull Runnable what, <span class="keyword">long</span> when)</span></span>;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * A Drawable can call this to unschedule an action previously</div><div class="line">     * scheduled with &#123;<span class="doctag">@link</span> #scheduleDrawable&#125;.  An implementation can</div><div class="line">     * generally simply call</div><div class="line">     * &#123;<span class="doctag">@link</span> android.os.Handler#removeCallbacks(Runnable, Object)&#125; with</div><div class="line">     * the parameters &lt;var&gt;(what, who)&lt;/var&gt; to unschedule the drawable.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> who The drawable being unscheduled.</div><div class="line">     * <span class="doctag">@param</span> what The action being unscheduled.</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">unscheduleDrawable</span><span class="params">(@NonNull Drawable who, @NonNull Runnable what)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>因为 Drawable 类里面的方法 invalidateSelf() 调用的就是 callback 里面的 invalidateDrawable() 方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Use the current &#123;<span class="doctag">@link</span> Callback&#125; implementation to have this Drawable</div><div class="line"> * redrawn.  Does nothing if there is no Callback attached to the</div><div class="line"> * Drawable.</div><div class="line"> *</div><div class="line"> * <span class="doctag">@see</span> Callback#invalidateDrawable</div><div class="line"> * <span class="doctag">@see</span> #getCallback()</div><div class="line"> * <span class="doctag">@see</span> #setCallback(android.graphics.drawable.Drawable.Callback)</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">invalidateSelf</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">final</span> Callback callback = getCallback();</div><div class="line">    <span class="keyword">if</span> (callback != <span class="keyword">null</span>) &#123;</div><div class="line">        callback.invalidateDrawable(<span class="keyword">this</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在 invalidateDrawable() 方法里面我们就可以来控制 Drawable 的重绘了。</p>
+<ul>
+<li>通过这种方法实现的动画效果，我们就可以给控件添加 Drawable 动画，例如:</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">imageView.setImageDrawable(drawable);</div><div class="line"></div><div class="line">textView.setCompoundDrawables(lDrawable,topDrawable,rightDrawable,bottomDrawable);</div></pre></td></tr></table></figure>
+<p>具体例子可看例一。</p>
+<h3 id="继承-View-来实现-Drawable-动画"><a href="#继承-View-来实现-Drawable-动画" class="headerlink" title="继承 View 来实现 Drawable 动画"></a>继承 View 来实现 Drawable 动画</h3><p>Drawable 和 View 有点相似，比如都可以 draw ，绘制出特定的效果，但是 Drawable 比起 View 在这方面算是比较轻量级的，因为它不支持事件处理这块，通常我们自定义 View 动画可能很少考虑在 View 里面引用一个 Drawable 来通过它完成动画绘制，这种情况在自定义帧动画的时候可能比较有效，通过学习例二，也可以看到里面就是这么处理的，自定义一个 View（View类其实是实现了上面的 Callback 接口的）, 完成测量、给 Drawable 设置绘制区域、绘制时调用 Drawable 的 draw 方法、重写 invalidateDrawable() 方法完成重绘制、也可以接受事件处理等。</p>
+<p>写动画效果，实现方式很多，感觉最重要的就是分解动画效果，理清楚动画的绘制流程，在具体绘制的时候学会灵活实现。比如说画一个圆，不停的缩放形成动画，我们可以不断改变半径重新绘制，也可以跟简单的直接对画布进行缩放。无论多么复杂的动画，都是有简单的动画组合起来的，先分解，在组合。</p>
+<p>在 AVLoadingIndicatorView 中，是一个很好的自定义 Drawable 动画的例子，AVLoadingIndicatorView 是一个继承 View 的自定义 View ,主要完成的工作是控件大小的测量，以及控制动画的开始以及结束等，而最重要的具体绘制则是由自定义的 Indicator （自定义 Drawable 工厂类） Drawable 继承类来实现的，也就是绘制实际是 drawable 自己来完成的。理一下过程：</p>
+<ol>
+<li>工厂 Indicator 继承自 Drawable 实现 Animatable 接口</li>
+<li>抽象方法 创建动画 和 具体绘制过程 延迟到子类 去实现具体细节</li>
+<li>Indicator 中 onBoundsChange() 方法接受 AVLoadingIndicatorView 中测量出来的大小，来决定 drawable 的绘制区域</li>
+<li>Indicator 中重绘方法 invalidateSelf(), 会回调到 Drawable.Callback 接口中的 invalidateDrawable() 方法，在这里控制重绘逻辑</li>
+<li>AVLoadingIndicatorView 继承 View,而 View 是实现了 Drawable.Callback 的，所以我们只需重写接口中的方法invalidateDrawable() 来控制重绘流程， 之后调用 View 的 invalidate(), 再到 onDraw() 控制绘制，最后将绘制任务再传到 Indicator 中的 draw() 方法，这就是整个绘制流程。</li>
+<li>记得给 Indicator 注册 Callback 接口，学会控制 scheduleDrawable() 与 unscheduleDrawable()</li>
+<li>值得注意 重写 verifyDrawable() 方法，如果我们自定义的 View 展示自己的 Drawable 动画的时候，看下面的源码：<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">     * If your view subclass is displaying its own Drawable objects, it should</div><div class="line">     * override this function and return true for any Drawable it is</div><div class="line">     * displaying.  This allows animations for those drawables to be</div><div class="line">     * scheduled.</div><div class="line">     *</div><div class="line">     * &lt;p&gt;Be sure to call through to the super class when overriding this</div><div class="line">     * function.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> who The Drawable to verify.  Return true if it is one you are</div><div class="line">     *            displaying, else return the result of calling through to the</div><div class="line">     *            super class.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@return</span> boolean If true than the Drawable is being displayed in the</div><div class="line">     *         view; else false and it is not allowed to animate.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@see</span> #unscheduleDrawable(android.graphics.drawable.Drawable)</div><div class="line">     * <span class="doctag">@see</span> #drawableStateChanged()</div><div class="line">     */</div><div class="line">    <span class="meta">@CallSuper</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">verifyDrawable</span><span class="params">(@NonNull Drawable who)</span> </span>&#123;</div><div class="line">        <span class="comment">// Avoid verifying the scroll bar drawable so that we don't end up in</span></div><div class="line">        <span class="comment">// an invalidation loop. This effectively prevents the scroll bar</span></div><div class="line">        <span class="comment">// drawable from triggering invalidations and scheduling runnables.</span></div><div class="line">        <span class="keyword">return</span> who == mBackground || (mForegroundInfo != <span class="keyword">null</span> &amp;&amp; mForegroundInfo.mDrawable == who);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>上面就是一些自定义 Drawable 的动画的总结了，也算是记录下如何用 Drawable 来实现动画，在项目中我们可能直接上自定义 View 来做动画了，AVLoadingIndicatorView 也可以直接自定义自 View，绘制的时候也就不用绕到 drawable 里面了，但在一些情况中感觉使用 Drawable 动画显然更好一些，比如无需交互的帧动画，加载动画，如 Fresco 中自定义的图片加载动画也是要通过 Drawable 来做。</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Drawable/" rel="tag">#Drawable</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/19/immersive/" rel="next" title="沉浸式体验">
+                <i class="fa fa-chevron-left"></i> 沉浸式体验
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/24/Android Drawable 篇/"
+           data-title="Drawable 动画" data-url="http://nvgtor.github.io/2017/02/24/Android Drawable 篇/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/myIcon.jpg"
+               alt="EastYoung" />
+          <p class="site-author-name" itemprop="name">EastYoung</p>
+          <p class="site-description motion-element" itemprop="description">其实并不难是你太悲观</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">31</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Android-Drawable"><span class="nav-number">1.</span> <span class="nav-text">Android Drawable</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一般的-Drawable"><span class="nav-number">1.1.</span> <span class="nav-text">一般的 Drawable</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Drawable-动画"><span class="nav-number">1.2.</span> <span class="nav-text">Drawable 动画</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义-Drawable-动画"><span class="nav-number">1.3.</span> <span class="nav-text">自定义 Drawable 动画</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#继承-Drawable-来实现-Drawable-动画"><span class="nav-number">1.3.1.</span> <span class="nav-text">继承 Drawable 来实现 Drawable 动画</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#继承-View-来实现-Drawable-动画"><span class="nav-number">1.3.2.</span> <span class="nav-text">继承 View 来实现 Drawable 动画</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EastYoung</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+本站总访问量 <span id="busuanzi_value_site_pv"></span> &nbsp&nbsp&nbsp
+您是第<span id="busuanzi_value_site_uv"></span>个来到的小伙伴
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"nvgtor"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
